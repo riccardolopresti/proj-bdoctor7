@@ -80,7 +80,11 @@ class SpecController extends Controller
      */
     public function update(Request $request, Spec $spec)
     {
-        $form_data = $request->all();
+        $form_data = $request->validate(
+            [
+                'type' => 'required|min:2|max:255|unique:specs'
+            ]
+        );
 
         $spec->update($form_data);
 
