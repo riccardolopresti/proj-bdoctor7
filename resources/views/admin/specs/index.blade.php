@@ -42,7 +42,7 @@
                                 <div class="text-danger m-0 p-0">
                                     {{$message}}
                                 </div>
-                                @enderror
+                            @enderror
 
                         </form>
                     </div>
@@ -64,15 +64,15 @@
                                                 @csrf
                                                 @method('PATCH')
                                                     <input class="border-0 w-75" type="text" name="type" value="{{$spec->type}}">
-                                                    <button type="submit" class="btn btn-warning">Edit</button>
+                                                    <button type="submit" class="btn btn-warning my-1">Edit</button>
                                             </form>
                                         </div>
 
                                         <div class="delete-form">
-                                            <form  action="{{route('admin.specializations.destroy', $spec)}}" method="POST" class="bg-light w-25">
+                                            <form  action="{{route('admin.specializations.destroy', $spec)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                                    <button type="submit" class="btn btn-danger my-1">Elimina</button>
                                             </form>
                                         </div>
 
