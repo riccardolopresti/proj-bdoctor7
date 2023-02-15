@@ -28,21 +28,22 @@
                         <form action="{{route('admin.specializations.store')}}" method="POST">
                             @csrf
 
-                            <label for="type" class="form-label">Aggiungi una nuova specializzazione:</label>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control @error('type') is-invalid @enderror" name="type" placeholder="Aggiungi una nuova specializzazione">
-                                <button class="btn btn-outline-success" type="submit" id="button-addon2">
-                                    <i class="fa-solid fa-circle-plus"></i>
-                                    Aggiungi
-                                </button>
-                            </div>
-
-                            @error('type')
-                                <div class="text-danger m-0 p-0">
-                                    {{$message}}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Aggiungi una nuova specializzazione:</label>
+                                <div class="wrap d-flex">
+                                    <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" value="{{old('name')}}" name="type" placeholder="Aggiungi una nuova specializzazione">
+                                    <button class="btn btn-outline-success" type="submit" id="button-addon2">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        Aggiungi
+                                    </button>
                                 </div>
-                            @enderror
+
+                                @error('type')
+                                    <p class="text-danger">
+                                        {{$message}}
+                                    </p>
+                                @enderror
+                            </div>
 
                         </form>
                     </div>
