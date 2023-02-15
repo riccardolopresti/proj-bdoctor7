@@ -4,7 +4,7 @@
             <a href="#">sdadfsada</a>
         </li>
         <li>
-            <a href="#">dsadsa</a>
+            <a href="#">My Messages</a>
         </li>
         <li>
             <a href="#">dasdas</a>
