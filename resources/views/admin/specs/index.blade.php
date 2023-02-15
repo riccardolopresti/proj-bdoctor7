@@ -68,12 +68,8 @@
                                             </form>
                                         </div>
 
-                                        <div class="delete-form">
-                                            <form  action="{{route('admin.specializations.destroy', $spec)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger my-1">Elimina</button>
-                                            </form>
+                                        <div class="delete-form my-1">
+                                            @include('admin.specs.partials.delete-form')
                                         </div>
 
                                     </td>
