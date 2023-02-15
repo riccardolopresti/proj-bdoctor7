@@ -16,7 +16,8 @@ class SpecController extends Controller
      */
     public function index()
     {
-        //
+        $specs = Spec::all();
+        return view('admin.specs.index', compact('specs'));
     }
 
     /**
