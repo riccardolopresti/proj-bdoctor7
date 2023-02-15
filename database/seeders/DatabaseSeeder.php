@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             ReviewSeeder::class,
             RatingSeeder::class,
+            DoctorSpecSeeder::class,
         ]);
     }
 }

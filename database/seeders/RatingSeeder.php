@@ -16,7 +16,7 @@ class RatingSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 20; $i++) {
+        for ($i=0; $i < 40; $i++) {
             $new_rating = new Rating();
             $new_rating->name = $faker->name();
             $random_numb = $faker->randomFloat(1, 0, 5);
