@@ -18,11 +18,7 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-
-
         for ($i=0; $i < 20; $i++) {
-
-
             $new_message = new Message();
             $new_message->name = $faker->name();
             $new_message->text = $faker->realText($maxNbChars = 200, $indexSize = 2);
