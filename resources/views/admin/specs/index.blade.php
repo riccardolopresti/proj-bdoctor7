@@ -10,6 +10,12 @@
         <div class="row">
             <div class="col">
 
+                @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{session('message')}}
+                        </div>
+                @endif
+
                 <div class="wrapper border rounded-4 p-4 pt-2 mt-5">
 
                     <div class="title">
@@ -36,7 +42,7 @@
                                 <div class="text-danger m-0 p-0">
                                     {{$message}}
                                 </div>
-                            @enderror
+                                @enderror
 
                         </form>
                     </div>
@@ -48,37 +54,36 @@
                                 <th scope="col">N° Medici</th>
                             </tr>
                         </thead>
-                        @foreach ( $specs as $spec )
-                            <tbody>
+                        <tbody>
+                            @foreach ( $specs as $spec )
                                 <tr>
                                     <td class="d-flex flex-wrap">
-                                        <div class="form-wrapper d-flex">
 
-                                            <div class="update-form">
-                                                <form  action="{{route('admin.specializations.update', $spec->id)}}" method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
+                                        <div class="update-form">
+                                            <form  action="{{route('admin.specializations.update', $spec)}}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
                                                     <input class="border-0 w-75" type="text" name="type" value="{{$spec->type}}">
                                                     <button type="submit" class="btn btn-warning">Edit</button>
-                                                </form>
-                                            </div>
-
-                                            <div class="delete-form">
-                                                <form  action="{{route('admin.specializations.destroy', $spec->id)}}" method="POST" class="bg-light w-25">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Elimina</button>
-                                                </form>
-                                            </div>
-
+                                            </form>
                                         </div>
+
+                                        <div class="delete-form">
+                                            <form  action="{{route('admin.specializations.destroy', $spec)}}" method="POST" class="bg-light w-25">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                            </form>
+                                        </div>
+
                                     </td>
 
-                                    <td><span class="badge text-bg-dark">{{count($spec->doctors)}}</span></td>
+                                    <td>
+                                        <span class="badge text-bg-dark">{{count($spec->doctors)}}</span>
+                                    </td>
                                 </tr>
-                            </tbody>
-                        @endforeach
-
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -80,7 +80,11 @@ class SpecController extends Controller
      */
     public function update(Request $request, Spec $spec)
     {
-        //
+        $form_data = $request->all();
+
+        $spec->update($form_data);
+
+        return redirect()->back()->with('message', "Specializzazione $request->type aggiornata correttamente!");
     }
 
     /**
@@ -91,6 +95,9 @@ class SpecController extends Controller
      */
     public function destroy(Spec $spec)
     {
-        //
+        $spec->delete();
+
+        return redirect()->back()->with('message', "Specializzazione $spec->type eliminata correttamente!");
+
     }
 }
