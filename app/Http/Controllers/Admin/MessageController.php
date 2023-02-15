@@ -37,7 +37,15 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        // $new_message = new Message;
+        // $new_message->fill($form_data);
+        // dd($new_message);
+
+
+        Message::create($form_data);
+
+        return redirect()->route('admin.messages.index');
     }
 
     /**

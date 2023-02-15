@@ -4,7 +4,7 @@
             <a href="#">sdadfsada</a>
         </li>
         <li>
-            <a href="#">My Messages</a>
+            <a href="{{ route('admin.messages.index') }}">My Messages</a>
         </li>
         <li>
             <a href="#">dasdas</a>
