@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             RatingSeeder::class,
             DoctorSpecSeeder::class,
+            DoctorRatingSeeder::class,
             DoctorOfferSeeder::class,
         ]);
     }
