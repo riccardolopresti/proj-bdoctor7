@@ -20,6 +20,7 @@ class DoctorSpecSeeder extends Seeder
 
         foreach($doctors as $doctor){
             $random_numb = rand(1,3);
+
             for ($i=0; $i < $random_numb ; $i++) {
                 $spec_id = Spec::inRandomOrder()->first();
 
