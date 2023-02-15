@@ -20,7 +20,8 @@ class Doctor extends Model
     }
 
     public function offers(){
-        return $this->belongsToMany(Offer::class);
+        return $this->belongsToMany(Offer::class)
+            ->withPivot('start_at','end_at');
     }
 
     public function messages(){
