@@ -26,12 +26,8 @@ class DoctorOfferSeeder extends Seeder
             $random_numb = rand(0,2);
             $random_data = $data[array_rand($data,1)];
 
-            //dump($random_data);
-
             for ($i=0; $i < $random_numb ; $i++) {
                 $offer_id = Offer::inRandomOrder()->first();
-
-                //$doctor->offers()->attach($offer_id,);
 
                 $start_str = strtotime($random_data);
 
@@ -42,14 +38,11 @@ class DoctorOfferSeeder extends Seeder
                 $end_at = date("Y-m-d h:i:s", $end_str);
 
                 $doctor->offers()->attach($offer_id,
-                [
-                    "start_at" => $start_at,
-                    "end_at" => $end_at,
-                ]);
-
-                //dump($offer_id->duration);
-                //dump($start_at);
-                //dump($end_at);
+                    [
+                        "start_at" => $start_at,
+                        "end_at" => $end_at,
+                    ]
+                );
             }
         }
     }
