@@ -24,9 +24,9 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Message $message)
     {
-        //
+        return view('admin.messages.create', compact('message'));
     }
 
     /**
@@ -83,6 +83,6 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         $message->delete();
-        return redirect()->route('admin.messages.index');
+        return redirect()->route('admin.messages.index')->with('message', 'Messaggio eliminato correttamente');
     }
 }

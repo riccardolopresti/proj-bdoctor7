@@ -13,6 +13,17 @@
                     <h1>Messaggi</h1>
                 </div>
 
+
+                <div class="create-msg py-2">
+                    <a href="{{ route('admin.messages.create') }}" class="btn btn-success mt-3">Crea un nuovo messaggio</a>
+                </div>
+
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
                 <table class="table">
                     <thead>
                         <tr>
