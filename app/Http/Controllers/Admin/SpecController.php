@@ -38,7 +38,15 @@ class SpecController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->validate(
+            [
+                'type' => 'required|min:2|max:255|unique:specs'
+            ]
+        );
+
+        Spec::create($form_data);
+
+        return redirect()->back()->with('message', "Specializzazione $request->type aggiunta correttamente!");
     }
 
     /**

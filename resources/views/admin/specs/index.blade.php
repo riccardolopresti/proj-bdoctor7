@@ -21,17 +21,23 @@
                     <div class="add-spec">
                         <form action="{{route('admin.specializations.store')}}" method="POST">
                             @csrf
-                            @method('CREATE')
 
                             <label for="type" class="form-label">Aggiungi una nuova specializzazione:</label>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="type" placeholder="Aggiungi una nuova specializzazione">
+                                <input type="text" class="form-control @error('type') is-invalid @enderror" name="type" placeholder="Aggiungi una nuova specializzazione">
                                 <button class="btn btn-outline-success" type="submit" id="button-addon2">
                                     <i class="fa-solid fa-circle-plus"></i>
                                     Aggiungi
                                 </button>
                             </div>
+
+                            @error('type')
+                                <div class="text-danger m-0 p-0">
+                                    {{$message}}
+                                </div>
+                            @enderror
+
                         </form>
                     </div>
 
