@@ -16,7 +16,7 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $doctors= Doctor::all();
+        $doctors= Doctor::paginate(3);
         $ratings = Rating::all();
 
         return view('admin.ratings.index',compact('doctors','ratings'));
