@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('address');
             $table->string('cv')->nullable();
+            $table->string('cv_original_name')->nullable();
             $table->string('image')->nullable();
             $table->string('image_original_name')->nullable();
             $table->string('phone',20)->nullable();

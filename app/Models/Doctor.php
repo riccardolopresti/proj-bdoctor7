@@ -10,7 +10,7 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['surname','slug','address','cv','image','user_id','image_original_name','phone','health_care'];
+    protected $fillable = ['surname','slug','address','image','user_id','image_original_name','phone','health_care','cv_original_name' ,'cv'];
 
     public function user(){
         return $this->belongsTo(User::class);

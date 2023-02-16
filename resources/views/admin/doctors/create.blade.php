@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    CREATE - NEW DOCTOR
 
-    <h1 class="mb-4">Nuovo profilo dottore</h1>
+    <h1 class="my-4 ms-3">Crea un nuovo profilo dottore</h1>
 
     <form action="{{route('admin.doctors.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -24,8 +23,9 @@
                     @enderror
                 </div>
                 <div class="col-12">
-                    <select class="form-select form-select my-3" aria-label=".form-select-lg example" name="specs">
-                        <option selected value=''>Seleziona una specializzazione</option>
+                    <label for="specs" class="form-label">Scegli una o più specializzazioni</label>
+                    <select class="form-select form-select my-3" aria-label=".form-select-lg example" name="specs" multiple id="specs">
+
                         @foreach ($specializations as $specialization)
                                     <option value="{{$specialization->id}}">{{$specialization->type}}</option>
                                 @endforeach

@@ -28,9 +28,10 @@ class DoctorController extends Controller
         // $users=User::with('doctors')->get();
         $users=User::with('doctors')->get();
         $doctors=Doctor::all();
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
 
         // dd($users);
-        return view('admin.doctors.index', compact( 'users', 'doctors'));
+        return view('admin.doctors.index', compact( 'users', 'doctors', 'doctor'));
     }
 
     /**
@@ -70,7 +71,7 @@ class DoctorController extends Controller
         }
         if(array_key_exists('cv',$form_data)){
 
-            $form_data['cv'] = $request->file('cv')->getClientOriginalName();
+            $form_data['cv_original_name'] = $request->file('cv')->getClientOriginalName();
 
             $form_data['cv'] = Storage::put('uploads', $form_data['cv']);
         }
@@ -88,7 +89,9 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
-        return view('admin.doctors.show', compact('doctor'));
+
+        $user=User::where('id', $doctor->user_id)->first();
+        return view('admin.doctors.show', compact('doctor', 'user'));
     }
 
     /**
@@ -99,11 +102,12 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
+        $user=User::where('id', $doctor->user_id)->first();
         $specializations=Spec::all();
         $messages=$doctor->messages()->get();
         $reviews=$doctor->reviews()->get();
         $ratings=$doctor->ratings()->get();
-        return view('admin.doctors.edit', compact('doctor','specializations','messages','reviews', 'ratings'));
+        return view('admin.doctors.edit', compact('doctor','specializations','messages','reviews', 'ratings', 'user'));
 
 
     }

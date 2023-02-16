@@ -2,7 +2,7 @@
 
 @section('content')
    @if (Auth::user()->is_admin)
-   <table class="table">
+    <table class="table">
        <thead>
            <tr>
                <th scope="col">ID</th>
@@ -41,6 +41,13 @@
 
         </tbody>
 
-        </table>
+    </table>
+    @else
+        @if (!$doctors->contains('user_id', Auth::user()->id))
+
+            <a href="{{route('admin.doctors.create')}}" class=" mt-4 btn btn-warning btn-big" type="button">Crea un nuovo profilo</a>
+        @else
+        <a href="{{route('admin.doctors.show', $doctor)}}" class=" mt-4 btn btn-info btn-big" type="button">Modifica il tuo profilo</a>
+        @endif
    @endif
 @endsection
