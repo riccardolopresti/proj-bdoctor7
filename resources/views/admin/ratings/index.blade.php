@@ -6,6 +6,11 @@
 
 @section('content')
     <div class="container">
+        @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
         <div class="row">
             <div class="col">
 
@@ -14,29 +19,28 @@
                 </div>
 
                 <div class="create-msg py-2">
-                    <a href="{{ route('admin.ratings.create') }}" class="btn btn-success mt-3">Crea un nuovo messaggio</a>
+                    <a href="{{ route('admin.ratings.create') }}" class="btn btn-success mt-3">Crea una valutazione</a>
                 </div>
 
-                @if (session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('message') }}
-                    </div>
-                @endif
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Cognome dottore</th>
-                            <th scope="col">nome</th>
-                            <th scope="col">rating</th>
-                            <th scope="col">Azioni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($doctors as $doctor)
+
+                @foreach ($doctors as $doctor)
+                <div class="wrapper border rounded-4 my-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 200px" scope="col">
+                                    Dott.{{ $doctor->surname }}
+                                </th>
+                                <th scope="col">Nome Utente</th>
+                                <th scope="col">Voto</th>
+                                <th scope="col">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             @foreach ($doctor->ratings as $rating )
                                 <tr>
-                                    <td>{{ $doctor->surname }}</td>
+                                    <td>#</td>
                                     <td>{{ $rating->name }}</td>
                                     <td>{{ $rating->rating }}</td>
                                     <td>
@@ -51,10 +55,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                        @endforeach
-                    </tbody>
-                </table>
+                @endforeach
             </div>
         </div>
     </div>

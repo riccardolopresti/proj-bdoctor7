@@ -29,7 +29,8 @@ class RatingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.ratings.create');
+
     }
 
     /**
@@ -40,7 +41,16 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $form_data = $request->all();
+
+        Rating::create($form_data);
+
+        //$ratings->doctors()->attach()
+
+        return redirect()->route('admin.ratings.index');
+
     }
 
     /**
@@ -85,6 +95,8 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        $rating->delete();
+
+        return redirect()->route('admin.ratings.index')->with('message', 'Messaggio eliminato correttamente');
     }
 }
