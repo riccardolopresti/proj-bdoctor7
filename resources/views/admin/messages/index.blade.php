@@ -41,7 +41,7 @@
                     <tbody>
                         @foreach ($doctor->messages as $message)
                             <tr>
-                                <td>#</td>
+                                <td>{{$loop->iteration}}</td>
                                 <td>{{ $message->name }}</td>
                                 <td>{{ $message->object }}</td>
                                 <td>{{ $message->email }}</td>
