@@ -45,9 +45,9 @@ class RatingController extends Controller
 
         $form_data = $request->all();
 
-        Rating::create($form_data);
+        $rating = Rating::create($form_data);
 
-        //$ratings->doctors()->attach()
+        $rating->doctors()->attach($form_data['doctor_id']);
 
         return redirect()->route('admin.ratings.index');
 
