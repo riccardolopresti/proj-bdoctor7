@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        $offers = Offer::all();
+
+        return view('admin.offers.index', compact('offers'));
     }
 
     /**
@@ -25,7 +28,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.offers.create');
     }
 
     /**
@@ -34,9 +37,14 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $new_offer = new Offer();
+        $new_offer->fill($form_data);
+        $new_offer->save();
+
+        return redirect()->route('admin.offers.index')->with('created', "L'offerta $new_offer->offer_type è stata creata correttamente");
     }
 
     /**
@@ -58,7 +66,7 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        return view('admin.offers.edit', compact('offer'));
     }
 
     /**
@@ -68,9 +76,13 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(OfferRequest $request, Offer $offer)
     {
-        //
+        $form_data = $request->all();
+
+        $offer->update($form_data);
+
+        return redirect()->route('admin.offers.index')->with('edited', "L'offerta $offer->offer_type è stata modificata correttamente");
     }
 
     /**
@@ -81,6 +93,8 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
+
+        return redirect()->route('admin.offers.index')->with('deleted', "L'offerta $offer->offer_type è stata eliminata correttamente");
     }
 }
