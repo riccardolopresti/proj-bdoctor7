@@ -1,6 +1,36 @@
 @import '~bootstrap/scss/bootstrap';
 
-aside{
-    height: 90vh;
-    background-color: rgba(204, 224, 224, 0.771);
+main, .main-wrapper, aside{
+    overflow: auto;
+    height: calc(100vh - 70px);
 }
+
+aside{
+    height: calc(100vh - 70px);
+    overflow: auto;
+    width: 15vw;
+    background-color: rgba(204, 224, 224, 0.771);
+
+    ul{
+        list-style: none;
+        line-height: 180%;
+
+        li{
+            padding-left: 2vw;
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    ul li a span{
+        display: none;
+    }
+    ul li a i{
+        padding-left: 4vw;
+    }
+}
+
