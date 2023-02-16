@@ -13,6 +13,10 @@
                     placeholder="Nome">
             </div>
             <div class="mb-3">
+                <label for="doctor_id" class="form-label">ID</label>
+                <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id') }}">
+            </div>
+            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
                     placeholder="Email">
