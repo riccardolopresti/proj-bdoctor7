@@ -16,10 +16,15 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('surname',80);
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('slug')->unique();
             $table->string('address');
             $table->string('cv')->nullable();
             $table->string('image')->nullable();
+            $table->string('image_original_name')->nullable();
             $table->string('phone',20)->nullable();
             $table->text('health_care')->nullable();
             $table->timestamps();
