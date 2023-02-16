@@ -15,6 +15,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Fontawesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.css' integrity='sha512-FA9cIbtlP61W0PRtX36P6CGRy0vZs0C2Uw26Q1cMmj3xwhftftymr0sj8/YeezDnRwL9wtWw8ZwtCiTDXlXGjQ==' crossorigin='anonymous'/>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -28,12 +31,12 @@
             <div class="container-fluid">
                 <div class="row">
                     @auth
-                        <div @auth class="col-1 m-0 p-0"@endauth>
+                        <div @auth class="col m-0 p-0"@endauth>
                             @include('admin.partials.aside')
                         </div>
                     @endauth
 
-                    <div class="col">
+                    <div class="col-10 main-wrapper">
                         @yield('content')
                     </div>
                 </div>
