@@ -14,6 +14,21 @@ class ReviewController extends Controller
         return view('admin.reviews.index', compact('reviews'));
     }
 
+    public function create(Review $review)
+    {
+        return view('admin.reviews.create', compact('review'));
+    }
+
+    public function store(Request $request)
+    {
+        $form_data = $request->all();
+        // dd($form_data);
+
+        Review::create($form_data);
+
+        return redirect()->route('admin.reviews.index');
+    }
+
     public function destroy(Review $review)
     {
         $review->delete();

@@ -12,6 +12,10 @@
                     <h1>Reviews</h1>
                 </div>
 
+                <div class="create-msg py-2">
+                    <a href="{{ route('admin.reviews.create') }}" class="btn btn-success mt-3">Lascia una review</a>
+                </div>
+
                 @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}

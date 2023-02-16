@@ -7,7 +7,7 @@
             <a href="{{ route('admin.messages.index') }}">Messaggi</a>
         </li>
         <li>
-            <a href="{{ route('admin.reviews.index') }}">Reviews</a>
+            <a href="#">dasdas</a>
         </li>
         <li>
             <a href="#">dsada</a>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\RatingController;
+use App\Http\Controllers\Admin\Review2Controller;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SpecController;
 use App\Http\Controllers\ProfileController;
@@ -29,14 +30,14 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
-    ->group(function(){
+    ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('doctors', DoctorController::class);
-        Route::resource('specializations', SpecController::class)->except(['show','edit','create']);
+        Route::resource('specializations', SpecController::class)->except(['show', 'edit', 'create']);
         Route::resource('offers', OfferController::class)->except(['show']);
-        Route::resource('messages', MessageController::class)->except(['show','edit']);
-        Route::resource('ratings', RatingController::class)->except(['show','edit']);
-        Route::resource('reviews', ReviewController::class)->except(['show','edit']);
+        Route::resource('messages', MessageController::class)->except(['show', 'edit']);
+        Route::resource('ratings', RatingController::class)->except(['show', 'edit']);
+        Route::resource('reviews', ReviewController::class)->except(['show', 'edit']);
     });
 
 Route::middleware('auth')->group(function () {
@@ -45,9 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
-Route::get('{any?}', function(){
+Route::get('{any?}', function () {
     return view('guest.home');
-})->where('any','.*')->name('home');
+})->where('any', '.*')->name('home');

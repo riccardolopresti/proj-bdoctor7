@@ -9,9 +9,10 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','rating'];
+    protected $fillable = ['name', 'rating', 'doctor_id'];
 
-    public function doctors(){
+    public function doctors()
+    {
         return $this->belongsToMany(Doctor::class);
     }
 }
