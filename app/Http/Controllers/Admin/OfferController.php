@@ -44,7 +44,7 @@ class OfferController extends Controller
         $new_offer->fill($form_data);
         $new_offer->save();
 
-        return redirect()->route('admin.offers.index');
+        return redirect()->route('admin.offers.index')->with('created', "L'offerta $new_offer->offer_type è stata creata correttamente");
     }
 
     /**
@@ -82,7 +82,7 @@ class OfferController extends Controller
 
         $offer->update($form_data);
 
-        return redirect()->route('admin.offers.index');
+        return redirect()->route('admin.offers.index')->with('edited', "L'offerta $offer->offer_type è stata modificata correttamente");
     }
 
     /**
@@ -95,6 +95,6 @@ class OfferController extends Controller
     {
         $offer->delete();
 
-        return redirect()->route('admin.offers.index');
+        return redirect()->route('admin.offers.index')->with('deleted', "L'offerta $offer->offer_type è stata eliminata correttamente");
     }
 }

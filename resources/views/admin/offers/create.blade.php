@@ -5,18 +5,7 @@
 <div class="container">
     <h1>Crea una nuova offerta</h1>
 
-    @if($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
-
-   @endif
-
-    <form action="{{route('admin.plans.store')}}" method="POST">
+    <form action="{{route('admin.offers.store')}}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="offer_type" class="form-label">Tipo di offerta</label>
