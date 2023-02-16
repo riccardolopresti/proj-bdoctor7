@@ -3,7 +3,7 @@
 @section('content')
     edit DOCTOR
 
-    <h1 class="mb-3">Modifica progetto {{$doctor->name}}</h1>
+    <h1 class="mb-3">Modifica profilo: {{$doctor->surname}}</h1>
     <form action="{{route('admin.doctors.update', $doctor)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
@@ -27,8 +27,15 @@
                     <select class="form-select form-select my-3" aria-label=".form-select-lg example" name="specs">
                         <option selected value=''>Seleziona una specializzazione</option>
                         @foreach ($specializations as $specialization)
-                                    <option value="{{$specialization->id}}">{{$specialization->type}}</option>
-                                @endforeach
+                                    <option value="{{$specialization->id}}"
+                                        @foreach ($doctor->specs as $spec)
+                                            @if ($spec->pivot->doctor_id==$doctor->id)
+                                                selected
+                                            @endif
+
+                                        @endforeach
+                                        >{{$specialization->type}}</option>
+                                        @endforeach
 
                               </select>
                               @error('specialization')
@@ -40,21 +47,21 @@
 
                 <div class="col-6 my-2">
                         <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{old('address')}}">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{$doctor->address, old('address')}}">
                         @error('address')
                         <p class="invalid-feedback">{{$message}}</p>
                         @enderror
                  </div>
                 <div class="col-6 my-2">
                         <label for="phone" class="form-label">Numero di telefono</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone" name="phone" value="{{old('phone')}}">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone" name="phone" value="{{$doctor->phone, old('phone')}}">
                         @error('phone')
                         <p class="invalid-feedback">{{$message}}</p>
                         @enderror
                 </div>
                 <div class="col-12">
                         <label for="health_care" class="form-label">Descrizione servizi aggiuntivi</label><br>
-                        <textarea name="health_care" id="health_care" rows="5" class="w-100">{{old('health_care')}}</textarea>
+                        <textarea name="health_care" id="health_care" rows="5" class="w-100">{{$doctor->health_care, old('health_care')}}</textarea>
                         @error('health_care')
                             <p class="invalid-feedback">{{$message}}</p>
                         @enderror
@@ -74,7 +81,7 @@
                     <div class="col-12">
                         <label for="image" class="form-label">Aggiungi un cv</label>
                         <input
-                         type="file" class="form-control @error('cv') is-invalid @enderror"  id="cv" name="cv" value="{{old('cv')}}">
+                         type="file" class="form-control @error('cv') is-invalid @enderror"  id="cv" name="cv" value="{{$doctor->cv, old('cv')}}">
                         @error('cv')
                             <p class="invalid-feedback">{{$message}}</p>
                         @enderror
@@ -86,7 +93,11 @@
 
                 <button type="submit" class="btn btn-success my-5">Conferma modifiche</button>
             </div>
-
+            <form action="{{route('admin.doctors.destroy',$doctor)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" title="delete">Conferma eliminazione</button>
+            </form>
 
 
         </div>

@@ -10,6 +10,7 @@ use App\Models\Offer;
 use App\Models\Rating;
 use App\Models\Review;
 use App\Models\Spec;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -23,8 +24,13 @@ class DoctorController extends Controller
      */
     public function index()
     {
+        // $currentDoctor=Doctor::where('user_id', Auth::user()->id)->first();
+        // $users=User::with('doctors')->get();
+        $users=User::with('doctors')->get();
+        $doctors=Doctor::all();
 
-        return view('admin.doctors.index');
+        // dd($users);
+        return view('admin.doctors.index', compact( 'users', 'doctors'));
     }
 
     /**
@@ -51,7 +57,8 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $form_data = $request->all();
-        $form_data['slug']=Str::slug($form_data['name'].'-'.$form_data['surname']);
+        $form_data['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname'], $form_data['specs']);
+        $form_data['user_id']=Auth::user()->id;
 
         if(array_key_exists('image',$form_data)){
 
@@ -61,13 +68,14 @@ class DoctorController extends Controller
         }else{
             $form_data['image']='https://ui-avatars.com/api/?name='.Auth::user()->name.'+'.$form_data['surname'].'&background=random&rounded=true';
         }
-        if(array_key_exists('image',$form_data)){
+        if(array_key_exists('cv',$form_data)){
 
             $form_data['cv'] = $request->file('cv')->getClientOriginalName();
 
             $form_data['cv'] = Storage::put('uploads', $form_data['cv']);
         }
         $new_doctor = Doctor::create($form_data);
+
         $new_doctor->specs()->attach($form_data['specs']);
         return redirect()->route('admin.doctors.show', $new_doctor)->with('message', 'Nuovo profilo dottore creato correttamente');
     }
@@ -107,9 +115,15 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        //
+        $form_data=$request->all();
+        if($form_data['surname'] != $doctor->surname || $form_data['specs'] != $doctor->specs){
+            $doctor['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname'], $form_data['specs']);
+        }else{$form_data['slug']=$doctor->slug ;}
+        $doctor->update($form_data);
+
+        return redirect()->route('admin.doctors.show', $doctor);
     }
 
     /**
@@ -118,8 +132,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Doctor $doctor)
     {
-        //
+        $doctor->delete();
+        return redirect()->route('admin.doctors.index');
     }
 }

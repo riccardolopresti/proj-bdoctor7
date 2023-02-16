@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Doctor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['surname','slug','address','cv','image','image_original_name','phone','health_care'];
+    protected $fillable = ['surname','slug','address','cv','image','user_id','image_original_name','phone','health_care'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -34,6 +35,19 @@ class Doctor extends Model
 
     public function ratings(){
         return $this->belongsToMany(Rating::class);
+    }
+
+    public static function generateSlug($name, $surname, $spec){
+        $slug = Str::slug($name.'-'.$surname.'-'.$spec);
+        $original_slug = $slug;
+        $c = 1;
+        $doc_exists = Doctor::where('slug',$slug)->first();
+        while($doc_exists){
+            $slug = $original_slug . '-' . $c;
+            $doc_exists = Doctor::where('slug',$slug)->first();
+            $c++;
+        }
+        return $slug;
     }
 
 }
