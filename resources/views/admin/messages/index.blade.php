@@ -24,10 +24,14 @@
                     </div>
                 @endif
 
+                @foreach ($doctors as $doctor )
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Nome</th>
+                            <th style="width: 200px" scope="col">
+                                Dott.{{ $doctor->surname }}
+                            </th>
+                            <th scope="col">Nome Utente</th>
                             <th scope="col">Oggetto</th>
                             <th scope="col">Email</th>
                             <th scope="col">Messaggio</th>
@@ -35,8 +39,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($messages as $message)
+                        @foreach ($doctor->messages as $message)
                             <tr>
+                                <td>#</td>
                                 <td>{{ $message->name }}</td>
                                 <td>{{ $message->object }}</td>
                                 <td>{{ $message->email }}</td>
@@ -55,8 +60,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                @endforeach
+
             </div>
         </div>
-        {{ $messages->links() }}
+        {{-- {{ $messages->links() }} --}}
     </div>
 @endsection

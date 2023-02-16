@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\Message;
 
 class MessageController extends Controller
@@ -15,8 +16,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::paginate(10);
-        return view('admin.messages.index', compact('messages'));
+        $doctors= Doctor::all();
+        $messages = Message::all();
+        return view('admin.messages.index', compact('doctors','messages'));
     }
 
     /**
