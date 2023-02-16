@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('doctors', DoctorController::class);
         Route::resource('specializations', SpecController::class)->except(['show','edit','create']);
-        Route::resource('plans', OfferController::class)->except(['show']);
+        Route::resource('offers', OfferController::class)->except(['show']);
         Route::resource('messages', MessageController::class)->except(['show','edit']);
         Route::resource('ratings', RatingController::class)->except(['show','edit']);
         Route::resource('reviews', ReviewController::class)->except(['show','edit']);
