@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Message;
 
 class MessageController extends Controller
 {
@@ -15,7 +15,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::paginate(10);
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**
@@ -23,9 +24,9 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Message $message)
     {
-        //
+        return view('admin.messages.create', compact('message'));
     }
 
     /**
@@ -36,7 +37,15 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        // $new_message = new Message;
+        // $new_message->fill($form_data);
+        // dd($new_message);
+
+
+        Message::create($form_data);
+
+        return redirect()->route('admin.messages.index');
     }
 
     /**
@@ -79,8 +88,9 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Message $message)
     {
-        //
+        $message->delete();
+        return redirect()->route('admin.messages.index')->with('message', 'Messaggio eliminato correttamente');
     }
 }
