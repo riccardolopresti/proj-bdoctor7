@@ -22,6 +22,7 @@ class DoctorSeeder extends Seeder
 
         foreach($users as $user){
             $new_doctor = new Doctor();
+            $new_doctor->user_id=$user->id;
             $new_doctor->surname = $faker->lastName();
             $new_doctor->slug = Str::slug($user->name . '-' . $new_doctor->surname);
             $new_doctor->address = $faker->streetAddress();
