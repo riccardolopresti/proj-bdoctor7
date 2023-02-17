@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DoctorRequest;
 use App\Models\Doctor;
 use App\Models\Message;
 use App\Models\Offer;
@@ -54,24 +55,21 @@ class DoctorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DoctorRequest $request)
     {
         $form_data = $request->all();
+        // dd($form_data);
         $form_data['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname'], $form_data['specs']);
         $form_data['user_id']=Auth::user()->id;
 
         if(array_key_exists('image',$form_data)){
-
             $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
-
             $form_data['image'] = Storage::put('profile-pics', $form_data['image']);
         }else{
             $form_data['image']='https://ui-avatars.com/api/?name='.Auth::user()->name.'+'.$form_data['surname'].'&background=random&rounded=true';
         }
         if(array_key_exists('cv',$form_data)){
-
             $form_data['cv_original_name'] = $request->file('cv')->getClientOriginalName();
-
             $form_data['cv'] = Storage::put('uploads', $form_data['cv']);
         }
         $new_doctor = Doctor::create($form_data);
@@ -118,7 +116,7 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(DoctorRequest $request, Doctor $doctor)
     {
         $form_data=$request->all();
         if($form_data['surname'] != $doctor->surname || $form_data['specs'] != $doctor->specs){

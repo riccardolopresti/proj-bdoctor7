@@ -19,19 +19,19 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="name" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="name" value="{{$user->name}}">
+                        <input type="text" class="form-control" id="name" aria-describedby="name" value="{{old('name'),$user->name}}">
 
                     </div>
                     <div class="col-6">
                         <label for="surname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" aria-describedby="surname" name="surname" value="{{$doctor->surname, old('surname')}}">
+                        <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" aria-describedby="surname" name="surname" value="{{$doctor->surname, old('surname')}}" required>
                         @error('surname')
                                     <p class="invalid-feedback">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="col-12 mt-4">
                         <label for="specs" class="form-label">Scegli una o più specializzazioni</label>
-                        <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="specs" multiple id="specs">
+                        <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="specs" multiple id="specs" required>
                             @foreach ($specializations as $specialization)
                                         <option value="{{$specialization->id}}"
                                             @foreach ($doctor->specs as $spec)
@@ -52,8 +52,8 @@
                     </div>
 
                     <div class="col-6 my-2">
-                            <label for="address" class="form-label">Indirizzo</label>
-                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{$doctor->address, old('address')}}">
+                            <label for="address" class="form-label" >Indirizzo</label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{$doctor->address, old('address')}}" required>
                             @error('address')
                             <p class="invalid-feedback">{{$message}}</p>
                             @enderror

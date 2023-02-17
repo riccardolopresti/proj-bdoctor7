@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(Auth::user()->is_admin)
+    {{-- @if(Auth::user()->is_admin)
     <a href="{{route('admin.doctors.create')}}" class=" mt-4 btn btn-warning btn-big" type="button">Crea un nuovo profilo</a>
             <table class="table">
                 <thead>
@@ -36,7 +36,7 @@
                     @endforeach
                 </tbody>
             </table>
-     @else
+     @else --}}
         @if(!$doctors->contains('user_id', Auth::user()->id))
             <a href="{{route('admin.doctors.create')}}" class=" mt-4 btn btn-warning btn-big" type="button">Crea un nuovo profilo</a>
 
@@ -46,5 +46,5 @@
 
 
         @endif
-    @endif
+    {{-- @endif --}}
 @endsection
