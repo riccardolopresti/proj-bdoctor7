@@ -26,7 +26,9 @@ class ReviewController extends Controller
         $form_data = $request->all();
         // dd($form_data);
 
-        Review::create($form_data);
+        $review = Review::create($form_data);
+
+        // $review->doctor()->attach($form_data['doctor_id']);
 
         return redirect()->route('admin.reviews.index');
     }

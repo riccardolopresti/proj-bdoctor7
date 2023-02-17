@@ -22,6 +22,7 @@
                     <a href="{{ route('admin.reviews.create') }}" class="btn btn-success mt-3">Crea una recensione</a>
                 </div>
 
+
                 @foreach ($doctors as $doctor)
                     <div class="wrapper border rounded-4 my-5">
                         <table class="table">
@@ -52,6 +53,7 @@
                         </table>
                     </div>
                 @endforeach
+
             </div>
 
             {{ $reviews->links() }}
