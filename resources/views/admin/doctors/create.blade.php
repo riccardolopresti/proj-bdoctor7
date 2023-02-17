@@ -9,21 +9,21 @@
         <div class="mb-3 container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <label for="name" class="form-label">Nome</label>
+                    <label for="name" class="form-label">Nome *</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="name" name="name" value="{{Auth::user()->name, old('name')}}" required>
                     @error('name')
                                 <p class="invalid-feedback">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label for="surname" class="form-label">Cognome</label>
+                    <label for="surname" class="form-label">Cognome *</label>
                     <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" aria-describedby="surname" name="surname" value="{{old('surname')}}" required>
                     @error('surname')
                                 <p class="invalid-feedback">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="col-12">
-                    <label for="specs" class="form-label">Scegli una o più specializzazioni</label>
+                    <label for="specs" class="form-label">Scegli una o più specializzazioni *</label>
                     <select class="form-select form-select my-3" aria-label=".form-select-lg example" name="specs" multiple id="specs" required>
 
                         @foreach ($specializations as $specialization)
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="col-6 my-2">
-                        <label for="address" class="form-label">Indirizzo</label>
+                        <label for="address" class="form-label">Indirizzo *</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{old('address')}}" required>
                         @error('address')
                         <p class="invalid-feedback">{{$message}}</p>

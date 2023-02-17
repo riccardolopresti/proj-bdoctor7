@@ -59,7 +59,7 @@ class DoctorController extends Controller
     {
         $form_data = $request->all();
         // dd($form_data);
-        $form_data['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname'], $form_data['specs']);
+        $form_data['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname']);
         $form_data['user_id']=Auth::user()->id;
 
         if(array_key_exists('image',$form_data)){
@@ -75,6 +75,7 @@ class DoctorController extends Controller
         $new_doctor = Doctor::create($form_data);
 
         $new_doctor->specs()->attach($form_data['specs']);
+        dd($new_doctor);
         return redirect()->route('admin.doctors.show', $new_doctor)->with('message', 'Nuovo profilo dottore creato correttamente');
     }
 
@@ -119,11 +120,32 @@ class DoctorController extends Controller
     public function update(DoctorRequest $request, Doctor $doctor)
     {
         $form_data=$request->all();
-        if($form_data['surname'] != $doctor->surname || $form_data['specs'] != $doctor->specs){
-            $doctor['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname'], $form_data['specs']);
+        if($form_data['surname'] != $doctor->surname){
+            $doctor['slug']=Doctor::generateSlug(Auth::user()->name, $form_data['surname']);
         }else{$form_data['slug']=$doctor->slug ;}
-        $doctor->update($form_data);
+        if(array_key_exists('image',$form_data)){
+            if($doctor->image){
+                Storage::disk('public')->delete($doctor->image);
+            }
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+            $form_data['image'] = Storage::put('profile-pics', $form_data['image']);
+        }
+        if(array_key_exists('cv',$form_data)){
+            if($doctor->cv){
+                Storage::disk('public')->delete($doctor->cv);
+            }
+            $form_data['cv_original_name'] = $request->file('cv')->getClientOriginalName();
+            $form_data['cv'] = Storage::put('uploads', $form_data['cv']);
+        }
 
+        $doctor->update($form_data);
+        if(array_key_exists('specs',$form_data)){
+            $doctor->specs()->sync($form_data['specs']);
+        }else{
+            $doctor->specs()->detach();
+        }
+
+        // dd($doctor->specs);
         return redirect()->route('admin.doctors.show', $doctor);
     }
 
