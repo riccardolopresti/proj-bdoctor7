@@ -5,20 +5,38 @@ main, .main-wrapper, aside{
     height: calc(100vh - 70px);
 }
 
+.navbar{
+    background-color: rgba(17,57,103,255);
+
+    .logo_doc{
+        width: 14vw;
+
+        img{
+            max-width: 100%;
+        }
+    }
+
+    .nav-link{
+        color: white;
+
+    }
+}
+
 aside{
-    height: calc(100vh - 70px);
-    overflow: auto;
     width: 15vw;
-    background-color: rgba(204, 224, 224, 0.771);
+    background-color: rgba(17,57,103,255);
+    border-right: 5px solid #f8dbdd;
 
     ul{
         list-style: none;
-        line-height: 180%;
+        line-height: 3rem;
 
         li{
             padding-left: 2vw;
             a{
                 text-decoration: none;
+                color: white;
+                font-weight: 600;
             }
         }
     }
