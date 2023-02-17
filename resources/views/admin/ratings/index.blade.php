@@ -12,9 +12,12 @@
             </div>
         @endif
 
+
         <div class="title py-3">
             <h1>Valutazioni</h1>
         </div>
+
+
 
         @if (Auth::user()->is_admin)
         <div class="row">
@@ -60,7 +63,8 @@
         </div>
 
         @else
-        <div class="wrapper border rounded-4 my-5">
+        <div class="wrapper border bbord rounded-4 my-3">
+            {{$user_logged}}
             <table class="table">
                 <thead>
                     <tr>

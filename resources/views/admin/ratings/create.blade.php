@@ -10,12 +10,24 @@
                 <label for="name" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                     placeholder="Nome">
+
+                    @error('name')
+                        <p class="text-danger">
+                            {{$message}}
+                        </p>
+                    @enderror
             </div>
 
             <div class="mb-3">
                 <label for="doctor_id" class="form-label">Id Dottore</label>
                 <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id') }}"
                     placeholder="id dottore">
+
+                    @error('type')
+                        <p class="text-danger">
+                            {{$message}}
+                        </p>
+                    @enderror
             </div>
 
             <div class="mb-3 w-25">

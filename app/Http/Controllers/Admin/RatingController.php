@@ -33,7 +33,6 @@ class RatingController extends Controller
     public function create()
     {
         return view('admin.ratings.create');
-
     }
 
     /**
@@ -46,13 +45,19 @@ class RatingController extends Controller
     {
         //dd($request->all());
 
-        $form_data = $request->all();
+        //$form_data = $request->all();
+
+        $form_data = $request->validate(
+            [
+                'name' => 'required|min:2|max:255',
+            ]
+        );
 
         $rating = Rating::create($form_data);
 
         $rating->doctors()->attach($form_data['doctor_id']);
 
-        return redirect()->route('admin.ratings.index');
+        return redirect()->route('admin.ratings.index')->with('message', "Valutazione $request->rating creata correttamente!");;
 
     }
 
