@@ -11,12 +11,14 @@
                 {{ session('message') }}
             </div>
         @endif
+
+        <div class="title py-3">
+            <h1>Valutazioni</h1>
+        </div>
+
+        @if (Auth::user()->is_admin)
         <div class="row">
             <div class="col">
-
-                <div class="title py-3">
-                    <h1>Ratings</h1>
-                </div>
 
                 <div class="create-msg py-2">
                     <a href="{{ route('admin.ratings.create') }}" class="btn btn-success mt-3">Crea una valutazione</a>
@@ -27,8 +29,8 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th style="width: 200px" scope="col">
-                                        Dott.{{ $doctor->surname }}
+                                    <th style="width: 200px" scope="col" class="text-capitalize">
+                                        Dott.  {{$doctor->user->name}} {{ $doctor->surname }}
                                     </th>
                                     <th scope="col">Nome Utente</th>
                                     <th scope="col">Voto</th>
@@ -56,5 +58,30 @@
 
             {{ $doctors->links() }}
         </div>
+
+        @else
+        <div class="wrapper border rounded-4 my-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 200px" scope="col" class="text-capitalize">
+                            Dott. {{ $user_logged->surname }}
+                        </th>
+                        <th scope="col">Nome Utente</th>
+                        <th scope="col">Voto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ( $user_logged->ratings as $rating )
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $rating->name }}</td>
+                            <td>{{ $rating->rating }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endif
     </div>
 @endsection

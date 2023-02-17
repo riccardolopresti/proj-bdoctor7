@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RatingController extends Controller
 {
@@ -16,10 +17,12 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $doctors= Doctor::paginate(3);
+        $doctors= Doctor::Orderby('id','desc')->paginate(3);
         $ratings = Rating::all();
 
-        return view('admin.ratings.index',compact('doctors','ratings'));
+        $user_logged =  Auth()->user()->doctors;
+
+        return view('admin.ratings.index',compact('doctors','ratings','user_logged'));
     }
 
     /**
