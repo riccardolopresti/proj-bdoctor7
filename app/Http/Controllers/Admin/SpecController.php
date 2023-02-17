@@ -16,7 +16,8 @@ class SpecController extends Controller
      */
     public function index()
     {
-        //
+        $specs = Spec::all();
+        return view('admin.specs.index', compact('specs'));
     }
 
     /**
@@ -37,7 +38,15 @@ class SpecController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->validate(
+            [
+                'type' => 'required|min:2|max:255|unique:specs'
+            ]
+        );
+
+        Spec::create($form_data);
+
+        return redirect()->back()->with('message', "Specializzazione $request->type aggiunta correttamente!");
     }
 
     /**
@@ -71,7 +80,15 @@ class SpecController extends Controller
      */
     public function update(Request $request, Spec $spec)
     {
-        //
+        $form_data = $request->validate(
+            [
+                'type' => 'required|min:2|max:255|unique:specs'
+            ]
+        );
+
+        $spec->update($form_data);
+
+        return redirect()->back()->with('message', "Specializzazione $request->type aggiornata correttamente!");
     }
 
     /**
@@ -82,6 +99,9 @@ class SpecController extends Controller
      */
     public function destroy(Spec $spec)
     {
-        //
+        $spec->delete();
+
+        return redirect()->back()->with('message', "Specializzazione $spec->type eliminata correttamente!");
+
     }
 }
