@@ -18,13 +18,13 @@
                     <a href="{{ route('admin.messages.create') }}" class="btn btn-success mt-3">Crea un nuovo messaggio</a>
                 </div>
 
-                @if (session('message'))
+                {{-- @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}
                     </div>
-                @endif
+                @endif --}}
 
-                @foreach ($doctors as $doctor )
+                {{-- @foreach ($doctors as $doctor ) --}}
                 <table class="table">
                     <thead>
                         <tr>
@@ -60,7 +60,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                @endforeach
+                {{-- @endforeach --}}
 
             </div>
         </div>
