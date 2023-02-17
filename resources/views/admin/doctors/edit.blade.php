@@ -35,16 +35,14 @@
                             @foreach ($specializations as $specialization)
                             name="specs[]">
                                         <option value="{{$specialization->id}}"
-                                            @foreach ($doctor->specs as $spec)
+                                            {{-- @foreach ($doctor->specs as $spec)
                                                 @if ($spec->pivot->doctor_id==$doctor->id)
                                                     selected
                                                 @endif
-
-                                            @endforeach
+                                            @endforeach --}}
                                             >{{$specialization->type}}</option>
-                                            @endforeach
-
-                                  </select>
+                            @endforeach
+                        </select>
                                   @error('specialization')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -119,19 +117,32 @@
 
 
 
-    <script>
-        ClassicEditor
-                .create( document.querySelector( '#summary' ),{
-                    toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-                })
-                .catch( error => {
-                    console.error( error );
-                } );
-        function showImage(event){
-            const tagImage = document.getElementById('project-img');
-            tagImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-        </script>
+
+
 
 @endsection
+
+@push('body-scripts')
+        @once
+        <script>
+            // ClassicEditor
+            //         .create( document.querySelector( '#summary' ),{
+            //             toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+            //         })
+            //         .catch( error => {
+            //             console.error( error );
+            //         } );
+            // function showImage(event){
+            //     const tagImage = document.getElementById('project-img');
+            //     tagImage.src = URL.createObjectURL(event.target.files[0]);
+            // }
+
+            $(document).ready(function(){
+                    $('#specs').select2({tags: true});
+                })
+        </script>
+        @endonce
+@endpush
+
+
 
