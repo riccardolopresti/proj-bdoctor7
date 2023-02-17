@@ -34,7 +34,6 @@
                                     <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" value="{{old('name')}}" name="type" placeholder="Aggiungi una nuova specializzazione">
                                     <button class="btn btn-outline-success" type="submit" id="button-addon2">
                                         <i class="fa-solid fa-circle-plus"></i>
-                                        Aggiungi
                                     </button>
                                 </div>
 
