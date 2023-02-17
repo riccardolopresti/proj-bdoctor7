@@ -2,6 +2,7 @@
 
 @section('content')
     @if(Auth::user()->is_admin)
+    <a href="{{route('admin.doctors.create')}}" class=" mt-4 btn btn-warning btn-big" type="button">Crea un nuovo profilo</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -22,17 +23,17 @@
                         <td>{{$user->surname}}</td>
                         <td>
                             <ul>
-{{--       @foreach ($doctors as $doctor) --}}
+                    @foreach ($doctors as $doctor)
                                 @foreach ($doctor->specs as $spec)
                                 <li>{{$spec->type}}</li>
                                 @endforeach
-                                {{-- @endforeach --}}
+                                @endforeach
                             </ul>
                         </td>
                         <td>{{$user->address}}</td>
                         <td>{{$user->phone}}</td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
      @else
