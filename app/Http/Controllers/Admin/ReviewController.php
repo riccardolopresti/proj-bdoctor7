@@ -11,9 +11,12 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::orderBy('id','desc')->get();
         $reviews = Review::paginate(10);
-        return view('admin.reviews.index', compact('reviews', 'doctors'));
+
+        $user_logged =  Auth()->user()->doctors;
+
+        return view('admin.reviews.index', compact('reviews', 'doctors','user_logged'));
     }
 
     public function create(Review $review)
@@ -23,12 +26,18 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        $form_data = $request->all();
-        // dd($form_data);
+        //$form_data = $request->all();
+
+
+        $form_data = $request->validate(
+            [
+                'name' => 'required|min:2|max:255',
+                'doctor_id' => "required",
+                'text' => 'required|min:2'
+            ]
+        );
 
         $review = Review::create($form_data);
-
-        // $review->doctor()->attach($form_data['doctor_id']);
 
         return redirect()->route('admin.reviews.index');
     }
