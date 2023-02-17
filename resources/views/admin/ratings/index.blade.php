@@ -7,10 +7,10 @@
 @section('content')
     <div class="container">
         @if (session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('message') }}
-                    </div>
-                @endif
+            <div class="alert alert-success" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col">
 
@@ -36,9 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($doctor->ratings as $rating )
+                                @foreach ($doctor->ratings as $rating)
                                     <tr>
-                                        <td>#</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $rating->name }}</td>
                                         <td>{{ $rating->rating }}</td>
                                         <td>
@@ -51,11 +51,10 @@
                             </tbody>
                         </table>
                     </div>
-
                 @endforeach
             </div>
 
-            {{$doctors->links()}}
+            {{ $doctors->links() }}
         </div>
     </div>
 @endsection
