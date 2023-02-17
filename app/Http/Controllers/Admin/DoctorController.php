@@ -24,14 +24,13 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        // $currentDoctor=Doctor::where('user_id', Auth::user()->id)->first();
-        // $users=User::with('doctors')->get();
-        $users=User::with('doctors')->get();
+        $all_users = User::join('doctors','users.id','=','doctors.user_id')->get();
+        $users=User::all();
         $doctors=Doctor::all();
         $doctor=Doctor::where('user_id', Auth::user()->id)->first();
 
-        // dd($users);
-        return view('admin.doctors.index', compact( 'users', 'doctors', 'doctor'));
+        // dd($all_users);
+        return view('admin.doctors.index', compact( 'doctors', 'doctor', 'all_users', 'users'));
     }
 
     /**
