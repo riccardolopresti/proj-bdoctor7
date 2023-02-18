@@ -10,7 +10,7 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['surname','slug','address','image','user_id','image_original_name','phone','health_care','cv_original_name' ,'cv'];
+    protected $fillable = ['surname', 'slug','address','image','user_id','image_original_name','phone','health_care','cv_original_name' ,'cv'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -37,8 +37,8 @@ class Doctor extends Model
         return $this->belongsToMany(Rating::class);
     }
 
-    public static function generateSlug($name, $surname, $spec){
-        $slug = Str::slug($name.'-'.$surname.'-'.$spec);
+    public static function generateSlug($name, $surname){
+        $slug = Str::slug($name.'-'.$surname);
         $original_slug = $slug;
         $c = 1;
         $doc_exists = Doctor::where('slug',$slug)->first();
