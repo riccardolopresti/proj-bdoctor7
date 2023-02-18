@@ -55,12 +55,6 @@ class RegisteredUserController extends Controller
             'address' => $request->address
         ]);
 
-        // $form_data['slug'] = Str::slug($form_data['name']);
-        // Doctor::generateSlug(Auth::user()->name, $form_data['surname'])
-        // $specs = Spec::create([
-
-        // ])
-
         // dd($request);
 
         event(new Registered($user));

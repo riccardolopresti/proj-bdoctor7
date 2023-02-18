@@ -12,6 +12,75 @@
                             @csrf
 
                             <div class="mb-4 row">
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome *') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="surname"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome *') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="surname" type="text"
+                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
+                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo *') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="specs"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione *') }}</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-select" aria-label="Default select example" name="type">
+                                        @foreach ($specs as $spec)
+                                            <option @if (old('type') === $spec) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail *') }}</label>
 
@@ -55,79 +124,16 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome *') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
 
 
-                            <div class="mb-4 row">
-                                <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome *') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
 
-                            <div class="mb-4 row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo *') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
-                            <div class="mb-4 row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione *') }}</label>
 
-                                <div class="col-md-6">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected></option>
-                                        @foreach ($specs as $spec)
-                                            <option value="{{ $spec->id }}">{{ $spec->type }}</option>
-                                        @endforeach
 
-                                    </select>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
 
 
