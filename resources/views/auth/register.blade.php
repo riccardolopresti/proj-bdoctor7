@@ -151,8 +151,7 @@
             display:flex;
             align-items:center;
             margin:0;
-            padding:0;
-            padding-left: 30px;
+            padding:0 30px;
             font-weight: bold;
             color: white;
             background: rgb(61,136,238);
@@ -198,6 +197,12 @@
             #3f86ed
         );
         box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
+
+        @media screen and (max-width: 550px) {
+            .card-header.custom-register{
+            font-size: 1.85rem;
+            }
         }
     </style>
 @endsection
