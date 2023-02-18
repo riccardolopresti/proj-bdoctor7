@@ -7,7 +7,5 @@
 @endsection
 
 @section('content')
-
     dashboard
-
 @endsection
