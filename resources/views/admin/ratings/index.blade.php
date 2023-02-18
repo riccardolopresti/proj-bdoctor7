@@ -64,7 +64,7 @@
 
         @else
         <div class="wrapper border bbord rounded-4 my-3">
-            {{$user_logged}}
+
             <table class="table">
                 <thead>
                     <tr>
@@ -76,13 +76,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ( $user_logged->ratings as $rating )
+                    @forelse ( $user_logged->ratings as $rating)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $rating->name }}</td>
-                            <td>{{ $rating->rating }}</td>
+                            <td>{{ $rating->text }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="3">Nessuna recensione...</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

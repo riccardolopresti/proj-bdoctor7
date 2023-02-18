@@ -1,29 +1,104 @@
 @import '~bootstrap/scss/bootstrap';
 
-main, .main-wrapper, aside{
+body{
     overflow: auto;
-    height: calc(100vh - 70px);
 }
 
-aside{
-    height: calc(100vh - 70px);
+main, .main-wrapper, aside{
     overflow: auto;
+    height: calc(100vh - 103px)
+}
+
+main{
+    background-color: #eff1f7;
+}
+
+
+// header
+
+.navbar{
+    background-color: #1583b4;
+
+    .logo_doc{
+        width: 14vw;
+
+        img{
+            max-width: 100%;
+        }
+    }
+
+    .nav-link{
+        color: white;
+
+    }
+
+    // searchbar
+
+    .search-form {
+        display: flex;
+        align-items: center;
+
+        input, .search-btn{
+            background-color: #f4f7fc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+        }
+
+        input {
+            width: 20vw;
+            border-radius: 0px 30px 30px 0px;
+            flex: 1;
+        }
+
+        .search-btn {
+            color: gray;
+            border-radius: 30px 0px 0px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+}
+
+// aside
+
+aside{
     width: 15vw;
-    background-color: rgba(204, 224, 224, 0.771);
+    background-color: #1583b4;
 
     ul{
         list-style: none;
-        line-height: 180%;
+        line-height: 3rem;
 
         li{
             padding-left: 2vw;
             a{
                 text-decoration: none;
+                color: white;
+                font-weight: 600;
             }
         }
     }
 
 }
+
+// scrollbar
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ffc8cc;
+}
+::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 7px;
+    background-color: #bdbdbd;
+}
+
+
+// media query
 
 @media screen and (max-width: 800px) {
     ul li a span{
@@ -33,4 +108,5 @@ aside{
         padding-left: 4vw;
     }
 }
+
 
