@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -26,13 +27,15 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        //$form_data = $request->all();
 
+    $last_id = DB::table('doctors')->latest('created_at')->first();
+
+    $max_id = $last_id->user_id;
 
         $form_data = $request->validate(
             [
                 'name' => 'required|min:2|max:255',
-                'doctor_id' => "required",
+                'doctor_id' => "required|numeric|max:$max_id",
                 'text' => 'required|min:2'
             ]
         );
