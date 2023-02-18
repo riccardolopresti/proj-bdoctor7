@@ -28,11 +28,6 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-
-    $last_id = DB::table('doctors')->latest('created_at')->first();
-
-    $max_id = $last_id->user_id;
-
         $form_data = $request->validate(
             [
                 'name' => 'required|min:2|max:255',
