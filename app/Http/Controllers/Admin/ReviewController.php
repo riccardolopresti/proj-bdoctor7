@@ -7,6 +7,7 @@ use App\Models\Doctor;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ReviewController extends Controller
 {
@@ -35,11 +36,13 @@ class ReviewController extends Controller
         $form_data = $request->validate(
             [
                 'name' => 'required|min:2|max:255',
-                'doctor_id' => "required|numeric|max:$max_id",
+                'doctor_id' => [
+                    'required',
+                    Rule::exists('doctors', 'id')->where('id', $request->doctor_id),
+                ],
                 'text' => 'required|min:2'
             ]
         );
-
         $review = Review::create($form_data);
 
         return redirect()->route('admin.reviews.index');
