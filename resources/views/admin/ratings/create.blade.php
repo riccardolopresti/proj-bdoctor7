@@ -47,7 +47,7 @@
                 </output>
             </div>
 
-            <button type="submit" class="btn btn-success mt-4">Submit</button>
+            <button type="submit" class="btn btn-success mt-4">Crea</button>
         </form>
 
     </div>
