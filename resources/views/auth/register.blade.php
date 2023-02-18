@@ -69,7 +69,8 @@
                                 <div class="col-md-6">
                                     <select class="form-select" aria-label="Default select example" name="type">
                                         @foreach ($specs as $spec)
-                                            <option @if (old('type') === $spec) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
+                                            <option
+                                            @if ($spec->id == old('type')) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
                                         @endforeach
                                     </select>
                                     @error('name')

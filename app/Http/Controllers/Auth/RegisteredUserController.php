@@ -48,14 +48,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $doctors = Doctor::create([
+        $doctor = Doctor::create([
             'user_id' => $user->id,
             'surname' => $request->surname,
             'slug' => Str::slug($request->name . '-' . $request->surname),
             'address' => $request->address
         ]);
 
-        // dd($request);
+        $doctor->specs()->attach($request->type);
 
         event(new Registered($user));
 
