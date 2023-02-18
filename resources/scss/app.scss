@@ -4,7 +4,6 @@ body{
     overflow: auto;
 }
 
-
 main, .main-wrapper, aside{
     overflow: auto;
     height: calc(100vh - 103px)
@@ -13,6 +12,9 @@ main, .main-wrapper, aside{
 main{
     background-color: #eff1f7;
 }
+
+
+// header
 
 .navbar{
     background-color: #1583b4;
@@ -29,7 +31,38 @@ main{
         color: white;
 
     }
+
+    // searchbar
+
+    .search-form {
+        display: flex;
+        align-items: center;
+
+        input, .search-btn{
+            background-color: #f4f7fc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+        }
+
+        input {
+            width: 20vw;
+            border-radius: 0px 30px 30px 0px;
+            flex: 1;
+        }
+
+        .search-btn {
+            color: gray;
+            border-radius: 30px 0px 0px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
 }
+
+// aside
 
 aside{
     width: 15vw;
@@ -51,6 +84,22 @@ aside{
 
 }
 
+// scrollbar
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ffc8cc;
+}
+::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 7px;
+    background-color: #bdbdbd;
+}
+
+
+// media query
+
 @media screen and (max-width: 800px) {
     ul li a span{
         display: none;
@@ -60,13 +109,4 @@ aside{
     }
 }
 
-::-webkit-scrollbar {
-    width: 7px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #ffc8cc;
-  }
-  ::-webkit-scrollbar, body::-webkit-scrollbar {
-    width: 7px;
-    background-color: #bdbdbd;
-}
+

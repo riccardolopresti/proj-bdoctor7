@@ -18,6 +18,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5 pt-3 ps-2"></i></a>
                     </li>
+                    <li>
+                        <form class="search-form mt-2 ms-5">
+                            <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <input type="text" placeholder="Cerca...">
+                        </form>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
