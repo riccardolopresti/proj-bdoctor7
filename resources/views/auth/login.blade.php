@@ -17,7 +17,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Inserisci il tuo indirizzo email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Inserisci la tua email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -74,8 +74,7 @@
             display:flex;
             align-items:center;
             margin:0;
-            padding:0;
-            padding-left: 30px;
+            padding:0 30px;
             font-weight: bold;
             color: white;
             background: rgb(61,136,238);
@@ -121,6 +120,12 @@
             #3f86ed
         );
         box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
+
+        @media screen and (max-width: 550px) {
+            .card-header.custom-login{
+            font-size: 2.5rem;
+        }
         }
 </style>
 @endsection
