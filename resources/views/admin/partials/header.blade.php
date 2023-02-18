@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <div class="logo_doc">
+                <div class="logo_doc mb-3">
                     <img src="/logo-doc-transp.png" alt="logo">
                 </div>
                 {{-- config('app.name', 'Laravel') --}}
@@ -16,14 +16,14 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5 pt-3 ps-2"></i></a>
+                        <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5 mb-2 ps-2"></i></a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <form class="search-form mt-2 ms-5">
                             <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <input type="text" placeholder="Cerca...">
                         </form>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <!-- Right Side Of Navbar -->
