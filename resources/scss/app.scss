@@ -27,7 +27,7 @@ header{
     .navbar{
 
         .logo_doc{
-            width: 14vw;
+            width: 16vw;
             min-width: 100px;
 
             img{
@@ -35,9 +35,17 @@ header{
             }
         }
 
+        .header-menu{
+            list-style: none;
+
+            li a{
+                margin-right: 30px;
+            }
+        }
+
         .nav-link{
             color: white;
-
+            font-weight: 500;
         }
 
     }
@@ -110,12 +118,15 @@ aside{
 // media query
 
 @media screen and (max-width: 800px) {
+   aside{
     ul li a span{
         display: none;
     }
     ul li a i{
         padding-left: 4vw;
     }
+
+   }
 }
 
 
