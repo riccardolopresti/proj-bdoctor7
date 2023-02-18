@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Message;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class MessageController extends Controller
 {
@@ -16,9 +18,12 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $doctors= Doctor::all();
+        $doctors= Doctor::Orderby('id','desc')->paginate(3);
         $messages = Message::all();
-        return view('admin.messages.index', compact('doctors','messages'));
+
+        $user_logged =  Auth()->user()->doctors;
+
+        return view('admin.messages.index', compact('doctors','messages','user_logged'));
     }
 
     /**
@@ -39,11 +44,17 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $form_data = $request->all();
-        // $new_message = new Message;
-        // $new_message->fill($form_data);
-        // dd($new_message);
-
+        $form_data = $request->validate(
+            [
+                'name' => 'required|min:2|max:255',
+                'doctor_id' => [
+                    'required',
+                    Rule::exists('doctors', 'id')->where('id', $request->doctor_id),
+                ],
+                'email' => 'required|email',
+                'text' => 'required|min:2'
+            ]
+        );
 
         Message::create($form_data);
 
