@@ -55,6 +55,7 @@ header{
 
 aside{
     background-color: #1583b4;
+    max-width: 250px;
 
     ul{
         list-style: none;
@@ -66,10 +67,18 @@ aside{
                 text-decoration: none;
                 color: white;
                 font-weight: 600;
+
+                &:hover{
+                    color: #ffc8cc;
+                    transition: 0.5s all;
+                }
+
+                i{
+                    padding-right: 10px;
+                }
             }
         }
     }
-
 }
 
 // scrollbar
@@ -117,13 +126,17 @@ aside{
 
 // media query
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1068px) {
    aside{
     ul li a span{
         display: none;
     }
     ul li a i{
         padding-left: 4vw;
+    }
+
+    i{
+        font-size: 1.3rem;
     }
 
    }
@@ -135,9 +148,6 @@ aside{
         text-align: center;
        }
    }
-
-
-
 }
 
 

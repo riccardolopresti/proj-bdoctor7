@@ -34,11 +34,11 @@
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                     </li>
                     @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                     </li>
                     @endif
 
@@ -49,18 +49,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('admin') }}">{{__('Dashboard')}}</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                             {{ __('Logout') }}
+                             <i class="fa-solid fa-right-to-bracket"></i>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
                     </li>
                     @endguest
                 </ul>
