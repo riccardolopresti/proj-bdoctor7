@@ -7,71 +7,53 @@
 
 
 body{
-    overflow: auto;
+    overflow: hidden;
 }
 
 main, .main-wrapper, aside{
     overflow: auto;
-    height: calc(100vh - 103px)
+    height: 100vh;
 }
 
 main{
     background-color: #eff1f7;
 }
 
-
 // header
 
-.navbar{
+header{
     background-color: #1583b4;
 
-    .logo_doc{
-        width: 14vw;
+    .navbar{
 
-        img{
-            max-width: 100%;
-        }
-    }
+        .logo_doc{
+            width: 16vw;
+            min-width: 100px;
 
-    .nav-link{
-        color: white;
-
-    }
-
-    // searchbar
-
-    .search-form {
-        display: flex;
-        align-items: center;
-
-        input, .search-btn{
-            background-color: #f4f7fc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
+            img{
+                max-width: 100%;
+            }
         }
 
-        input {
-            width: 20vw;
-            border-radius: 0px 30px 30px 0px;
-            flex: 1;
+        .header-menu{
+            list-style: none;
+
+            li a{
+                margin-right: 30px;
+            }
         }
 
-        .search-btn {
-            color: gray;
-            border-radius: 30px 0px 0px 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            font-size: 16px;
-            cursor: pointer;
+        .nav-link{
+            color: white;
+            font-weight: 500;
         }
+
     }
 }
 
 // aside
 
 aside{
-    width: 15vw;
     background-color: #1583b4;
 
     ul{
@@ -103,16 +85,59 @@ aside{
     background-color: #bdbdbd;
 }
 
+// searchbar
+
+.search-form {
+    display: flex;
+    align-items: center;
+
+    input, .search-btn{
+        background-color: #f4f7fc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+    }
+
+    input {
+        width: 20vw;
+        border-radius: 0px 30px 30px 0px;
+        flex: 1;
+    }
+
+    .search-btn {
+        color: gray;
+        border-radius: 30px 0px 0px 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
+
 
 // media query
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 991px) {
+   aside{
     ul li a span{
         display: none;
     }
     ul li a i{
         padding-left: 4vw;
     }
+
+   }
+
+   #navbar-content>div:first-child{
+    width: 100%;
+    .header-menu {
+        width: 100%;
+        text-align: center;
+       }
+   }
+
+
+
 }
 
 

@@ -1,33 +1,36 @@
 <header>
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                 <div class="logo_doc">
-                    <img src="/logo-doc-transp.png" alt="logo">
+
+                    <picture>
+                        <source srcset="/logo-doc-transp.png" media="(min-width: 991px)">
+                        <source srcset="/logo-doc-mobile.png" media="(max-width: 991px)">
+                        <img src="/logo-doc-transp.png">
+                    </picture>
+
                 </div>
                 {{-- config('app.name', 'Laravel') --}}
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5 pt-3 ps-2"></i></a>
-                    </li>
-                    <li>
-                        <form class="search-form mt-2 ms-5">
-                            <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <input type="text" placeholder="Cerca...">
-                        </form>
-                    </li>
-                </ul>
+
+
+            <div class="d-flex">
+                <!-- Left Side Of Navbar-->
+                {{-- <form class="search-form mt-2 ms-5">
+                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" placeholder="Cerca...">
+                </form> --}}
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="d-flex header-menu m-0 navbar-nav">
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
@@ -38,26 +41,30 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @endif
+
                     @else
-                    <li class="nav-item dropdown me-3">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin') }}">{{__('Dashboard')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
                     </li>
                     @endguest
                 </ul>
+            </div>
             </div>
         </div>
     </nav>

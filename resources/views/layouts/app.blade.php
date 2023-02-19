@@ -44,12 +44,12 @@
             <div class="container-fluid">
                 <div class="row">
                     @auth
-                        <div @auth class="col m-0 p-0"@endauth>
+                        <div @auth class="col-2 m-0 p-0"@endauth>
                             @include('admin.partials.aside')
                         </div>
                     @endauth
 
-                    <div class="col-10 main-wrapper">
+                    <div class="col main-wrapper">
                         @yield('content')
                     </div>
                 </div>
