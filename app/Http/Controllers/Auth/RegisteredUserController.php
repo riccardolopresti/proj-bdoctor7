@@ -52,7 +52,8 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
             'surname' => $request->surname,
             'slug' => Str::slug($request->name . '-' . $request->surname),
-            'address' => $request->address
+            'address' => $request->address,
+            'image'=> 'https://ui-avatars.com/api/?name='.$request->name.'+'.$request->surname.'&background=random'
         ]);
 
         $doctor->specs()->attach($request->type);

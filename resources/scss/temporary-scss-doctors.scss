@@ -4,12 +4,23 @@
 //     border:1px solid  #e9ecef;
 //     display:inline-block;
 // }
+@use 'partials/variables.scss' as *;
 
 .select2-selection.select2-selection--multiple {
     min-height: 65px;
     display: block;
     border: 1px solid #ced4da;
-
+    color:$medium-blue;
+    border:$medium-blue;
+   .select2-selection__choice{
+       background-color: $medium-blue;
+       color:white;
+       border-color:white;
+       .select2-selection__choice__remove{
+        color:white;
+        border-color: white;
+    }
+   }
 
 }
 
@@ -42,3 +53,69 @@ span.title{
      }
 }
 
+.blue{
+    color:$medium-blue;
+}
+.light-blue{
+    color:$light-blue;
+}
+.grey{
+    color: #ced4da;
+}
+.select2-selection.select2-selection--multiple{
+    border:1px solid #ced4da;;;
+}
+
+.main-wrapper-doctors.row{
+    margin:50px auto;
+    background-color: white;
+    border-radius:0.375rem;
+    width:80%;
+    padding:30px;
+
+
+    .profile-photo{
+       height:8rem;
+       width:8rem;
+       border:1px solid #ced4da;
+       border-radius:0.375rem;
+       img{
+           object-fit:cover;
+           height:100%;
+           width:100%;
+       }
+    }
+
+    .details{
+        .badge{
+            background-color: $light-blue;
+            color:black;
+        }
+    }
+    .bordered-container{
+        border:1px solid $light-blue;
+        padding:20px 30px;
+        border-radius:0.375rem;
+
+    }
+    .doc_reviews{
+        text-overflow: ellipsis "[...]";
+    }
+    .section-blue{
+        padding:20px;
+        border-radius:0.375rem;
+        color:white;
+        background: linear-gradient(90deg, rgba(61,136,238,1) 0%, rgba(166,229,255,1) 100%);
+        .bg-container{
+            background-color: white;
+            color:black;
+            font-size:70%;;
+            border-radius:0.375rem;
+            padding:8px 16px;
+        }
+    }
+}
+
+.modal-body.confirm{
+    font-size:80%;
+}
