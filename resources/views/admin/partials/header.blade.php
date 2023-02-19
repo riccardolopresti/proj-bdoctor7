@@ -1,12 +1,26 @@
 <header>
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                 <div class="logo_doc">
-                    <img src="/logo-doc-transp.png" alt="logo">
+
+                    <picture>
+                        <source srcset="/logo-doc-transp.png" media="(min-width: 991px)">
+                        <source srcset="/logo-doc-mobile.png" media="(max-width: 991px)">
+                        <img src="/logo-doc-transp.png">
+                    </picture>
+
                 </div>
                 {{-- config('app.name', 'Laravel') --}}
             </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
+
+
 
             <div class="d-flex">
                 <!-- Left Side Of Navbar-->
@@ -16,7 +30,7 @@
                 </form> --}}
 
                 <!-- Right Side Of Navbar -->
-                <ul class="d-flex header-menu">
+                <ul class="d-flex header-menu m-0 navbar-nav">
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
@@ -32,10 +46,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5"></i></a>
                     </li>
-                    <li class="nav-item me-2 mb-2">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('admin') }}">{{__('Dashboard')}}</a>
                     </li>
-                    <li class="nav-item me-2 mb-2">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                              {{ __('Logout') }}
@@ -45,11 +59,12 @@
                             @csrf
                         </form>
                     </li>
-                    <li class="nav-item me-2 mb-2">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
                     </li>
                     @endguest
                 </ul>
+            </div>
             </div>
         </div>
     </nav>

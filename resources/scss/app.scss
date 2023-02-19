@@ -6,12 +6,12 @@
 
 
 body{
-    overflow: auto;
+    overflow: hidden;
 }
 
 main, .main-wrapper, aside{
     overflow: auto;
-    height: calc(100vh - 90px);
+    height: 100vh;
 }
 
 main{
@@ -21,7 +21,6 @@ main{
 // header
 
 header{
-    height: 90px;
     background-color: #1583b4;
 
     .navbar{
@@ -117,7 +116,7 @@ aside{
 
 // media query
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 991px) {
    aside{
     ul li a span{
         display: none;
@@ -127,6 +126,17 @@ aside{
     }
 
    }
+
+   #navbar-content>div:first-child{
+    width: 100%;
+    .header-menu {
+        width: 100%;
+        text-align: center;
+       }
+   }
+
+
+
 }
 
 
