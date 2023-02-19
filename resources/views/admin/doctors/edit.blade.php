@@ -7,12 +7,15 @@
             <h1 class="my-3"><span class="title">
                 Modifica profilo:
             </span><br>
-                 {{$user->name}} {{$doctor->surname}}
-                 <form action="{{route('admin.doctors.destroy',$doctor)}}" method="POST" class="mt-2">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" title="delete">Elimina profilo</button>
-                </form>
+            <span class="blue">
+                {{$user->name}} {{$doctor->surname}}
+            </span><br>
+
+           @include('admin.doctors.profile-delete',[
+                        'route' => 'posts',
+                        'message' => "Confermi l'eliminazione del profilo: $user->name $doctor->surname ?",
+                        'entity' => $doctor
+                    ])
             </h1>
             <div class="image-and-delete text-center">
                 <div class="profile mt-2" >
@@ -37,19 +40,19 @@
             <div class="mb-3 container-fluid">
                 <div class="row">
                     <div class="col-6 p">
-                        <label for="name" class="form-label">Nome *</label>
+                        <label for="name" class="form-label">Nome <span class="blue">*</span></label>
                         <input type="text" class="form-control" id="name" aria-describedby="name" value="{{$user->name, old('name')}}" readonly>
 
                     </div>
                     <div class="col-6">
-                        <label for="surname" class="form-label">Cognome *</label>
+                        <label for="surname" class="form-label">Cognome <span class="blue">*</span></label>
                         <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" aria-describedby="surname" name="surname" value="{{$doctor->surname, old('surname')}}" required>
                         @error('surname')
                                     <p class="invalid-feedback">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="col-6 my-2">
-                        <label for="address" class="form-label" >Indirizzo *</label>
+                        <label for="address" class="form-label" >Indirizzo <span class="blue">*</span></label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" aria-describedby="address" name="address" value="{{$doctor->address, old('address')}}" required>
                         @error('address')
                         <p class="invalid-feedback">{{$message}}</p>
@@ -65,11 +68,16 @@
 
 
                     <div class="col-12 my-2">
-                        <label for="specs" class="form-label">Scegli una o più specializzazioni *</label><br>
+                        <label for="specs" class="form-label">Scegli una o più specializzazioni <span class="blue">*</span></label><br>
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" multiple="multiple" id="specs" required
                             @foreach ($specializations as $specialization)
                             name="specs[]">
                                         <option value="{{$specialization->id}}"
+                                            @foreach ($doctor->specs as $spec)
+                                                @if ($specialization->id==$spec->id)
+                                                selected
+                                                @endif
+                                            @endforeach
                                             {{-- @foreach ($doctor->specs as $spec)
                                                 @if ($spec->pivot->doctor_id==$doctor->id)
                                                     selected
@@ -94,11 +102,8 @@
                             @error('image')
                                 <p class="invalid-feedback">{{$message}}</p>
                             @enderror
-                            <div class="profile-image" >
-                                <img id="profile-img" width="150" src="" alt="">
-                            </div>
                         </div>
-                        <div class="col-12 m-0">
+                        <div class="col-12 mt-2">
                             <label for="cv" class="form-label">Aggiungi un cv</label>
                             <input
                             onchange="showCv(event)"
@@ -110,15 +115,17 @@
                         </div>
                     </div>
 
-                    <div class="col-5 preview my-2">
+                    {{-- <div class="col-5 preview my-2">
                         @if ($doctor->cv)
                         <embed src="storage/'{{$doctor->cv}}" type="application/pdf" width="100%" height="100%" id="cv-preview">
                         @endif
-                    </div>
+                    </div> --}}
 
                     <div class="col-12 my-2">
                             <label for="health_care" class="form-label">Descrizione servizi aggiuntivi</label><br>
-                            <textarea name="health_care" id="health_care" rows="5" class="w-100">{{$doctor->health_care, old('health_care')}}</textarea>
+                            <textarea name="health_care" id="health_care" rows="5" class="w-100 ckeditor">
+                                {!! $doctor->health_care !!}
+                            </textarea>
                             @error('health_care')
                                 <p class="invalid-feedback">{{$message}}</p>
                             @enderror
@@ -128,7 +135,7 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-success my-5">Conferma modifiche</button>
+                    <button type="submit" class="btn btn-primary my-5">Conferma modifiche</button>
 
                 </div>
 
@@ -165,21 +172,12 @@
             const tagCV = document.getElementById('cv-preview');
             tagCV.src = URL.createObjectURL(event.target.files[0]);
         }
-            // ClassicEditor
-            //         .create( document.querySelector( '#summary' ),{
-            //             toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-            //         })
-            //         .catch( error => {
-            //             console.error( error );
-            //         } );
-            // function showImage(event){
-            //     const tagImage = document.getElementById('project-img');
-            //     tagImage.src = URL.createObjectURL(event.target.files[0]);
-            // }
 
-            $(document).ready(function(){
-                    $('#specs').select2({tags: true, height: '300px'});
-                })
+        $(document).ready(function() {
+            $('#specs').select2({tags: true, height: '300px'});
+            $('.ckeditor').ckeditor();
+        });
+
         </script>
         @endonce
 @endpush
