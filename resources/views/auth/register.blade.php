@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card custom-card">
                     <div class="card-header custom-register">
                         {{ __('Unisciti a noi') }}
                     </div>
@@ -130,7 +130,7 @@
                             </div>
 
                             <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 offset-md-4 d-flex justify-content-center">
                                     <button type="submit" class="bn632-hover bn26">
                                         {{ __('Registrati ora') }}
                                     </button>
@@ -144,6 +144,9 @@
     </div>
 
     <style>
+        .card.custom-card{
+            margin-bottom: 200px;
+        }
 
         .card-header.custom-register{
             height: 150px;

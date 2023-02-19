@@ -47,16 +47,16 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Ricorda i miei dati') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-4 row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-8 offset-md-4 d-flex justify-content-center">
                                 <button type="submit" class="bn632-hover bn26">
-                                    {{ __('Login') }}
+                                    {{ __('Accedi') }}
                                 </button>
                             </div>
                         </div>
