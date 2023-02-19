@@ -15,7 +15,13 @@ class SpecSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Dermatologia', 'Oculistica', 'Podologia', 'Fisioterapia', 'Osteopatia', 'Reumatologia', 'Geriatria', 'Medicina dello Sport', 'Cardiologia', 'Ginecologia', 'Urologia'];
+        $types = ['Cardiologia','Dermatologia',
+        'Fisioterapia',
+        'Geriatria',
+        'Ginecologia',
+        'Medicina dello Sport','Oculistica',
+        'Osteopatia','Podologia',
+        'Psicologia',  'Reumatologia', 'Urologia'];
 
         foreach($types as $type){
             $new_spec = new Spec();

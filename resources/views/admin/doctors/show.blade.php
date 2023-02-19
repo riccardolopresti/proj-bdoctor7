@@ -55,7 +55,7 @@
                         <h6 class="light-blue"><i class="fa-solid fa-notes-medical"></i> I tuoi servizi</h6>
 
                         @if ($doctor->health_care)
-                        {{$doctor->health_care}}
+                        {!! $doctor->health_care !!}
                         @else
                         <span class="grey">Nessun servizio inserito</span>
                         @endif
