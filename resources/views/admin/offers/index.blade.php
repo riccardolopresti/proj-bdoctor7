@@ -29,7 +29,11 @@
      </div>
     @endif
 
+    @if (Auth::user()->is_admin)
+
     <a class="btn btn-primary text-white mb-5" href="{{route('admin.offers.create')}}">Crea nuova offerta</a>
+
+    @endif
 
     <table class="table table-striped">
         <thead>
@@ -38,7 +42,9 @@
             <th scope="col">Tipo</th>
             <th scope="col">Prezzo</th>
             <th scope="col">Durata</th>
+            @if (Auth::user()->is_admin)
             <th scope="col">Azioni</th>
+            @endif
           </tr>
         </thead>
         <tbody>
@@ -48,6 +54,7 @@
                    <td>{{$offer->offer_type}}</td>
                    <td>&euro; {{$offer->price}}</td>
                    <td>{{$offer->duration}} ore</td>
+                    @if (Auth::user()->is_admin)
                    <td>
                     <a class="btn btn-warning " href="{{route('admin.offers.edit', $offer)}}" title="edit">Edit</a>
                     <form class="d-inline"
@@ -58,6 +65,7 @@
                         <button type="submit" class="btn btn-danger " title="delete">Delete</button>
                     </form>
                    </td>
+                   @endif
                 </tr>
 
             @endforeach
