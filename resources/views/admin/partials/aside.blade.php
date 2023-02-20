@@ -1,5 +1,8 @@
 <aside>
     <ul class="p-0 mt-3">
+        <li class="nav-item">
+            <a href="{{ url('admin') }}"><i class="fa-solid fa-table-columns"></i> {{__('Dashboard')}}</a>
+        </li>
         <li>
             <a href="{{ route('admin.doctors.index') }}"><i class="fa-solid fa-user-doctor"></i><span class="ms-1"> Profilo</span></a>
         </li>

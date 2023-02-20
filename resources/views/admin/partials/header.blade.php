@@ -1,7 +1,7 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+    <nav class="navbar navbar-expand-lg navbar-dark h-100">
+        <div class="container-fluid h-100">
+            <a class="navbar-brand d-flex align-items-center h-100" href="{{ url('/') }}">
                 <div class="logo_doc">
 
                     <picture>
@@ -43,12 +43,7 @@
                     @endif
 
                     @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/') }}"><i class="fa-solid fa-house fs-5"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin') }}">{{__('Dashboard')}}</a>
-                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
