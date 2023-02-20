@@ -9,3 +9,8 @@ import.meta.glob([
 
 import select2 from 'select2';
 select2();
+
+
+document.querySelector('.navbar-toggler').addEventListener('click', () => {
+    document.querySelector('.aside-container').classList.toggle('open');
+});
