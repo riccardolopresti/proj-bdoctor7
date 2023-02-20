@@ -107,7 +107,11 @@
                                                         </td>
                                                         <td>{{ $message->object }}</td>
                                                         <td>{{ $message->email }}</td>
-                                                        <td>{{ $message->text }}</td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->text }}
+                                                            </span>
+                                                        </td>
                                                     </tr>
                                                 @empty
                                                     <tr>

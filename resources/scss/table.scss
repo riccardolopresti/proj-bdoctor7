@@ -90,7 +90,22 @@
         line-height:1.2;
         font-weight:unset
     }
-
+    .ellipsis {
+        position: relative;
+    }
+    .ellipsis:before {
+        content: ' ';
+        visibility: hidden;
+    }
+    .ellipsis span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 40px;
+    }
     .column1{
         width:10%;
     }
