@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="mb-4 row mb-0">
-                            <div class="col-md-8 offset-md-4 d-flex justify-content-center">
+                            <div class="d-flex justify-content-center">
                                 <button type="submit" class="bn632-hover bn26">
                                     {{ __('Accedi') }}
                                 </button>
@@ -69,7 +69,7 @@
 
 <style>
     .card-header.custom-login{
-            height: 150px;
+            height: 90px;
             font-size: 3.5rem;
             display:flex;
             align-items:center;
