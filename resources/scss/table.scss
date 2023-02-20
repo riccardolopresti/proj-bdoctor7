@@ -19,17 +19,15 @@
         overflow:hidden;
         width:100%;
         margin:0 auto;
-        position:relative
-    }
-
-    table *{
-        position:relative
+        position:relative;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.065);
     }
 
     table td,table th{
         padding-left:8px;
         padding: 20px;
         overflow-y: auto;
+        font-size: 1rem;
     }
 
     table thead tr{
@@ -37,11 +35,16 @@
         //  background: rgb(61,136,238);
         //     background: linear-gradient(90deg, rgba(61,136,238,1) 0%, rgba(166,229,255,1) 100%);
         background: rgb(55,130,232);
-background: -moz-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
-background: -webkit-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
-background: linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endColorstr="#9ce1fd",GradientType=1);
+        background: -moz-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+        background: linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endColorstr="#9ce1fd",GradientType=1);
 
+    }
+
+    tr:hover{
+        cursor: pointer;
+        background-color: rgb(247, 247, 247);
     }
 
     table tbody tr{
@@ -78,6 +81,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endCo
         color:#fff;
         line-height:1.2;
         text-align: start;
+        //text-shadow: 2px 2px #3a3a3ab9;
     }
 
     tbody tr{
