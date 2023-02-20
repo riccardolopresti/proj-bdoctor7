@@ -49,13 +49,13 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   $user=Auth::user();
         $specializations=Spec::all();
         // $messages=Message::all();
         // $offers=Offer::all();
         // $ratings=Rating::all();
         // $reviews=Review::all();
-        return view('admin.doctors.create', compact('specializations'));
+        return view('admin.doctors.create', compact('specializations','user'));
     }
 
     /**
@@ -75,7 +75,7 @@ class DoctorController extends Controller
             $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
             $form_data['image'] = Storage::put('profile-pics', $form_data['image']);
         }else{
-            $form_data['image']='https://ui-avatars.com/api/?name='.Auth::user()->name.'+'.$form_data['surname'].'&background=random&rounded=true';
+            $form_data['image']='https://ui-avatars.com/api/?name='.Auth::user()->name.'+'.$form_data['surname'].'&background=random';
         }
         if(array_key_exists('cv',$form_data)){
             $form_data['cv_original_name'] = $request->file('cv')->getClientOriginalName();
@@ -84,7 +84,7 @@ class DoctorController extends Controller
         $new_doctor = Doctor::create($form_data);
 
         $new_doctor->specs()->attach($form_data['specs']);
-        dd($new_doctor);
+
         return redirect()->route('admin.doctors.show', $new_doctor)->with('message', 'Nuovo profilo dottore creato correttamente');
     }
 

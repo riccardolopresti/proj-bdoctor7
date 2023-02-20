@@ -33,12 +33,12 @@
 
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid doctors-container">
         <form action="{{route('admin.doctors.update', $doctor)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-3 container-fluid">
-                <div class="row">
+                <div class="row doctors-row">
                     <div class="col-6 p">
                         <label for="name" class="form-label">Nome <span class="blue">*</span></label>
                         <input type="text" class="form-control" id="name" aria-describedby="name" value="{{$user->name, old('name')}}" readonly>
@@ -69,15 +69,15 @@
 
                     <div class="col-12 my-2">
                         <label for="specs" class="form-label">Scegli una o più specializzazioni <span class="blue">*</span></label><br>
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" multiple="multiple" id="specs" required
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" multiple="multiple" id="specs" required multiple
                             @foreach ($specializations as $specialization)
                             name="specs[]">
                                         <option value="{{$specialization->id}}"
-                                            @foreach ($doctor->specs as $spec)
+                                            {{-- @foreach ($doctor->specs as $spec)
                                                 @if ($specialization->id==$spec->id)
                                                 selected
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
                                             {{-- @foreach ($doctor->specs as $spec)
                                                 @if ($spec->pivot->doctor_id==$doctor->id)
                                                     selected
@@ -114,39 +114,22 @@
 
                         </div>
                     </div>
-
-                    {{-- <div class="col-5 preview my-2">
-                        @if ($doctor->cv)
-                        <embed src="storage/'{{$doctor->cv}}" type="application/pdf" width="100%" height="100%" id="cv-preview">
-                        @endif
-                    </div> --}}
-
                     <div class="col-12 my-2">
-                            <label for="health_care" class="form-label">Descrizione servizi aggiuntivi</label><br>
-                            <textarea name="health_care" id="health_care" rows="5" class="w-100 ckeditor">
-                                {!! $doctor->health_care !!}
-                            </textarea>
-                            @error('health_care')
-                                <p class="invalid-feedback">{{$message}}</p>
-                            @enderror
-                        </div>
-
-
-
+                        <label for="health_care" class="form-label">Descrizione servizi aggiuntivi</label><br>
+                        <textarea name="health_care" id="health_care" rows="5" class="w-100 ckeditor">
+                            {{ $doctor->health_care }}
+                        </textarea>
+                        @error('health_care')
+                            <p class="invalid-feedback">{{$message}}</p>
+                        @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary my-5">Conferma modifiche</button>
+
+
 
                 </div>
-
-
-
+                <button type="submit" class="btn btn-primary my-1" id="edits">Conferma modifiche</button>
             </div>
-
-
-
-
-
 
 
         </form>
