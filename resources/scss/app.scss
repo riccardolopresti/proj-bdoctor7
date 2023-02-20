@@ -72,6 +72,16 @@ aside{
 
         li{
             padding-left: 2vw;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dotted white;
+
+            &:nth-child(1){
+                background-color: #eff1f7;
+                a{
+                    color: $medium-blue;
+                }
+            }
             a{
                 text-decoration: none;
                 color: white;

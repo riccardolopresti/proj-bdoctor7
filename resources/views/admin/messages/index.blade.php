@@ -44,7 +44,7 @@
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
                                                     <tr>
-                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{ $doctor->surname }}</td>
                                                         <td>{{ $message->name }}</td>
                                                         <td>{{ $message->object }}</td>
                                                         <td>{{ $message->email }}</td>
@@ -159,7 +159,7 @@
                                             <tbody>
                                                 @forelse ( $user_logged->messages as $message)
                                                     <tr>
-                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{ $user_logged->surname }}</td>
                                                         <td>{{ $message->name }}</td>
                                                         <td>{{ $message->object }}</td>
                                                         <td>{{ $message->email }}</td>

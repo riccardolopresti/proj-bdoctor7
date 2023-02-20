@@ -1,5 +1,5 @@
 <aside>
-    <ul class="p-0 mt-3">
+    <ul class="p-0">
         <li class="nav-item">
             <a href="{{ url('admin') }}"><i class="fa-solid fa-table-columns"></i> {{__('Dashboard')}}</a>
         </li>
