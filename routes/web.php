@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('doctors', DoctorController::class);
         Route::resource('specializations', SpecController::class)->except(['show', 'edit', 'create']);
         Route::resource('offers', OfferController::class)->except(['show']);
-        Route::resource('messages', MessageController::class)->except(['show', 'edit']);
+        Route::resource('messages', MessageController::class)->except(['edit']);
         Route::resource('ratings', RatingController::class)->except(['show', 'edit']);
         Route::resource('reviews', ReviewController::class)->except(['show', 'edit']);
     });

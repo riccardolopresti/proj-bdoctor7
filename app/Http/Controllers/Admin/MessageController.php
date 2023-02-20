@@ -69,7 +69,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::where('id',$id)->first();
+        return view('admin.messages.show', compact('message'));
     }
 
     /**
