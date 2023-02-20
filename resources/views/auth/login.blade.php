@@ -77,8 +77,12 @@
             padding:0 30px;
             font-weight: bold;
             color: white;
-            background: rgb(61,136,238);
-            background: linear-gradient(90deg, rgba(61,136,238,1) 0%, rgba(166,229,255,1) 100%);
+            background: rgb(55,130,232);
+            background: -moz-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+            background: -webkit-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+            background: linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endColorstr="#9ce1fd",GradientType=1);
+            height:80px;
         }
 
         .bn632-hover {
