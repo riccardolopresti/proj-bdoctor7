@@ -73,11 +73,11 @@
                             @foreach ($specializations as $specialization)
                             name="specs[]">
                                         <option value="{{$specialization->id}}"
-                                            {{-- @foreach ($doctor->specs as $spec)
+                                             @foreach ($doctor->specs as $spec)
                                                 @if ($specialization->id==$spec->id)
                                                 selected
                                                 @endif
-                                            @endforeach --}}
+                                            @endforeach
                                             {{-- @foreach ($doctor->specs as $spec)
                                                 @if ($spec->pivot->doctor_id==$doctor->id)
                                                     selected
