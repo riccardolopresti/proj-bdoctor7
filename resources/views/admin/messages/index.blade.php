@@ -47,8 +47,8 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
-                                                    <tr  class="havemsg">
-                                                        <td class="column1 ">
+                                                    <tr class="havemsg">
+                                                        <td class="column1">
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
                                                             {{ $message->name }}
                                                             </a>
@@ -158,9 +158,8 @@
         </style>
 
         <script>
-            $('.havemsg').click( function() {
+            $('.havemsg').click.( function() {
                 window.location = $(this).find('a').attr('href');
-                console.log('saasas');
             }).hover( function() {
                 $(this).toggleClass('hover');
             });
