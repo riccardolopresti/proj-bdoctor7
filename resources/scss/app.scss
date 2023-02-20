@@ -5,7 +5,6 @@
 @import '/node_modules/select2/dist/css/select2.css';
 
 
-
 body{
     overflow: hidden;
 }
@@ -73,12 +72,6 @@ aside{
         li{
             border-bottom: 1px dotted white;
 
-            // &:nth-child(1){
-            //     background-color: #eff1f7;
-            //     a{
-            //         color: $medium-blue;
-            //     }
-            // }
             a{
                 text-decoration: none;
                 color: white;
@@ -150,31 +143,57 @@ aside{
     }
 }
 
+//aside versione mobile
+
+.aside-container {
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+}
+
+.aside-container.open {
+    transform: translateX(0%);
+}
 
 // media query
 
-@media screen and (max-width: 1068px) {
-   aside{
-    ul li a span{
+
+@media screen and (max-width: 991px) {
+
+   .aside-container {
+        width: 450px;
+        position: fixed;
+        z-index: 2;
+        transform: translateX(-100%);
+    }
+
+
+   header .logo_doc{
+     display: none;
+   }
+
+   header #offcanvas-btn{
+    display: block;
+   }
+
+   .logo-mobile{
+    display: block;
+    width: 180px;
+    img{
+        max-width: 100%;
+    }
+
+   }
+}
+
+@media screen and (min-width: 991px){
+    header #offcanvas-btn{
         display: none;
     }
-    ul li a i{
-        padding-left: 4vw;
+
+    .logo-mobile{
+        display: none;
     }
 
-    i{
-        font-size: 1.3rem;
-    }
-
-   }
-
-   #navbar-content>div:first-child{
-    width: 100%;
-    .header-menu {
-        width: 100%;
-        text-align: center;
-       }
-   }
 }
 
 

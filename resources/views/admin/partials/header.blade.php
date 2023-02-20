@@ -1,36 +1,17 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark h-100">
-        <div class="container-fluid h-100">
-            <a class="navbar-brand d-flex align-items-center h-100" href="{{ url('/') }}">
-                <div class="logo_doc">
+    <nav class="navbar fixed-top">
+        <div class="container-fluid">
 
-                    <picture>
-                        <source srcset="/logo-doc-transp.png" media="(min-width: 991px)">
-                        <source srcset="/logo-doc-mobile.png" media="(max-width: 991px)">
-                        <img src="/logo-doc-transp.png">
-                    </picture>
+            <div class="logo_doc">
+                <a href="{{ url('/') }}"><img src="/logo-doc-transp.png" alt="logo"></a>
+            </div>
 
-                </div>
-                {{-- config('app.name', 'Laravel') --}}
-            </a>
-
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="offcanvas-btn" class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
-
-
 
             <div class="d-flex">
-                <!-- Left Side Of Navbar-->
-                {{-- <form class="search-form mt-2 ms-5">
-                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="text" placeholder="Cerca...">
-                </form> --}}
-
-                <!-- Right Side Of Navbar -->
-                <ul class="d-flex header-menu m-0 navbar-nav">
+                <ul class="d-flex header-menu m-0">
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
@@ -43,7 +24,6 @@
                     @endif
 
                     @else
-
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.doctors.index') }}">{{ Auth::user()->name }}</a>
@@ -61,7 +41,6 @@
                     </li>
                     @endguest
                 </ul>
-            </div>
             </div>
         </div>
     </nav>

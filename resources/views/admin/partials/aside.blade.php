@@ -1,4 +1,8 @@
 <aside>
+    <div class="logo-mobile">
+        <a href="{{ url('/') }}"><img src="/logo-doc-transp.png" alt="logo"></a>
+    </div>
+
     <ul class="p-0">
         <li class="nav-item">
             <a class="{{Route::currentRouteName()==='admin.dashboard' ? 'active' : ''}}" href="{{ url('admin') }}"><i class="fa-solid fa-table-columns"></i> {{__('Dashboard')}}</a>
