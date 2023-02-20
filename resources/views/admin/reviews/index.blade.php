@@ -65,7 +65,7 @@
             {{ $reviews->links() }}
         </div>
         @else
-        <div class="wrapper border bbord rounded-4 my-3">
+        {{-- <div class="wrapper border bbord rounded-4 my-3">
             <table class="table">
                 <thead>
                     <tr>
@@ -73,7 +73,7 @@
                             Dott. {{ $user_logged->surname }}
                         </th>
                         <th scope="col">Nome Utente</th>
-                        <th scope="col">Messaggio</th>
+                        <th scope="col">Recensione</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,6 +90,41 @@
                     @endforelse
                 </tbody>
             </table>
+        </div> --}}
+
+        <div class="special-table">
+            <div class="limiter m-0">
+                <div class="container m-0 p-0">
+                    <div class="wrap-table100">
+                        <div class="table100">
+                            <table class="my-5">
+                                <thead>
+                                    <tr class="table100-head">
+                                        <th scope="col" class="text-capitalize">
+                                            Dott. {{ $user_logged->surname }}
+                                        </th>
+                                        <th scope="col">Nome Utente</th>
+                                        <th scope="col">Recensione</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ( $user_logged->reviews as $review )
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $review->name }}</td>
+                                            <td>{{ $review->text }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="3">Nessuna recensione...</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         @endif
     </div>
