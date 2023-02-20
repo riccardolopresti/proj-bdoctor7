@@ -22,8 +22,13 @@ main{
 // header
 
 header{
-    background-color: #1583b4;
-
+    // background-color: #1583b4;
+    background: rgb(55,130,232);
+    background: -moz-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+    background: linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endColorstr="#9ce1fd",GradientType=1);
+    height:80px;
     .navbar{
 
         .logo_doc{
@@ -32,6 +37,8 @@ header{
 
             img{
                 max-width: 100%;
+                max-height:100%;
+                object-fit: contain;
             }
         }
 
@@ -54,7 +61,8 @@ header{
 // aside
 
 aside{
-    background-color: #1583b4;
+    // background-color: #1583b4;
+    background-color: $medium-blue;
     max-width: 250px;
 
     ul{
