@@ -14,9 +14,13 @@
                         Dettaglio del messaggio di {{$message->name}}
                     </li>
                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
-                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? '$message->object' : 'nessun oggetto'}}</li>
+                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'nessun oggetto'}}</li>
                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
-                    <li class="list-group-item p-3">{{$message->text}}</li>
+                    <li class="list-group-item">
+                        <p>
+                            {{$message->text}}
+                        </p>
+                    </li>
                 </ul>
 
                 <a href="{{route('admin.messages.index')}}" class="btn btn-primary mt-5">Torna a tutti i messaggi</a>
@@ -37,9 +41,7 @@
                 color: white;
                 font-size:1.7rem;
             }
-            #primo-li{
-                line-height: 74px
-            }
+
         </style>
 @endsection
 

@@ -1,4 +1,9 @@
 .special-table{
+    a{
+        text-decoration: none;
+        color:rgb(71, 71, 71);
+    }
+
     .limiter{
         width:100%;margin:0 auto
     }
@@ -99,28 +104,36 @@
     }
     .ellipsis span {
         position: absolute;
-        left: 0;
-        right: 0;
+        left: 20px;
+        right: 20px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-right: 40px;
+
     }
     .column1{
-        width:10%;
+        width: 150px;
+        text-align:left;
     }
     .column2{
-        width:30%;
+        width: 100px;
+
+        text-align:left;
+
     }
     .column3{
-        width:20px;
+        width: 320px;
+
+        text-align:left;
+
     }
     .column4{
-        width:100%;
-        text-align:left
+        width: 500px;
+
+        text-align:left;
     }
     .column5{
-        width:50px;
+
         text-align:left;
     }
 

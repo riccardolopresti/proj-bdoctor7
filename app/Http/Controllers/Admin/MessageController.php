@@ -51,6 +51,7 @@ class MessageController extends Controller
                     'required',
                     Rule::exists('doctors', 'id')->where('id', $request->doctor_id),
                 ],
+                'object' => 'min:2',
                 'email' => 'required|email',
                 'text' => 'required|min:2'
             ]

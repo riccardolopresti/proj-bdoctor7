@@ -41,34 +41,40 @@
                                                         <th class="column1">Nome</th>
                                                         <th class="column2">Oggetto</th>
                                                         <th class="column3">Email</th>
-                                                        <th class="column4">Messaggio</th>
+                                                        <th class="column4 text-start">Messaggio</th>
                                                         <th class="column5">Azioni</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
                                                     <tr  class="havemsg">
-                                                        <td>
+                                                        <td class="column1 ">
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
                                                             {{ $message->name }}
                                                             </a>
                                                         </td>
-                                                        <td>{{ $message->object }}</td>
-                                                        <td>{{ $message->email }}</td>
-                                                        <td class="ellipsis">
+                                                        <td class="column2 ellipsis">
+                                                            <span>
+                                                                {{ $message->object }}
+                                                            </span>
+                                                            </td>
+                                                        <td class="column3 ellipsis" >
+                                                            <span>
+                                                                {{ $message->email }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="ellipsis column4">
                                                             <span>
                                                                 {{ $message->text }}
                                                             </span>
                                                         </td>
-                                                        <td>
+                                                        <td class="column5">
                                                             <div class="delete-form">
                                                                 @include('admin.messages.partials.delete-form')
                                                                 </form>
                                                             </div>
                                                         </td>
                                                     </tr>
-
-
                                                     @empty
                                                         <tr>
                                                             <td colspan="6">Nessun messaggio...</td>
