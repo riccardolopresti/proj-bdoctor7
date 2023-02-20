@@ -47,7 +47,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
-                                                    <tr>
+                                                    <tr  class="havemsg">
                                                         <td>
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
                                                             {{ $message->name }}
@@ -55,7 +55,11 @@
                                                         </td>
                                                         <td>{{ $message->object }}</td>
                                                         <td>{{ $message->email }}</td>
-                                                        <td>{{ $message->text }}</td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->text }}
+                                                            </span>
+                                                        </td>
                                                         <td>
                                                             <div class="delete-form">
                                                                 @include('admin.messages.partials.delete-form')
@@ -67,7 +71,7 @@
 
                                                     @empty
                                                         <tr>
-                                                            <td colspan="4">Nessun messaggio...</td>
+                                                            <td colspan="6">Nessun messaggio...</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
@@ -99,7 +103,7 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ( $user_logged->messages as $message)
-                                                    <tr>
+                                                    <tr class="havemsg">
                                                         <td>
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
                                                             {{ $message->name }}
@@ -115,7 +119,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="4">Nessun messaggio...</td>
+                                                        <td colspan="6">Nessun messaggio...</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -148,8 +152,9 @@
         </style>
 
         <script>
-            $('tr').click( function() {
+            $('.havemsg').click( function() {
                 window.location = $(this).find('a').attr('href');
+                console.log('saasas');
             }).hover( function() {
                 $(this).toggleClass('hover');
             });
