@@ -84,7 +84,7 @@
 
                                             <ul class="list-group">
                                                 <li class="list-group-item custom-head" aria-current="true">Dott. {{ $doctor->surname }}</li>
-                                                @forelse ( $user_logged->messages as $message)
+                                                @forelse ($doctor->messages as $message)
                                                     <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                                                     <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
@@ -103,7 +103,7 @@
                                                         <div class="delete-form">
                                                             <form class="d-inline"
                                                             onsubmit="return confirm('Confermi l\'eliminazione di {{$message->name}} ?')"
-                                                            action="{{route('admin.offers.destroy', $message)}}" method="POST">
+                                                            action="{{route('admin.messages.destroy', $message)}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                                 <button type="submit" class="btn btn-danger " title="delete">Delete</button>

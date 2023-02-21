@@ -2,8 +2,6 @@
     a{
         text-decoration: none;
         color:rgb(71, 71, 71);
-
-
     }
 
     .limiter{
@@ -139,7 +137,19 @@
     }
     .column6{
         text-align:left;
+    }
+    .column7{
+        width: 700px;
 
+        text-align:left;
+    }
+    .column8{
+        width: 200px;
+
+        text-align:left;
+    }
+    .column9{
+        text-align:left;
     }
 
     @media screen and (max-width:990px){

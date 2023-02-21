@@ -25,69 +25,95 @@
                     <a href="{{ route('admin.ratings.create') }}" class="btn btn-success mt-3">Crea una valutazione</a>
                 </div>
 
-                @foreach ($doctors as $doctor)
-                    <div class="wrapper border rounded-4 my-5">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 200px" scope="col" class="text-capitalize">
-                                        Dott.  {{$doctor->user->name}} {{ $doctor->surname }}
-                                    </th>
-                                    <th scope="col">Nome Utente</th>
-                                    <th scope="col">Voto</th>
-                                    <th scope="col">Azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($doctor->ratings as $rating)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $rating->name }}</td>
-                                        <td>{{ $rating->rating }}</td>
-                                        <td>
-                                            <div class="delete-form">
-                                                @include('admin.ratings.partials.delete-form')
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endforeach
-            </div>
+                <div class="special-table">
+                    <div class="limiter m-0">
+                        <div class="container m-0 p-0">
+                            <div class="wrap-table100">
+                                <div class="table100">
+                                    @foreach ($doctors as $doctor )
+                                        <table class="my-5">
+                                            <thead>
+                                                <tr class="table100-head">
+                                                    <th colspan="6">Dott. {{ $doctor->surname }}</th>
+                                                </tr>
+                                                <tr class="table100-head">
+                                                    <th class="column7">Nome</th>
+                                                    <th class="column8">Valutazione</th>
 
-            {{ $doctors->links() }}
+                                                    <th class="column9">Azioni</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($doctor->ratings as $rating)
+                                                    <tr class="havemsg">
+                                                        <td >
+                                                            {{ $rating->name }}
+                                                        </td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $rating->rating }}
+                                                            </span>
+                                                        </td>
+
+                                                        <td class="del-btn">
+                                                            <div class="delete-form">
+                                                                @include('admin.ratings.partials.delete-form')
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="6">Nessun messaggio...</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item custom-head" aria-current="true">Dott. {{ $doctor->surname }}</li>
+                                            @forelse ($doctor->ratings as $rating)
+                                                <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
+                                                <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
+                                                <li class="list-group-item"><strong>Valutazione: </strong>{{ $rating->rating}}</li>
+
+
+                                                <li class="list-group-item custom-last mb-2 d-flex">
+                                                    <div class="delete-form">
+                                                        <form class="d-inline"
+                                                        onsubmit="return confirm('Confermi l\'eliminazione di {{$rating->name}} ?')"
+                                                        action="{{route('admin.ratings.destroy', $rating)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </li>
+
+                                            @empty
+                                                <li class="list-group-item  custom-last">
+                                                    <p>
+                                                        nessuna valutazione...
+                                                    </p>
+                                                </li>
+                                            @endforelse
+                                        </ul>
+
+
+                                        @endforeach
+                                        @if (Auth::user()->is_admin)
+                                            <div class="mobile-pagination">
+                                                {{ $doctors->links() }}
+                                            </div>
+                                        @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @else
-        {{-- <div class="wrapper border bbord rounded-4 my-3">
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="width: 200px" scope="col" class="text-capitalize">
-                            Dott. {{ $user_logged->surname }}
-                        </th>
-                        <th scope="col">Nome Utente</th>
-                        <th scope="col">Voto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ( $user_logged->ratings as $rating)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $rating->name }}</td>
-                            <td>{{ $rating->text }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">Nessuna valutazione...</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div> --}}
 
         <div class="special-table">
             <div class="limiter m-0">
@@ -109,7 +135,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $rating->name }}</td>
-                                            <td>{{ $rating->text }}</td>
+                                            <td>{{ $rating->rating }}</td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -118,11 +144,82 @@
                                     @endforelse
                                 </tbody>
                             </table>
+
+                            <ul class="list-group">
+                                <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
+                                @forelse  ( $user_logged->ratings as $rating)
+                                    <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
+                                    <li class="list-group-item mb-2"><strong>Voto: </strong>{{ $rating->rating}}</li>
+                                @empty
+                                    <li class="list-group-item custom-last">
+                                        <p>
+                                            nessun messagggio..
+                                        </p>
+                                    </li>
+                                @endforelse
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         @endif
+
+        @if (Auth::user()->is_admin)
+            {{ $doctors->links() }}
+        @endif
+
     </div>
+
+    <style>
+        .col.custom-messages-col{
+            padding-bottom: 200px;
+            padding-left: 40px;
+            padding-right:40px
+        }
+        .special-table.auth-special{
+            padding-top: 20px
+        }
+
+        .list-group{
+            padding-top: 30px;
+            display: none;
+        }
+
+        .mobile-pagination{
+            display: none;
+        }
+
+        .list-group:last-child{
+            padding-bottom: 600px;
+        }
+
+        .list-group-item.custom-head{
+            height: 100px;
+            background: rgb(55,130,232);
+            color: white;
+            font-size:1.7rem;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 990px){
+            .col.custom-messages-col{
+                margin: 5px;
+                padding: 5px;
+            }
+
+            .list-group{
+                padding-top: 50px;
+                display: block;
+                padding-bottom: 40px
+            }
+
+            .mobile-pagination{
+                display: block;
+                padding-bottom: 80px
+            }
+        }
+    </style>
+
 @endsection
