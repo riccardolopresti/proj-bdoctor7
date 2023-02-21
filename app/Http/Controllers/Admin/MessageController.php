@@ -51,6 +51,7 @@ class MessageController extends Controller
                     'required',
                     Rule::exists('doctors', 'id')->where('id', $request->doctor_id),
                 ],
+                'object' => 'min:2',
                 'email' => 'required|email',
                 'text' => 'required|min:2'
             ]
@@ -69,7 +70,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::where('id',$id)->first();
+        return view('admin.messages.show', compact('message'));
     }
 
     /**

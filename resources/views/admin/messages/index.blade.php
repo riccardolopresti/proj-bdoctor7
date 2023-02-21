@@ -7,15 +7,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col p-0">
-
-                <div class="title py-3">
-                    <h1>Messaggi</h1>
-                </div>
+            <div class="col custom-messages-col">
 
                 @if (Auth::user()->is_admin)
-                    <div class="create-msg py-2">
-                        <a href="{{ route('admin.messages.create') }}" class="btn btn-success mt-3">Crea un nuovo messaggio</a>
+                    <div class="create-msg d-flex justify-between w-100">
+                        <div class="left-side w-100">
+                            <h3 class="mt-3">Messaggi</h3>
+                        </div>
+                        <div class="rigght w-100 text-end">
+
+                            <a href="{{ route('admin.messages.create') }}" class="btn btn-outline-success mt-3">Crea un nuovo messaggio</a>
+                        </div>
                     </div>
 
                     @if (session('message'))
@@ -29,26 +31,43 @@
                             <div class="container m-0 p-0">
                                 <div class="wrap-table100">
                                     <div class="table100">
-                                            @foreach ($doctors as $doctor )
+                                        @foreach ($doctors as $doctor )
                                             <table class="my-5">
                                                 <thead>
                                                     <tr class="table100-head">
-                                                        <th class="column1">Dott.{{ $doctor->surname }}</th>
-                                                        <th class="column2">Nome Utente</th>
-                                                        <th class="column3">Oggetto</th>
-                                                        <th class="column4">Email</th>
-                                                        <th class="column5">Messaggio</th>
-                                                        <th class="column6">Azioni</th>
+                                                        <th colspan="6">Dott. {{ $doctor->surname }}</th>
+                                                    </tr>
+                                                    <tr class="table100-head">
+                                                        <th class="column1">Nome</th>
+                                                        <th class="column2">Oggetto</th>
+                                                        <th class="column3">Email</th>
+                                                        <th class="column4 text-start">Messaggio</th>
+                                                        <th class="column5">Azioni</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
-                                                    <tr>
-                                                        <td>{{ $doctor->surname }}</td>
-                                                        <td>{{ $message->name }}</td>
-                                                        <td>{{ $message->object }}</td>
-                                                        <td>{{ $message->email }}</td>
-                                                        <td>{{ $message->text }}</td>
+                                                    <tr class="havemsg">
+                                                        <td >
+                                                            <a href="{{route('admin.messages.show', $message->id)}}">
+                                                            {{ $message->name }}
+                                                            </a>
+                                                        </td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->object }}
+                                                            </span>
+                                                            </td>
+                                                        <td class="ellipsis" >
+                                                            <span>
+                                                                {{ $message->email }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->text }}
+                                                            </span>
+                                                        </td>
                                                         <td>
                                                             <div class="delete-form">
                                                                 @include('admin.messages.partials.delete-form')
@@ -56,92 +75,23 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="4">Nessun messaggio...</td>
-                                                    </tr>
-                                                @endforelse
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="6">Nessun messaggio...</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
                                             </table>
-                                            </div>
-                                            @endforeach
-                                        </div>
-
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
 
-                    {{-- @foreach ($doctors as $doctor )
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 200px" scope="col">
-                                        Dott.{{ $doctor->surname }}
-                                    </th>
-                                    <th scope="col">Nome Utente</th>
-                                    <th scope="col">Oggetto</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Messaggio</th>
-                                    <th scope="col">Azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($doctor->messages as $message)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{ $message->name }}</td>
-                                        <td>{{ $message->object }}</td>
-                                        <td>{{ $message->email }}</td>
-                                        <td>{{ $message->text }}</td>
-                                        <td>
-                                            <div class="delete-form">
-                                                @include('admin.messages.partials.delete-form')
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4">Nessun messaggio...</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-
-                        @endforeach
-                    {{ $doctors->links() }} --}}
                 @else
-                    {{-- <div class="wrapper border bbord rounded-4 my-3">
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 200px" scope="col" class="text-capitalize">
-                                        Dott. {{ $user_logged->surname }}
-                                    </th>
-                                    <th scope="col">Nome Utente</th>
-                                    <th scope="col">Oggetto</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Messaggio</th>
-                            </thead>
-                            <tbody>
-                                @forelse ( $user_logged->messages as $message)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{ $message->name }}</td>
-                                        <td>{{ $message->object }}</td>
-                                        <td>{{ $message->email }}</td>
-                                        <td>{{ $message->text }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4">Nessun messaggio...</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div> --}}
-
-                    <div class="special-table">
+                {{-- PARTE NON ADMIN --}}
+                    <div class="special-table auth-special">
                         <div class="limiter m-0">
                             <div class="container m-0 p-0">
                                 <div class="wrap-table100">
@@ -149,25 +99,34 @@
                                         <table class="my-5">
                                             <thead>
                                                 <tr class="table100-head">
-                                                    <th class="column1">Dott.{{ $user_logged->surname }}</th>
-                                                    <th class="column2">Nome Utente</th>
-                                                    <th class="column3">Oggetto</th>
-                                                    <th class="column4">Email</th>
-                                                    <th class="column5">Messaggio</th>
+                                                    <th colspan="6">Dott. {{ $user_logged->surname }}</th>
+                                                </tr>
+                                                <tr class="table100-head">
+                                                    <th class="column1">Nome Utente</th>
+                                                    <th class="column2">Oggetto</th>
+                                                    <th class="column3">Email</th>
+                                                    <th class="column4">Messaggio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse ( $user_logged->messages as $message)
-                                                    <tr>
-                                                        <td>{{ $user_logged->surname }}</td>
-                                                        <td>{{ $message->name }}</td>
+                                                    <tr class="havemsg">
+                                                        <td>
+                                                            <a href="{{route('admin.messages.show', $message->id)}}">
+                                                            {{ $message->name }}
+                                                            </a>
+                                                        </td>
                                                         <td>{{ $message->object }}</td>
                                                         <td>{{ $message->email }}</td>
-                                                        <td>{{ $message->text }}</td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->text }}
+                                                            </span>
+                                                        </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="4">Nessun messaggio...</td>
+                                                        <td colspan="6">Nessun messaggio...</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -178,6 +137,32 @@
                         </div>
                     </div>
                 @endif
+            @if (Auth::user()->is_admin)
+                {{ $doctors->links() }}
+            @endif
+
             </div>
         </div>
+
+        <style>
+            .create-msg{
+                margin-bottom: -37px
+            }
+            .col.custom-messages-col{
+                padding-bottom: 200px;
+                padding-left: 40px;
+                padding-right:40px
+            }
+            .special-table.auth-special{
+                padding-top: 20px
+            }
+        </style>
+
+        <script>
+            $('.havemsg').click.( function() {
+                window.location = $(this).find('a').attr('href');
+            }).hover( function() {
+                $(this).toggleClass('hover');
+            });
+        </script>
 @endsection
