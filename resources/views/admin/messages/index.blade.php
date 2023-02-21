@@ -138,6 +138,28 @@
                                                 @endforelse
                                             </tbody>
                                         </table>
+
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item active" aria-current="true">{{ $user_logged->surname }}</li>
+                                            @forelse ( $user_logged->messages as $message)
+                                                <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
+                                                <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
+                                                <li class="list-group-item custom-last mb-2">
+                                                    <p>
+                                                        {{$message->text}}
+                                                    </p>
+                                                </li>
+                                            @empty
+                                                <li class="list-group-item  custom-last">
+                                                    <p>
+                                                        nessun messagggio..
+                                                    </p>
+                                                </li>
+                                            @endforelse
+                                        </ul>
+
                                     </div>
                                 </div>
                             </div>
@@ -152,9 +174,6 @@
         </div>
 
         <style>
-            .create-msg{
-                margin-bottom: -37px
-            }
             .col.custom-messages-col{
                 padding-bottom: 200px;
                 padding-left: 40px;
@@ -162,6 +181,10 @@
             }
             .special-table.auth-special{
                 padding-top: 20px
+            }
+
+            .list-group{
+                padding-bottom: 200px;
             }
 
             @media screen and (max-width: 990px){
