@@ -16,7 +16,7 @@
                         </div>
                         <div class="rigght w-100 text-end">
 
-                            <a href="{{ route('admin.messages.create') }}" class="btn btn-outline-success mt-3">Crea un nuovo messaggio</a>
+                            <a href="{{ route('admin.messages.create') }}" class="btn btn-outline-success mt-3">Nuovo messaggio</a>
                         </div>
                     </div>
 
@@ -104,7 +104,7 @@
                                                     <th class="column1">Nome Utente</th>
                                                     <th class="column2">Oggetto</th>
                                                     <th class="column3">Email</th>
-                                                    <th class="column4">Messaggio</th>
+                                                    <th class="column6">Messaggio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -115,8 +115,16 @@
                                                             {{ $message->name }}
                                                             </a>
                                                         </td>
-                                                        <td>{{ $message->object }}</td>
-                                                        <td>{{ $message->email }}</td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->object }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="ellipsis">
+                                                            <span>
+                                                                {{ $message->email }}
+                                                            </span>
+                                                        </td>
                                                         <td class="ellipsis">
                                                             <span>
                                                                 {{ $message->text }}
@@ -154,6 +162,13 @@
             }
             .special-table.auth-special{
                 padding-top: 20px
+            }
+
+            @media screen and (max-width: 990px){
+                .col.custom-messages-col{
+                    margin: 5px;
+                    padding: 5px;
+                }
             }
         </style>
 
