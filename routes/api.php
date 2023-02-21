@@ -24,6 +24,7 @@ Route::namespace('Api')
     ->prefix('doctors')
     ->group(function () {
         Route::get('/', [DoctorController::class, 'index']);
+        Route::get("/{spec}", [DoctorController::class, "filterDoctors"]);
     });
 
 Route::get("/specs", [SpecController::class, "getSpecs"]);

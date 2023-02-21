@@ -1,75 +1,84 @@
 <script>
-
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    name: 'Search',
-    data(){
-        return{
-            baseUrl: 'http://127.0.0.1:8000/api/',
+    name: "Search",
+    data() {
+        return {
+            baseUrl: "http://127.0.0.1:8000/api/",
             doctors: [],
-            specs: []
-        }
+            specs: [],
+            specType: "",
+            filteredDoctors: [],
+        };
     },
-    methods:{
-        getDoctors(){
-            axios.get(this.baseUrl + 'doctors')
-                .then(result => {
-                    this.doctors = result.data.doctors.data;
-                    console.log(this.doctors);
-                })
+    methods: {
+        getDoctors() {
+            axios.get(this.baseUrl + "doctors").then((result) => {
+                this.doctors = result.data.doctors.data;
+            });
         },
-        getSpecs(){
-            axios.get(this.baseUrl + 'specs')
-                .then(result => {
-                    this.specs = result.data.specs;
-                })
-        }
+        getSpecs() {
+            axios.get(this.baseUrl + "specs").then((result) => {
+                this.specs = result.data.specs;
+            });
+        },
+        filterDoctors() {
+            axios
+                .get("http://127.0.0.1:8000/api/doctors/" + this.specType)
+                .then((result) => {
+                    this.filteredDoctors =
+                        result.data.filteredDoctors[0].doctors;
+                    console.log(result.data.filteredDoctors[0].doctors);
+                });
+        },
     },
-    mounted(){
+    mounted() {
         this.getDoctors();
         this.getSpecs();
-    }
-}
+    },
+};
 </script>
 
-
 <template>
-
-  <h2>Ricerca dottori</h2>
-    <select>
+    <h2>Ricerca dottori</h2>
+    <select v-model="specType">
         <option selected>Seleziona una specializzazione</option>
-        <option v-for="spec in specs" :key="spec.id" value="1">{{ spec.type }}</option>
+        <option v-for="spec in specs" :key="spec.id" :value="spec.type">
+            {{ spec.type }}
+        </option>
     </select>
-
+    <button @click="filterDoctors()">cerca</button>
 
     <div class="doctor-container">
-        <div v-for="doctor in doctors" :key="doctor.id" class="doctor-card">
-        <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
-        <p>{{ doctor.phone }}</p>
-        <p>{{ doctor.address }}</p>
-        <ul>
-            <li v-for="spec in doctor.specs" :key="spec.id">
-                <p>{{ spec.type }}</p>
-            </li>
-        </ul>
-    </div>
+        <div
+            v-for="doctor in filteredDoctors"
+            :key="doctor.id"
+            class="doctor-card"
+        >
+            <p>{{ doctor.surname }}</p>
+            <p>{{ doctor.phone }}</p>
+            <p>{{ doctor.address }}</p>
+            <!-- <ul>
+                <li v-for="spec in doctor.specs" :key="spec.id">
+                    <p>{{ spec.type }}</p>
+                </li>
+            </ul> -->
+        </div>
     </div>
 </template>
 
-
-
 <style lang="scss" scoped>
-.doctor-container{
+.doctor-container {
     display: flex;
     flex-wrap: wrap;
-    .doctor-card{
+    .doctor-card {
         outline: 1px solid black;
         width: 200px;
         height: 300px;
         margin: 1rem;
-        padding: .5rem;
-        ul{
+        padding: 0.5rem;
+        ul {
             list-style: none;
             padding: 0;
             margin: 0;
