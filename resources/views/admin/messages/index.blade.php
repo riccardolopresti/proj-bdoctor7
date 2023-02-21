@@ -48,27 +48,27 @@
                                                 <tbody>
                                                     @forelse ($doctor->messages as $message)
                                                     <tr class="havemsg">
-                                                        <td class="column1">
+                                                        <td >
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
                                                             {{ $message->name }}
                                                             </a>
                                                         </td>
-                                                        <td class="column2 ellipsis">
+                                                        <td class="ellipsis">
                                                             <span>
                                                                 {{ $message->object }}
                                                             </span>
                                                             </td>
-                                                        <td class="column3 ellipsis" >
+                                                        <td class="ellipsis" >
                                                             <span>
                                                                 {{ $message->email }}
                                                             </span>
                                                         </td>
-                                                        <td class="ellipsis column4">
+                                                        <td class="ellipsis">
                                                             <span>
                                                                 {{ $message->text }}
                                                             </span>
                                                         </td>
-                                                        <td class="column5">
+                                                        <td>
                                                             <div class="delete-form">
                                                                 @include('admin.messages.partials.delete-form')
                                                                 </form>
@@ -88,8 +88,9 @@
                             </div>
                         </div>
                     </div>
-                @else
 
+                @else
+                {{-- PARTE NON ADMIN --}}
                     <div class="special-table auth-special">
                         <div class="limiter m-0">
                             <div class="container m-0 p-0">
