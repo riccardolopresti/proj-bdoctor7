@@ -81,7 +81,34 @@
                                                     @endforelse
                                                 </tbody>
                                             </table>
+
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-head" aria-current="true">{{ $doctor->surname }}</li>
+                                                @forelse ( $user_logged->messages as $message)
+                                                    <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
+                                                    <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
+                                                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                    <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
+                                                    <li class="list-group-item custom-last mb-2">
+                                                        <p>
+                                                            {{$message->text}}
+                                                        </p>
+                                                    </li>
+                                                @empty
+                                                    <li class="list-group-item  custom-last">
+                                                        <p>
+                                                            nessun messagggio..
+                                                        </p>
+                                                    </li>
+                                                @endforelse
+                                            </ul>
+
                                         @endforeach
+                                            @if (Auth::user()->is_admin)
+                                                <div class="mobile-pagination">
+                                                    {{ $doctors->links() }}
+                                                </div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
@@ -141,8 +168,9 @@
 
 
                                         <ul class="list-group">
-                                            <li class="list-group-item active" aria-current="true">{{ $user_logged->surname }}</li>
+                                            <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
                                             @forelse ( $user_logged->messages as $message)
+                                                <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                                                 <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
                                                 <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
@@ -166,6 +194,7 @@
                         </div>
                     </div>
                 @endif
+
             @if (Auth::user()->is_admin)
                 {{ $doctors->links() }}
             @endif
@@ -184,13 +213,39 @@
             }
 
             .list-group{
+                padding-top: 30px;
+                display: none;
+            }
+
+            .mobile-pagination{
+                display: none;
+            }
+
+            .list-group:last-child{
                 padding-bottom: 200px;
+            }
+
+            .list-group-item.custom-head{
+                height: 100px;
+                background: rgb(55,130,232);
+                color: white;
+                font-size:1.7rem;
             }
 
             @media screen and (max-width: 990px){
                 .col.custom-messages-col{
                     margin: 5px;
                     padding: 5px;
+                }
+
+                .list-group{
+                    padding-top: 50px;
+                    display: block;
+                    padding-bottom: 40px
+                }
+                .mobile-pagination{
+                    display: block;
+                    padding-bottom: 80px
                 }
             }
         </style>
