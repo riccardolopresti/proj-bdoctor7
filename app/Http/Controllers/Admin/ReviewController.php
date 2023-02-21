@@ -13,8 +13,8 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::orderBy('id','desc')->get();
-        $reviews = Review::paginate(10);
+        $doctors = Doctor::orderBy('id','desc')->paginate(3);
+        $reviews = Review::all();
 
         $user_logged =  Auth()->user()->doctors;
 

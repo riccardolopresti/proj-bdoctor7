@@ -72,7 +72,7 @@
                                         <ul class="list-group">
                                             <li class="list-group-item custom-head" aria-current="true">Dott. {{ $doctor->surname }}</li>
                                             @forelse ($doctor->ratings as $rating)
-                                                <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
+                                                <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
                                                 <li class="list-group-item"><strong>Valutazione: </strong>{{ $rating->rating}}</li>
 
