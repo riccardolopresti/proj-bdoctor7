@@ -33,7 +33,7 @@
 
     </div>
 
-    <div class="container-fluid doctors-container">
+    <div class="container-fluid doctors-container mb-5">
         <form action="{{route('admin.doctors.update', $doctor)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -123,8 +123,8 @@
 
 
 
+                    <button type="submit" class="bn632-hover bn26 mt-3 mb-5 edits" style="width:9.5rem" id="edits">Conferma modifiche</button>
                 </div>
-                <button type="submit" class="btn btn-primary my-1" id="edits">Conferma modifiche</button>
             </div>
 
 

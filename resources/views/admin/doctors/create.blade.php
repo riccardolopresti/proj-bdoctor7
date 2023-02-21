@@ -97,7 +97,7 @@
 
                 </div>
 
-                <button type="submit" class="btn btn-primary my-2 mb-5" id="create">Aggiungi profilo</button>
+            <button type="submit" class="bn632-hover bn26 mt-2 mb-5" style="width:9.5rem" id="create">Aggiungi profilo</button>
 
 
 

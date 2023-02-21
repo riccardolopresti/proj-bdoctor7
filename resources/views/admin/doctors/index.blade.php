@@ -5,10 +5,10 @@
     <div class="container-fluid">
         <div class="main-wrapper-doctors row">
             <div class="col-12 d-flex justify-content-end buttons mb-3">
-                <a href="{{route('admin.doctors.edit', $doctor)}}" class="btn btn-info btn-sm me-2 "><i class="fa-solid fa-pen-to-square"></i> Modifica profilo</a>
-                <a href="{{route('admin.messages.index')}}" class="btn btn-primary btn-sm me-2 d-none d-md-inline-block"><i class="fa-solid fa-envelope"></i> Messages</a>
-                <a href="{{route('admin.offers.index')}}" class="btn btn-primary btn-sm me-2 d-none d-md-inline-block"><i class="fa-solid fa-award"></i> Promo</a>
-                <button type="button" class="btn btn-primary btn-sm d-none d-md-inline-block" disabled><i class="fa-solid fa-file-invoice"></i> CV</button>
+                <a href="{{route('admin.doctors.edit', $doctor)}}" class="bn632-hover bn26 me-2 edit-profile"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Modifica profilo</a>
+                <a href="{{route('admin.messages.index')}}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i class="fa-solid fa-envelope"></i>&nbsp;Messages</a>
+                <a href="{{route('admin.offers.index')}}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i class="fa-solid fa-award"></i>&nbsp;Promo</a>
+                <button type="button" class="bn632-hover bn26 d-none d-md-inline-block" disabled><i class="fa-solid fa-file-invoice"></i>&nbsp;CV</button>
             </div>
             <h1 class="blue text-center mb-4">Il tuo profilo</h1>
             <div class="col-lg-7 col-12 left row">
@@ -39,11 +39,11 @@
 
                 </div>
                 <div class="contacts col-12">
-                    <p class="mx-0 mt-1">
+                    <p class="mx-0 mt-3">
                             <i class="fa-solid blue fa-location-dot"></i></i>&nbsp; {{$doctor->address}}
                     </p>
 
-                    <p class="mt-3"><i class="fa-solid blue fa-phone"></i>&nbsp;
+                    <p class="mt-2"><i class="fa-solid blue fa-phone"></i>&nbsp;
                             @if ($doctor->phone)
                             {{$doctor->phone}}
                             @else
@@ -66,11 +66,11 @@
 
                 </div>
             </div>
-            <div class="col-lg-5 col-12 right d-flex flex-column justify-content-end align-items-end row">
 
+            <div class="col-lg-5 col-12 right d-flex flex-column justify-content-end align-items-end row">
                 <div class="sections-blue mt-4 col-12">
                     <div class="section-blue ratings-section">
-                        <a href="{{route('admin.ratings.index')}}">
+                        <a href="{{route('admin.ratings.index')}}" class="text-decoration-none text-white">
                             <h6>Le tue valutazioni</h6>
 
                             <div class="bg-container">
@@ -91,14 +91,33 @@
                     <div class="section-blue mt-3">
 
                         <h6>Le tue recensioni</h6>
-                        <div class="bg-container mt-3">
+                        <div class="bg-container mt-3 position-relative">
 
                             <div class="text-container">
                                 <span class="doc_reviews">
-                                    @if (!empty($doc_reviews)==0)
-                                        @foreach ($doc_reviews as $doc_review)
-                                        {{$doc_review->text}}
-                                        @endforeach
+                                    @if ($doc_reviews)
+                                        <section class="slider-wrapper">
+                                            <button class="slide-arrow d-flex align-items-center" id="slide-arrow-prev">
+                                                <i class="fa-solid blue fa-chevron-left"></i>
+                                            </button>
+
+                                            <button class="slide-arrow d-flex align-items-center" id="slide-arrow-next">
+                                                <i class="fa-solid blue fa-chevron-right"></i>
+                                            </button>
+
+                                            <ul class="slides-container" id="slides-container">
+                                                @foreach ($doc_reviews as $doc_review)
+                                              <li class="slide">
+                                                    <div class="name-and-time d-flex justify-content-between mb-3 flex-wrap">
+                                                            <h6>{{$doc_review->name}}</h6>
+                                                            <div class="time"></div>
+                                                    </div>
+                                                    <p class="review-content">{{$doc_review->text}}</p>
+                                              </li>
+                                                 @endforeach
+                                            </ul>
+                                        </section>
+
                                     @else
                                     <span class="grey">Non hai ancora ricevuto recensioni</span>
                                     @endif
@@ -145,6 +164,29 @@
                 $(document).ready(function() {
                     reviewContainer.innerHTML=starsRating(data);
             });
+
+            const slidesContainer = document.getElementById("slides-container");
+            const slide = document.querySelector(".slide");
+            const prevButton = document.getElementById("slide-arrow-prev");
+            const nextButton = document.getElementById("slide-arrow-next");
+            nextButton.addEventListener("click", () => {
+            const slideWidth = slide.clientWidth;
+            slidesContainer.scrollLeft += slideWidth;
+            });
+            prevButton.addEventListener("click", () => {
+            const slideWidth = slide.clientWidth;
+            slidesContainer.scrollLeft -= slideWidth;
+            });
+
+            function changeDateFormat(date){
+                let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
+                console.log(new_date);
+                return new_date
+            }
+
+            let date = "<?php echo $doc_review->created_at; ?>";
+            const putDate=document.querySelector('.time')
+            putDate.innerHTML=changeDateFormat(date)
 
 
 

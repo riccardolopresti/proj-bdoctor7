@@ -37,9 +37,9 @@ class DoctorController extends Controller
                                     ->groupBy('doctor_id')
                                     ->avg('rating');
         $doc_messages= Message::where('doctor_id', $doctor->id)->get();
-        $doc_reviews= Review::where('doctor_id', $doctor->id)->get();
+        $doc_reviews= Review::where('doctor_id', $doctor->id)->orderBy('created_at', 'desc')->get();
 
-        // dd($doc_ratings);
+
         return view('admin.doctors.index', compact( 'doctors', 'doctor', 'all_users', 'users', 'user','doc_ratings', 'doc_messages', 'doc_reviews'));
     }
 
@@ -165,7 +165,7 @@ class DoctorController extends Controller
 
 
         // dd($doctor->specs);
-        return redirect()->route('admin.doctors.show', $doctor);
+        return redirect()->route('admin.doctors.index');
     }
 
     /**
