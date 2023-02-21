@@ -32,9 +32,9 @@ export default {
             <div class="bars2"></div>
             <div class="bars3"></div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#">HTMLCSS</a></li>
-            <li><a href="#">WordPress</a></li>
+        <ul class="nav-links m-0">
+            <li><router-link :to="{ name: 'home'}">Home</router-link></li>
+            <li><router-link :to="{ name: 'contacts'}">Contatti</router-link></li>
             <li><a href="#">Javascript</a></li>
             <li><a href="#">JQuery</a></li>
             <li><a href="#">Contact Us</a></li>
@@ -45,13 +45,15 @@ export default {
 </template>
 
 
-<style>
+<style scoped>
 *{
-    margin:0; padding:0;
     color:#f2f5f7;
-    font-family: sans-serif;
     letter-spacing: 1px;
     font-weight: 300;
+}
+
+header{
+    height: 96px;
 }
 
 body{
@@ -74,7 +76,7 @@ nav{
 /* Styling Logo*/
 
 .logo{
-    width: 200px;
+    width: 250px;
 }
 
 .logo img{
@@ -102,7 +104,7 @@ nav{
     padding: 10px;
 }
 
-.nav-links li a:hover{
+.nav-links li a:hover, .nav-links li a.active{
     color:#000;
     background-color: #fff;
     padding: 10px;
@@ -116,7 +118,6 @@ nav{
 .nav-links li a:hover::before{
     width: 80%;
 }
-
 
 /*Buttons Styling*/
 
