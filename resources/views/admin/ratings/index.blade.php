@@ -99,6 +99,7 @@
                                         </ul>
 
 
+
                                         @endforeach
                                         @if (Auth::user()->is_admin)
                                             <div class="mobile-pagination">
@@ -106,11 +107,15 @@
                                             </div>
                                         @endif
                                 </div>
+                                @if (Auth::user()->is_admin)
+                                        {{ $doctors->links() }}
+                                    @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         @else
@@ -166,10 +171,6 @@
         </div>
         @endif
 
-        @if (Auth::user()->is_admin)
-            {{ $doctors->links() }}
-        @endif
-
     </div>
 
     <style>
@@ -192,7 +193,7 @@
         }
 
         .list-group:last-child{
-            padding-bottom: 600px;
+            padding-bottom: 200px;
         }
 
         .list-group-item.custom-head{
@@ -201,6 +202,10 @@
             color: white;
             font-size:1.7rem;
             font-weight: bold;
+        }
+
+        .wrap-table100{
+            padding-bottom: 200px;s
         }
 
         @media screen and (max-width: 990px){
