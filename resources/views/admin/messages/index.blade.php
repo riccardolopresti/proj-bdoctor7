@@ -83,17 +83,34 @@
                                             </table>
 
                                             <ul class="list-group">
-                                                <li class="list-group-item custom-head" aria-current="true">{{ $doctor->surname }}</li>
+                                                <li class="list-group-item custom-head" aria-current="true">Dott. {{ $doctor->surname }}</li>
                                                 @forelse ( $user_logged->messages as $message)
                                                     <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                                                     <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
                                                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
-                                                    <li class="list-group-item custom-last mb-2">
+                                                    <li class="list-group-item custom-last">
                                                         <p>
                                                             {{$message->text}}
                                                         </p>
                                                     </li>
+                                                    <li class="list-group-item custom-last mb-2 d-flex">
+                                                        <div class="show-msg pe-2">
+                                                            <a class="btn btn-info" href="{{route('admin.messages.show', $message->id)}}">
+                                                                Visualizza
+                                                            </a>
+                                                        </div>
+                                                        <div class="delete-form">
+                                                            <form class="d-inline"
+                                                            onsubmit="return confirm('Confermi l\'eliminazione di {{$message->name}} ?')"
+                                                            action="{{route('admin.offers.destroy', $message)}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </li>
+
                                                 @empty
                                                     <li class="list-group-item  custom-last">
                                                         <p>
@@ -230,6 +247,7 @@
                 background: rgb(55,130,232);
                 color: white;
                 font-size:1.7rem;
+                font-weight: bold;
             }
 
             @media screen and (max-width: 990px){
@@ -243,6 +261,7 @@
                     display: block;
                     padding-bottom: 40px
                 }
+
                 .mobile-pagination{
                     display: block;
                     padding-bottom: 80px
@@ -260,5 +279,11 @@
             $('.del-btn').click(function(e) {
                 e.stopPropagation();
             });
+
+            function cutText(text){
+                if(text.length > 80){
+                    text=text.slice(0, 100)+'...'  }
+                return text
+            }
         </script>
 @endsection
