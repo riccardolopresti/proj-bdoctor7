@@ -78,11 +78,7 @@
                                                 selected
                                                 @endif
                                             @endforeach
-                                            {{-- @foreach ($doctor->specs as $spec)
-                                                @if ($spec->pivot->doctor_id==$doctor->id)
-                                                    selected
-                                                @endif
-                                            @endforeach --}}
+
                                             >{{$specialization->type}}</option>
                             @endforeach
                         </select>
@@ -145,7 +141,7 @@
 @endsection
 
 @push('body-scripts')
-        @once
+    @once
         <script>
             function showImage(event){
             const tagImage = document.getElementById('profile-img');
@@ -162,7 +158,7 @@
         });
 
         </script>
-        @endonce
+    @endonce
 @endpush
 
 

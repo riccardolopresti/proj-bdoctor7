@@ -1,9 +1,3 @@
-// .select2.select2-container.select2-container--default{
-//     min-height:60px;
-//     height:fit-content;
-//     border:1px solid  #e9ecef;
-//     display:inline-block;
-// }
 @use 'partials/variables.scss' as *;
 
 .select2-selection.select2-selection--multiple {
@@ -83,6 +77,7 @@ span.title{
            object-fit:cover;
            height:100%;
            width:100%;
+           border-radius:0.375rem;
        }
     }
 
@@ -91,11 +86,15 @@ span.title{
             background-color: $light-blue;
             color:black;
         }
+        .profile-section{
+            font-size: 80%;
+        }
     }
     .bordered-container{
         border:1px solid $light-blue;
         padding:20px 30px;
         border-radius:0.375rem;
+        margin-right:1.5rem;
 
     }
     .doc_reviews{
@@ -126,3 +125,91 @@ span.title{
     margin-bottom:50px;
 }
 
+// media-queries
+
+@media screen and (max-width:992px){
+    .main-wrapper-doctors.row{
+        width:90%;
+    }
+  }
+  @media screen and (max-width:576px){
+
+
+  }
+
+  @media screen and (min-width:589px){
+      h1.blue.text-center{
+          display:none;
+      }
+  }
+
+@media screen and (max-width:588px){
+    // da cancellare, mediaquey di Sara
+    .col-2.m-0.p-0{
+        display:none;
+    }
+
+    .main-wrapper-doctors.row{
+        .left.row{
+            position: relative;
+            .col-sm-5.col-12.profile-photo.p-0{
+                position:absolute;
+                left:calc(50% - 4rem);
+            }
+            .col-sm-7.details{
+                text-align: center;
+                display:block;
+                width:100%;
+                margin-top:5.5rem;
+                padding-top:40px;
+                border-radius: 0.375rem;
+                background: linear-gradient(90deg, rgba(61,136,238,1) 0%, rgba(166,229,255,1) 100%);
+                .badge.spec-badge{
+                    background-color: $dark-blue;
+                    color:white;
+                }
+                h4.text.blue{
+                    color:$dark-blue;
+                    font-size:1.8rem;
+                }
+                h6.profile-section{
+                    color:white;
+                }
+
+            }
+            .col-12.contacts{
+                font-size:1.1rem;
+                margin-top:1.3rem;
+                p{
+                    margin-bottom:0.8rem;
+                    i{
+                        font-size:1.6rem;
+                    }
+                }
+
+
+
+            }
+            .col-12.doctor-services{
+                padding:0;
+                .bordered-container{
+                    width:100%;
+                    margin:0;
+                }
+            }
+
+        }
+        .right.flex-column{
+            .sections-blue{
+                padding:0;
+                margin-top:1rem;
+                .section-blue.ratings-section{
+                    a{
+                        text-decoration: none;
+                        color:white;
+                    }
+                }
+            }
+        }
+    }
+  }

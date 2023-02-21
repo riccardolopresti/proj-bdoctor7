@@ -4,15 +4,16 @@
 
     <div class="container-fluid">
         <div class="main-wrapper-doctors row">
-            <div class="col-12 d-flex justify-content-end buttons mb-3 me-3">
-                <a href="{{route('admin.doctors.edit', $doctor)}}" class="btn btn-info btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i> Modifica profilo</a>
-                <a href="{{route('admin.messages.index')}}" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-envelope"></i> Messages</a>
-                <a href="{{route('admin.offers.index')}}" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-award"></i> Promo</a>
-                <button type="button" class="btn btn-primary btn-sm" disabled><i class="fa-solid fa-file-invoice"></i> CV</button>
+            <div class="col-12 d-flex justify-content-end buttons mb-3">
+                <a href="{{route('admin.doctors.edit', $doctor)}}" class="btn btn-info btn-sm me-2 "><i class="fa-solid fa-pen-to-square"></i> Modifica profilo</a>
+                <a href="{{route('admin.messages.index')}}" class="btn btn-primary btn-sm me-2 d-none d-md-inline-block"><i class="fa-solid fa-envelope"></i> Messages</a>
+                <a href="{{route('admin.offers.index')}}" class="btn btn-primary btn-sm me-2 d-none d-md-inline-block"><i class="fa-solid fa-award"></i> Promo</a>
+                <button type="button" class="btn btn-primary btn-sm d-none d-md-inline-block" disabled><i class="fa-solid fa-file-invoice"></i> CV</button>
             </div>
-            <div class="col-7 left row">
+            <h1 class="blue text-center mb-4">Il tuo profilo</h1>
+            <div class="col-lg-7 col-12 left row">
 
-                <div class="col-5 profile-photo p-0">
+                <div class="col-sm-5 col-12 profile-photo p-0">
                     @if (str_contains($doctor->image,'http'))
                     <img src="{{$doctor->image}}"
                     class="card-img-top"
@@ -25,32 +26,34 @@
                     title="Anteprima dottore">
                     @endif
                 </div>
-                <div class="col-7 details">
-                    <h4 class="text-primary">{{$user->name}} {{$doctor->surname}}</h4>
+                <div class="col-sm-7 details col-12">
+                    <h4 class="text blue mt-2">{{$user->name}} {{$doctor->surname}}</h4>
                   <h6 class="profile-section mt-3">
                       Specializzazioni: </h6>
                       <ul class="list-unstyled list-inline mb-3">
                         @foreach ($doctor->specs as $spec)
-                            <li class="my-2 d-inline me-2 mt-4"><span class="badge">{{$spec->type}}</span>
+                            <li class="my-2 d-inline me-2 mt-4"><span class="badge spec-badge">{{$spec->type}}</span>
                             </li>
                         @endforeach
                     </ul>
-                    <div>
-                    <p class="m-0">
-                            <i class="fa-solid blue fa-location-dot"></i></i>&nbsp;{{$doctor->address}}</p>
 
-                        <p class="mt-1"><i class="fa-solid blue fa-phone"></i>&nbsp;
+                </div>
+                <div class="contacts col-12">
+                    <p class="mx-0 mt-1">
+                            <i class="fa-solid blue fa-location-dot"></i></i>&nbsp; {{$doctor->address}}
+                    </p>
+
+                    <p class="mt-3"><i class="fa-solid blue fa-phone"></i>&nbsp;
                             @if ($doctor->phone)
                             {{$doctor->phone}}
                             @else
                             <span class="grey">Nessun telefono inserito</span>
-                            @endif</p>
-
-                    </div>
+                            @endif
+                    </p>
 
                 </div>
                 <div class="col-12 doctor-services d-flex align-items-end mt-3">
-                    <div class="bordered-container w-100 me-3 ">
+                    <div class="bordered-container w-100">
 
                         <h6 class="light-blue"><i class="fa-solid fa-notes-medical"></i> I tuoi servizi</h6>
 
@@ -63,26 +66,27 @@
 
                 </div>
             </div>
-            <div class="col-5 right d-flex flex-column justify-content-end align-items-end">
+            <div class="col-lg-5 col-12 right d-flex flex-column justify-content-end align-items-end row">
 
-                <div class="sections-blue mt-5">
-                    <div class="section-blue">
+                <div class="sections-blue mt-4 col-12">
+                    <div class="section-blue ratings-section">
+                        <a href="{{route('admin.ratings.index')}}">
+                            <h6>Le tue valutazioni</h6>
 
-                        <h6>Le tue valutazioni</h6>
-
-                        <div class="bg-container">
-                            @if ($doc_ratings)
-                            {{$doc_ratings}}
-                            @else
-                            <span class="grey">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>&nbsp;
-                                Non hai ancora ricevuto valutazioni</span>
-                            @endif
-                        </div>
+                            <div class="bg-container">
+                                @if ($doc_ratings)
+                                    <span class="ratings-container"></span>
+                                @else
+                                <span class="grey">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>&nbsp;
+                                    Non hai ancora ricevuto valutazioni</span>
+                                @endif
+                            </div>
+                        </a>
                     </div>
                     <div class="section-blue mt-3">
 
@@ -110,5 +114,40 @@
 
 
         </div>
+    </div>
 
 @endsection
+@push('body-scripts')
+    @once
+        <script>
+
+            function starsRating(number){
+                let newRating = (Math.ceil(number*2)/2);
+                let stars = [];
+                const diff=5-newRating;
+                console.log(newRating, diff);
+                    for(let i=newRating; i>=1; i--){
+                        stars.push(`<i class="fa-solid fa-star" style="color:gold;"></i>`);
+
+                };
+                if(diff % 1){
+                    stars.push(`<i class="fa-solid fa-star-half-stroke" style="color:gold;"></i>`);
+                }
+                for(let j = (5 - newRating); j >= 1; j--){
+                stars.push(`<i class="fa-regular fa-star" style="color:gold"></i>`);
+                }
+                return stars.join('');
+
+            }
+
+            const data = "<?php echo $doc_ratings; ?>";
+            const reviewContainer=document.querySelector('.ratings-container')
+                $(document).ready(function() {
+                    reviewContainer.innerHTML=starsRating(data);
+            });
+
+
+
+        </script>
+    @endonce
+@endpush
