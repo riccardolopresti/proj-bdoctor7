@@ -68,10 +68,9 @@
                                                                 {{ $message->text }}
                                                             </span>
                                                         </td>
-                                                        <td>
+                                                        <td class="del-btn">
                                                             <div class="delete-form">
                                                                 @include('admin.messages.partials.delete-form')
-                                                                </form>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -159,10 +158,14 @@
         </style>
 
         <script>
-            $('.havemsg').click( function() {
+            $('.havemsg:not(:last-child)').click( function() {
                 window.location = $(this).find('a').attr('href');
             }).hover( function() {
                 $(this).toggleClass('hover');
+            });
+
+            $('.del-btn').click(function(e) {
+                e.stopPropagation();
             });
         </script>
 @endsection
