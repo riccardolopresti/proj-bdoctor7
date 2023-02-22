@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{ $review->id }}">
+<button type="button" class="bn632-hover bn26 delete-profile" data-bs-toggle="modal" data-bs-target="#modal{{ $review->id }}">
     Elimina
 </button>
 
@@ -15,12 +15,12 @@
                 Vuoi davvero eliminare definitivamentte la recensione di <strong>{{ $review->name }}</strong> ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="bn632-hover bn26 close-btn" data-bs-dismiss="modal">Close</button>
                 <form class="d-inline" action="{{ route('admin.ratings.destroy', $review) }}" method="POST">
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-danger" title="delete">
+                    <button type="submit" class="bn632-hover bn26 delete-profile" title="delete">
                         Elimina
                     </button>
                 </form>

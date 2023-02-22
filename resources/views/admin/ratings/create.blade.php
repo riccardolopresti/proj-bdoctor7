@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5 ms-3">
         <h1>Crea una nuova valutazione</h1>
 
-        <form action="{{ route('admin.ratings.store') }}" method="POST">
+        <form action="{{ route('admin.ratings.store') }}" method="POST" class="w-50">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome *</label>
@@ -47,7 +47,7 @@
                 </output>
             </div>
 
-            <button type="submit" class="btn btn-success mt-4">Crea</button>
+            <button type="submit" class="bn632-hover bn26 create-message mt-5">Crea</button>
         </form>
 
     </div>

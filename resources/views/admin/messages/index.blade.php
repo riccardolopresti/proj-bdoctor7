@@ -12,11 +12,11 @@
                 @if (Auth::user()->is_admin)
                     <div class="create-msg d-flex justify-between w-100">
                         <div class="left-side w-100">
-                            <h3 class="mt-3">Messaggi</h3>
+                            <h3 class="mt-5 fw-bold">Messaggi</h3>
                         </div>
-                        <div class="rigght w-100 text-end">
+                        <div class="right w-100 d-flex justify-content-end">
 
-                            <a href="{{ route('admin.messages.create') }}" class="btn btn-outline-success mt-3">Nuovo messaggio</a>
+                            <a href="{{ route('admin.messages.create') }}" class="bn632-hover bn26 create-message mt-5">Nuovo messaggio</a>
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
                                                     </li>
                                                     <li class="list-group-item custom-last mb-2 d-flex">
                                                         <div class="show-msg pe-2">
-                                                            <a class="btn btn-info" href="{{route('admin.messages.show', $message->id)}}">
+                                                            <a class="bn632-hover bn26 create-profile" href="{{route('admin.messages.show', $message->id)}}">
                                                                 Visualizza
                                                             </a>
                                                         </div>
@@ -106,7 +106,7 @@
                                                             action="{{route('admin.messages.destroy', $message)}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                                <button type="submit" class="bn632-hover bn26 delete-profile " title="delete">Delete</button>
                                                             </form>
                                                         </div>
                                                     </li>
@@ -134,6 +134,9 @@
 
                 @else
                 {{-- PARTE NON ADMIN --}}
+                <div class="left-side w-100">
+                    <h3 class="mt-5 fw-bold">Messaggi</h3>
+                </div>
                     <div class="special-table auth-special">
                         <div class="limiter m-0">
                             <div class="container m-0 p-0">

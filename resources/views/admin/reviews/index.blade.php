@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container ms-3">
 
         @if (session('message'))
             <div class="alert alert-success" role="alert">
@@ -15,13 +15,15 @@
         <div class="row">
             <div class="col">
 
-                <div class="title py-3">
-                    <h1>Recensioni</h1>
-                </div>
+            @if (Auth::user()->is_admin)
+                <div class="create-msg d-flex justify-between w-100">
+                    <div class="left-side w-100">
+                        <h3 class="mt-5 fw-bold">Recensioni</h3>
+                    </div>
+                    <div class="right w-100 d-flex justify-content-end">
 
-        @if (Auth::user()->is_admin)
-                <div class="create-msg py-2">
-                    <a href="{{ route('admin.reviews.create') }}" class="btn btn-success mt-3">Crea una recensione</a>
+                        <a href="{{ route('admin.reviews.create') }}" class="bn632-hover bn26 create-message mt-5">Nuova recensione</a>
+                    </div>
                 </div>
 
 
@@ -84,7 +86,7 @@
                                                         action="{{route('admin.reviews.destroy', $review)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                            <button type="submit" class="bn632-hover bn26 delete-profile" title="delete">Elimina</button>
                                                         </form>
                                                     </div>
                                                 </li>
@@ -121,7 +123,9 @@
 
         </div>
         @else
-
+        <div class="left-side w-100">
+            <h3 class="mt-5 fw-bold">Recensioni</h3>
+        </div>
         <div class="special-table">
             <div class="limiter m-0">
                 <div class="container m-0 p-0">

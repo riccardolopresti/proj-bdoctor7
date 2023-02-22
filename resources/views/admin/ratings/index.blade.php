@@ -12,17 +12,18 @@
             </div>
         @endif
 
-
-        <div class="title py-3">
-            <h1>Valutazioni</h1>
-        </div>
-
-        @if (Auth::user()->is_admin)
         <div class="row">
             <div class="col">
 
-                <div class="create-msg py-2">
-                    <a href="{{ route('admin.ratings.create') }}" class="btn btn-success mt-3">Crea una valutazione</a>
+                @if (Auth::user()->is_admin)
+                <div class="create-msg d-flex justify-between w-100">
+                    <div class="left-side w-100">
+                        <h3 class="mt-5 fw-bold">Valutazioni</h3>
+                    </div>
+                    <div class="right w-100 d-flex justify-content-end">
+
+                        <a href="{{ route('admin.ratings.create') }}" class="bn632-hover bn26 create-message mt-5">Nuova valutazione</a>
+                    </div>
                 </div>
 
                 <div class="special-table">
@@ -84,7 +85,7 @@
                                                         action="{{route('admin.ratings.destroy', $rating)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                            <button type="submit" class="bn632-hover bn26 delete-profile " title="delete">Elimina</button>
                                                         </form>
                                                     </div>
                                                 </li>
@@ -119,6 +120,10 @@
         </div>
 
         @else
+
+        <div class="left-side w-100">
+            <h3 class="mt-5 fw-bold">Valutazioni</h3>
+        </div>
 
         <div class="special-table">
             <div class="limiter m-0">
