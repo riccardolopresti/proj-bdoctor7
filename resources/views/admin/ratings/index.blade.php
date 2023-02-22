@@ -109,7 +109,10 @@
                                         @endif
                                 </div>
                                 @if (Auth::user()->is_admin)
-                                        {{ $doctors->links() }}
+                                <div class="desk">
+                                    {{ $doctors->links() }}
+
+                                </div>
                                     @endif
                             </div>
                         </div>
@@ -231,6 +234,10 @@
             .mobile-pagination{
                 display: block;
                 padding-bottom: 80px
+            }
+
+            .desk{
+                display: none
             }
         }
     </style>
