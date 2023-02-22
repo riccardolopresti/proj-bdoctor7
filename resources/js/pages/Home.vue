@@ -1,30 +1,56 @@
 <script>
-import Header from '../partials/Header.vue'
-import Jumbotron from '../partials/Jumbotron.vue'
+
+import Header from "../partials/Header.vue";
+import Jumbotron from "../partials/Jumbotron.vue";
 import SponsorSection from './SponsorSection.vue'
 
-export default {
-    name: 'Home',
+import axios from "axios";
 
-    components:{
+
+
+export default {
+    name: "Home",
+
+    components: {
         Header,
         Jumbotron,
         SponsorSection
     },
-}
+    data() {
+        return {
+            baseUrl: "http://127.0.0.1:8000/api/",
+            doctors: [],
+            specs: [],
+            specType: "",
+            filteredDoctors: [],
+        };
+    },
+    methods: {
+        getSpecs() {
+            axios.get(this.baseUrl + "specs").then((result) => {
+                this.specs = result.data.specs;
+                console.log(this.specs);
+            });
+        },
+    },
+    mounted() {
+        this.getSpecs();
+    },
+};
 </script>
 
 <template>
-    <Header/>
-    <Jumbotron/>
+
+    <Header />
+    <Jumbotron :specs="specs" />
     <SponsorSection/>>
 
 </template>
 
-
 <style lang="scss">
-*{
-    margin:0; padding:0;
+* {
+    margin: 0;
+    padding: 0;
     font-family: sans-serif;
 }
 

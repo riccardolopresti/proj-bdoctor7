@@ -1,77 +1,42 @@
 <script>
-import axios from "axios";
+import { store } from "../data/store";
 
 export default {
     name: "Search",
     data() {
         return {
-            baseUrl: "http://127.0.0.1:8000/api/",
-            doctors: [],
-            specs: [],
-            specType: "",
-            filteredDoctors: [],
+            store,
         };
     },
     methods: {
-        getDoctors() {
-            axios.get(this.baseUrl + "doctors").then((result) => {
-                this.doctors = result.data.doctors.data;
-            });
-        },
-        getSpecs() {
-            axios.get(this.baseUrl + "specs").then((result) => {
-                this.specs = result.data.specs;
-            });
-        },
-        filterDoctors() {
-            axios
-                .get("http://127.0.0.1:8000/api/doctors/" + this.specType)
-                .then((result) => {
-                    this.filteredDoctors =
-                        result.data.filteredDoctors[0].doctors;
-                    console.log(result.data.filteredDoctors[0].doctors);
-                });
-        },
-        getName(str) {
-            const array = str.split("-");
+        getAverage(array, number) {
+            let somma = 0;
             for (let i = 0; i < array.length; i++) {
-                array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+                somma += array[i];
             }
-            const name = array.join(" ");
-            return name;
+            return somma / array.length;
+            console.log(array);
         },
-    },
-    mounted() {
-        this.getDoctors();
-        this.getSpecs();
     },
 };
 </script>
 
 <template>
-    <h2>Ricerca dottori</h2>
-    <select v-model="specType">
-        <option selected>Seleziona una specializzazione</option>
-        <option v-for="spec in specs" :key="spec.id" :value="spec.type">
-            {{ spec.type }}
-        </option>
-    </select>
-    <button @click="filterDoctors()">cerca</button>
-
+    <h2>Risultati: {{ store.filteredDoctors.length }}</h2>
     <div class="doctor-container">
         <div
-            v-for="doctor in filteredDoctors"
+            v-for="doctor in store.filteredDoctors"
             :key="doctor.id"
             class="doctor-card"
         >
-            <p>{{ getName(doctor.slug) }}</p>
+            <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
             <p>{{ doctor.address }}</p>
-            <!-- <ul>
-                <li v-for="spec in doctor.specs" :key="spec.id">
-                    <p>{{ spec.type }}</p>
-                </li>
-            </ul> -->
+            <div v-for="rating in store.doc_ratings">
+                <p v-if="rating.doctor_id == doctor.id">
+                    {{ rating.average_rating }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
