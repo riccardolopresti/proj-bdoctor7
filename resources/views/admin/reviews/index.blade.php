@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container me-5">
 
         @if (session('message'))
             <div class="alert alert-success" role="alert">
@@ -15,13 +15,15 @@
         <div class="row">
             <div class="col">
 
-                <div class="title py-3">
-                    <h1>Recensioni</h1>
-                </div>
+            @if (Auth::user()->is_admin)
+                <div class="create-msg d-flex justify-between w-100">
+                    <div class="left-side w-100">
+                        <h3 class="mt-5 fw-bold">Recensioni</h3>
+                    </div>
+                    <div class="right w-100 d-flex justify-content-end">
 
-        @if (Auth::user()->is_admin)
-                <div class="create-msg py-2">
-                    <a href="{{ route('admin.reviews.create') }}" class="btn btn-success mt-3">Crea una recensione</a>
+                        <a href="{{ route('admin.reviews.create') }}" class="bn632-hover bn26 create-message mt-5">Nuova recensione</a>
+                    </div>
                 </div>
 
 
@@ -84,7 +86,7 @@
                                                         action="{{route('admin.reviews.destroy', $review)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                            <button type="submit" class="bn632-hover bn26 delete-sm-btn" title="delete">Elimina</button>
                                                         </form>
                                                     </div>
                                                 </li>
@@ -121,7 +123,9 @@
 
         </div>
         @else
-
+        <div class="left-side w-100">
+            <h3 class="mt-5 fw-bold">Recensioni</h3>
+        </div>
         <div class="special-table">
             <div class="limiter m-0">
                 <div class="container m-0 p-0">
@@ -140,7 +144,7 @@
                                 <tbody>
                                     @forelse ( $user_logged->reviews as $review )
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td><span class="data-it"></span></td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->text }}</td>
                                         </tr>
@@ -152,11 +156,12 @@
                                 </tbody>
                             </table>
 
-                            <ul class="list-group">
+                            <ul class="list-group me-2">
                                 <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
                                 @forelse  ( $user_logged->reviews as $review)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$review->name}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> <span class="data-it-2"></span></li>
                                     <li class="list-group-item mb-2"><strong>Recensione: <br> </strong>{{ $review->text}}</li>
                                 @empty
                                     <li class="list-group-item custom-last">
@@ -210,6 +215,9 @@
         }
 
         @media screen and (max-width: 990px){
+            .container{
+                margin-left:0;
+            }
             .col.custom-messages-col{
                 margin: 5px;
                 padding: 5px;
@@ -231,4 +239,22 @@
             }
         }
     </style>
+
+    <script>
+        function changeDateFormat(date){
+                let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
+                return new_date
+            }
+
+            const msgDate = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate.length; i++){
+                let dateContainer=document.querySelectorAll('.data-it')
+                dateContainer[i].innerHTML=changeDateFormat(msgDate[i]['created_at'])
+            }
+            const msgDate2 = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate2.length; i++){
+                let dateContainer2=document.querySelectorAll('.data-it-2')
+                dateContainer2[i].innerHTML=changeDateFormat(msgDate2[i]['created_at'])
+            }
+    </script>
 @endsection

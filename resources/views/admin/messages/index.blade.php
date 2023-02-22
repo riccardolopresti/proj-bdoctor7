@@ -12,11 +12,11 @@
                 @if (Auth::user()->is_admin)
                     <div class="create-msg d-flex justify-between w-100">
                         <div class="left-side w-100">
-                            <h3 class="mt-3">Messaggi</h3>
+                            <h3 class="mt-5 fw-bold">Messaggi</h3>
                         </div>
-                        <div class="rigght w-100 text-end">
+                        <div class="right w-100 d-flex justify-content-end">
 
-                            <a href="{{ route('admin.messages.create') }}" class="btn btn-outline-success mt-3">Nuovo messaggio</a>
+                            <a href="{{ route('admin.messages.create') }}" class="bn632-hover bn26 create-message mt-5">Nuovo messaggio</a>
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@
                                                 @forelse ($doctor->messages as $message)
                                                     <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
-                                                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
                                                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                                                     <li class="list-group-item custom-last">
                                                         <p>
@@ -96,7 +96,7 @@
                                                     </li>
                                                     <li class="list-group-item custom-last mb-2 d-flex">
                                                         <div class="show-msg pe-2">
-                                                            <a class="btn btn-info" href="{{route('admin.messages.show', $message->id)}}">
+                                                            <a class="bn632-hover bn26 create-profile" href="{{route('admin.messages.show', $message->id)}}">
                                                                 Visualizza
                                                             </a>
                                                         </div>
@@ -106,7 +106,7 @@
                                                             action="{{route('admin.messages.destroy', $message)}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger " title="delete">Delete</button>
+                                                                <button type="submit" class="bn632-hover bn26 delete-sm-btn" title="delete">Elimina</button>
                                                             </form>
                                                         </div>
                                                     </li>
@@ -134,6 +134,9 @@
 
                 @else
                 {{-- PARTE NON ADMIN --}}
+                <div class="left-side w-100">
+                    <h3 class="mt-5 fw-bold">Messaggi</h3>
+                </div>
                     <div class="special-table auth-special">
                         <div class="limiter m-0">
                             <div class="container m-0 p-0">
@@ -146,9 +149,10 @@
                                                 </tr>
                                                 <tr class="table100-head">
                                                     <th class="column1">Nome Utente</th>
-                                                    <th class="column2">Oggetto</th>
+                                                    <th class="column1">Oggetto</th>
+                                                    <th class="column1">Data</th>
                                                     <th class="column3">Email</th>
-                                                    <th class="column6">Messaggio</th>
+                                                    <th class="column4">Messaggio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -161,8 +165,11 @@
                                                         </td>
                                                         <td class="ellipsis">
                                                             <span>
-                                                                {{ $message->object }}
+                                                                {{ $message->object ? $message->object : 'Nessun oggetto'}}
                                                             </span>
+                                                        </td>
+                                                        <td class="ellipsis data-msg">
+                                                            <span class="data-it-2"></span>
                                                         </td>
                                                         <td class="ellipsis">
                                                             <span>
@@ -189,12 +196,20 @@
                                             @forelse ( $user_logged->messages as $message)
                                                 <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
-                                                <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
+                                                <li class="list-group-item "><strong>Data: </strong> <span class="data-it"></span></li>
                                                 <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
-                                                <li class="list-group-item custom-last mb-2">
-                                                    <p>
-                                                        {{$message->text}}
+                                                <li class="list-group-item custom-last">
+                                                    <p class="text-truncate-custom">
+
                                                     </p>
+                                                </li>
+                                                <li class="list-group-item custom-last mb-2">
+                                                    <div class="show-msg pe-2">
+                                                        <a class="bn632-hover bn26 create-profile" href="{{route('admin.messages.show', $message->id)}}">
+                                                            Visualizza
+                                                        </a>
+                                                    </div>
                                                 </li>
                                             @empty
                                                 <li class="list-group-item  custom-last">
@@ -220,7 +235,7 @@
         </div>
 
         <script>
-            $('.havemsg:not(:last-child)').click( function() {
+            $('.havemsg').click( function() {
                 window.location = $(this).find('a').attr('href');
             }).hover( function() {
                 $(this).toggleClass('hover');
@@ -235,5 +250,30 @@
                     text=text.slice(0, 100)+'...'  }
                 return text
             }
+
+            const docMsg = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<docMsg.length; i++){
+                let msgContainer=document.querySelectorAll('.text-truncate-custom')
+                msgContainer[i].innerHTML=cutText(docMsg[i]['text'])
+            }
+
+
+            function changeDateFormat(date){
+                let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
+                return new_date
+            }
+
+            const msgDate = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate.length; i++){
+                let dateContainer=document.querySelectorAll('.data-it')
+                dateContainer[i].innerHTML=changeDateFormat(msgDate[i]['created_at'])
+            }
+
+            const msgDate2 = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate2.length; i++){
+                let dateContainer2=document.querySelectorAll('.data-it-2')
+                dateContainer2[i].innerHTML=changeDateFormat(msgDate2[i]['created_at'])
+            }
+
         </script>
 @endsection
