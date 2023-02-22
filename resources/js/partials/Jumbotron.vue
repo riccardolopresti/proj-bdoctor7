@@ -17,7 +17,8 @@ export default {
         filterDoctors() {
             axios.get(store.apiUrl + this.specType).then((result) => {
                 store.filteredDoctors = result.data.filteredDoctors;
-                console.log(store.filteredDoctors);
+                store.doc_ratings = result.data.doc_ratings;
+                console.log(result.data.doc_ratings);
             });
         },
     },

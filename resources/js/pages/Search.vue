@@ -8,11 +8,21 @@ export default {
             store,
         };
     },
+    methods: {
+        getAverage(array, number) {
+            let somma = 0;
+            for (let i = 0; i < array.length; i++) {
+                somma += array[i];
+            }
+            return somma / array.length;
+            console.log(array);
+        },
+    },
 };
 </script>
 
 <template>
-    <h2>Risultato: {{ store.filteredDoctors.length }}</h2>
+    <h2>Risultati: {{ store.filteredDoctors.length }}</h2>
     <div class="doctor-container">
         <div
             v-for="doctor in store.filteredDoctors"
@@ -22,6 +32,11 @@ export default {
             <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
             <p>{{ doctor.address }}</p>
+            <div v-for="rating in store.doc_ratings">
+                <p v-if="rating.doctor_id == doctor.id">
+                    {{ rating.average_rating }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
