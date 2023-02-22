@@ -36,14 +36,6 @@ export default {
                     console.log(result.data.filteredDoctors[0].doctors);
                 });
         },
-        getName(str) {
-            const array = str.split("-");
-            for (let i = 0; i < array.length; i++) {
-                array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
-            }
-            const name = array.join(" ");
-            return name;
-        },
     },
     mounted() {
         this.getSpecs();

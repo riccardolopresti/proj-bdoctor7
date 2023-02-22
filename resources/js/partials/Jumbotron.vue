@@ -18,9 +18,8 @@ export default {
             axios
                 .get("http://127.0.0.1:8000/api/doctors/" + this.specType)
                 .then((result) => {
-                    store.filteredDoctors =
-                        result.data.filteredDoctors[0].doctors;
-                    console.log(store.filteredDoctors);
+                    store.filteredDoctors = result.data.filteredDoctors;
+                    // console.log(result.data.filteredDoctors);
                 });
         },
     },
