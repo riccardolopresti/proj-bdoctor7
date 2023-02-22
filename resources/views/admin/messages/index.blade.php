@@ -106,7 +106,7 @@
                                                             action="{{route('admin.messages.destroy', $message)}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                                <button type="submit" class="bn632-hover bn26 delete-sm " title="delete">Delete</button>
+                                                                <button type="submit" class="bn632-hover bn26 delete-sm-btn" title="delete">Elimina</button>
                                                             </form>
                                                         </div>
                                                     </li>

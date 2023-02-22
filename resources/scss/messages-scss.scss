@@ -66,6 +66,18 @@ ul.list-group{
             width:5.5rem;
             margin-left:0;
     }
+    &.edit-btn{
+        background-image: linear-gradient(
+            to right,
+            #e4ce06,
+            #dac60d,
+            #f5e23a,
+            #b9a704);
+            box-shadow: 0 4px 15px 0 rgba(#c0ad07, 0.75);
+            width:5.5rem;
+            margin-left:0;
+            color: black;
+    }
     }
     .bn632-hover:hover {
         background-position: 100% 0;

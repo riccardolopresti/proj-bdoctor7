@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-    <h1 class="m-3">OFFERTE DISPONIBILI</h1>
 
     @if (session('created'))
     <div>
@@ -34,51 +33,93 @@
     <a class="btn btn-primary text-white mb-5" href="{{route('admin.offers.create')}}">Crea nuova offerta</a>
 
     @endif
+    @if (Auth::user()->is_admin)
 
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Prezzo</th>
-            <th scope="col">Durata</th>
-            @if (Auth::user()->is_admin)
-            <th scope="col">Azioni</th>
-            @endif
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($offers as $offer)
-                <tr>
-                   <th scope="row">{{$offer->id}}</th>
-                   <td>{{$offer->offer_type}}</td>
-                   <td>&euro; {{$offer->price}}</td>
-                   <td>{{$offer->duration}} ore</td>
-                    @if (Auth::user()->is_admin)
-                   <td>
-                    <a class="btn btn-warning " href="{{route('admin.offers.edit', $offer)}}" title="edit">Edit</a>
-                    <form class="d-inline"
-                    onsubmit="return confirm('Confermi l\'eliminazione di {{$offer->offer_type}} ?')"
-                    action="{{route('admin.offers.destroy', $offer)}}" method="POST">
-                      @csrf
-                      @method('DELETE')
-                        <button type="submit" class="btn btn-danger " title="delete">Delete</button>
-                    </form>
-                   </td>
-                   @endif
-                </tr>
+      <div class="special-table">
+        <div class="limiter m-0">
+            <div class="container m-0 p-0">
+                <div class="wrap-table100">
+                    <div class="table100">
+                            <table class="my-5">
+                                <thead>
+                                    <tr class="table100-head">
+                                        <th class="column13 text-capitalize">Tipo</th>
+                                        <th class="column14">Prezzi</th>
+                                        <th class="column15">Durata</th>
+                                        <th class="column16">Azioni</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($offers as $offer)
+                                        <tr class="havemsg">
+                                            <td >
+                                                {{ $offer->offer_type }}
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    &euro; {{ $offer->price }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    {{ $offer->duration }} Ore
+                                                </span>
+                                            </td>
 
-            @endforeach
+                                            <td class="del-btn d-flex">
+                                                <div class="edit">
+                                                    <a class="bn632-hover bn26 edit-btn m-0" href="{{route('admin.offers.edit', $offer)}}" title="edit">Modifica</a>
+                                                </div>
+                                                <div class="delete-form">
+                                                    @include('admin.offers.partials.delete-form')
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
-        </tbody>
-      </table>
+                            <ul class="list-group">
+                                <li class="list-group-item custom-head">Offerte disponibili</li>
+                                @foreach ($offers as $offer)
+                                    <li class="list-group-item"><strong>Offerta n°: </strong> {{$loop->iteration}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Tipo: </strong> {{$offer->offer_type}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Prezzo: </strong> &euro; {{$offer->price}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Durata: </strong> {{$offer->duration}} Ore</li>
 
-    {{-- <section class="pricing-section">
+                                    <li class="list-group-item custom-last mb-2 d-flex">
+                                        <div class="show-msg pe-2">
+                                            <a class="bn632-hover bn26 edit-btn" href="{{route('admin.offers.edit', $offer)}}">
+                                                Modifica
+                                            </a>
+                                        </div>
+                                        <div class="delete-form">
+                                            <form class="d-inline"
+                                            onsubmit="return confirm('Confermi l\'eliminazione di {{$offer->offer_type}} ?')"
+                                            action="{{route('admin.offers.destroy', $offer)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="bn632-hover bn26 delete-sm-btn" title="delete">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </li>
+
+                                @endforeach
+
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+
+    <section class="pricing-section mt-5">
         <div class="container">
             <div class="row justify-content-md-center">
-                <div class="col-xl-5 col-lg-6 col-md-8">
+                <div class="col-xl-5 col-lg-6 col-md-8 mb-5">
                     <div class="section-title text-center title-ex1">
-                            <h1>Scegli il tuo piano</h1>
+                            <h2>Scegli il tuo piano</h2>
                             <p>Tutte le offerte comprendo la sponsorizzazione del profilo per le ore indicate nei seguenti piani.</p>
                         </div>
                     </div>
@@ -86,13 +127,13 @@
                 <!-- Pricing Table starts -->
                 <div class="row">
                     @foreach ($offers as $offer)
-                    <div class="col-md-4">
-                        <div class="price-card ">
+                    <div class="col-md-4 my-3">
+                        <div class="price-card">
                             <h2 class="text-capitalize">{{$offer->offer_type}}</h2>
-                            <p>The standard version</p>
-                            <p class="price"><span>&euro; {{$offer->price}}</span>/ {{$offer->duration}} h</p>
+                            <p>Durata <strong style="color:#3782e8">{{$offer->duration}} Ore</strong>  </p>
+                            <p class="price"><span>&euro; {{$offer->price}}</span></p>
 
-                            <a href="#" class="btn btn-primary btn-mid">Buy Now</a>
+                            <a href="#" class="bn632-hover bn26">Acquista ora</a>
                         </div>
                     </div>
                     @endforeach
@@ -100,9 +141,26 @@
         </div>
     </section>
 
+    @endif
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
 </div>
 
 <style>
+.pricing-section{
+    padding-bottom: 200px
+}
 .section-title {
     position: relative;
 }
@@ -112,6 +170,11 @@
     margin: 0;
     font-size: 24px;
 }
+
+.price-card{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 @media (min-width: 768px) {
     .section-title h2 {
         font-size: 28px;
@@ -161,7 +224,7 @@
     bottom: 12px;
     width: 40px;
     height: 1px;
-    background-color: #0cc652;
+    background-color: #3782e8;
 }
 @media (min-width: 768px) {
     .section-title.title-ex1 h2:after {
@@ -211,7 +274,7 @@
     right: -35px;
     width: 88px;
     height: 88px;
-    background: #0cc652;
+    background: #98ddfc;
     opacity: 0.2;
     border-radius: 8px;
     transform: rotate(45deg);
@@ -223,7 +286,7 @@
     right: -35px;
     width: 88px;
     height: 88px;
-    background: #0cc652;
+    background: #46b1e2;
     opacity: 0.2;
     border-radius: 8px;
     transform: rotate(45deg);
@@ -258,7 +321,7 @@ p.price span {
     padding-right: 0;
     font-size: 50px;
     font-weight: 600;
-    color: #0cc652;
+    color: #3782e8;
     position: relative;
 }
 .pricing-offers {
@@ -275,7 +338,7 @@ ul li {
     height: 40px;
     line-height: 40px;
     padding: 0 20px;
-} --}}
+}
 </style>
 
 @endsection
