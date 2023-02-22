@@ -18,19 +18,10 @@ class DoctorController extends Controller
 
     public function filterDoctors($spec)
     {
-        $doc_ratings = Rating::join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')->get();
-
-        // $doc_ratings = Rating::join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
-        //     ->groupBy('doctor_id')
-        //     ->avg('rating');
-
-        // $doc_ratings = Doctor::with('ratings')->get();
-
-
         $doc_ratings = DB::table('ratings')
             ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
             ->select('doctor_id')
-            ->selectRaw('AVG(ratings    .rating) AS average_rating')
+            ->selectRaw('AVG(ratings.rating) AS average_rating')
             ->groupBy('doctor_id')
             ->get();
 
