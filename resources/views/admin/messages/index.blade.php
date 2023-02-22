@@ -87,7 +87,7 @@
                                                 @forelse ($doctor->messages as $message)
                                                     <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
-                                                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                    <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
                                                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                                                     <li class="list-group-item custom-last">
                                                         <p>
@@ -192,7 +192,7 @@
                                             @forelse ( $user_logged->messages as $message)
                                                 <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
-                                                <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object}}</li>
+                                                <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
                                                 <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                                                 <li class="list-group-item custom-last mb-2">
                                                     <p>
