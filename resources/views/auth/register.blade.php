@@ -224,7 +224,7 @@
         .pw-valid{
             color:green;
         }
-        
+
         label.error {
          color: #dc3545;
          font-size: 14px;
@@ -298,11 +298,10 @@
                 chars.classList.add("invalid");
             }
             // Validate vales
-            if(confirmPassword.value !== password.value) {
+            if(confirmPassword.value != password.value) {
                 console.log(false);
                 identical.classList.add("pw-invalid");
                 identical.classList.remove("pw-valid");
-                return;
             } else {
                 identical.classList.remove("pw-invalid");
                 identical.classList.add("pw-valid");
