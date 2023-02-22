@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" id="regForm">
                             @csrf
 
                             <div class="mb-4 row">
@@ -20,7 +20,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Inserisci il tuo nome">
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Inserisci il tuo nome"  ddv-minlength=”5”>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -206,12 +206,49 @@
         box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
         }
 
+        label.error {
+         color: #dc3545;
+         font-size: 14px;
+        }
+
         @media screen and (max-width: 550px) {
             .card-header.custom-register{
             font-size: 1.85rem;
             }
         }
     </style>
+
+    <script>
+        $(document).ready(function() {
+            $("#regForm").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        maxlength: 255,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+                    surname: {
+                        required: true,
+                        maxlength: 80,
+                        minlength: 4,
+                        lettersonly: true
+                    },
+                    address: {
+                        required: true,
+                        maxlength: 255,
+                        minlength: 5,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 50,
+                        minlength: 8
+                    },
+                }
+            });
+        });
+    </script>
 
 
 @endsection
