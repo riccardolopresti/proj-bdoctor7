@@ -1,9 +1,3 @@
-// .select2.select2-container.select2-container--default{
-//     min-height:60px;
-//     height:fit-content;
-//     border:1px solid  #e9ecef;
-//     display:inline-block;
-// }
 @use 'partials/variables.scss' as *;
 
 .select2-selection.select2-selection--multiple {
@@ -72,7 +66,7 @@ span.title{
     border-radius:0.375rem;
     width:80%;
     padding:30px;
-
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
 
     .profile-photo{
        height:8rem;
@@ -83,6 +77,7 @@ span.title{
            object-fit:cover;
            height:100%;
            width:100%;
+           border-radius:0.375rem;
        }
     }
 
@@ -91,15 +86,30 @@ span.title{
             background-color: $light-blue;
             color:black;
         }
+        .profile-section{
+            font-size: 80%;
+        }
     }
     .bordered-container{
         border:1px solid $light-blue;
         padding:20px 30px;
         border-radius:0.375rem;
+        margin-right:1.5rem;
 
     }
     .doc_reviews{
         text-overflow: ellipsis "[...]";
+
+            h6{
+                color:$medium-blue;
+            }
+            .time{
+                color:$dark-blue;
+            }
+            p{
+                color:black;
+            }
+
     }
     .section-blue{
         padding:20px;
@@ -109,9 +119,11 @@ span.title{
         .bg-container{
             background-color: white;
             color:black;
-            font-size:70%;;
             border-radius:0.375rem;
             padding:8px 16px;
+            p.review-content, .time{
+                font-size:70%;
+            }
         }
     }
 }
@@ -122,7 +134,219 @@ span.title{
 
 
 .doctors-container, .doctors-row{
-    padding-bottom:90px;
-    margin-bottom:50px;
+
+    padding-bottom:20px;
 }
 
+.slider-wrapper {
+    margin: 1rem;
+    overflow: hidden;
+    // position: relative;
+
+    .slides-container {
+        height: calc(30vh - 2rem);
+        width: 100%;
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+      }
+      .slide {
+        width: 100%;
+        height: 100%;
+        flex: 1 0 100%;
+      }
+
+      .slide-arrow {
+        position: absolute;
+        display: flex;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 3rem;
+        background-color: white;
+        border: none;
+        width: 2rem;
+
+        padding: 0;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 100ms;
+        i{
+            font-size: 1.5rem;
+        }
+      }
+      .slide-arrow:hover,
+      .slide-arrow:focus {
+        opacity: 1;
+      }
+      #slide-arrow-prev {
+        left: 0;
+        padding-left: 0.5rem;
+        border-radius: 0 2rem 2rem 0;
+      }
+      #slide-arrow-next {
+        right: 0;
+        padding-right: 0.25rem;
+        border-radius: 2rem 0 0 2rem;
+      }
+
+    }
+
+.bn632-hover.bn26 {
+        text-decoration: none;
+        padding:5px 8px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        width: 6.5rem;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        cursor: pointer;
+        margin: 20px;
+        height: 40px;
+        text-align:center;
+        border: none;
+        background-size: 300% 100%;
+        border-radius: 50px;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        &.edit-profile{
+            width:10rem;
+        }
+        &.delete-profile{
+            background-image: linear-gradient(
+                to right,
+                #e12541,
+                #eb4444,
+                #fe042e,
+                #ed3f3f);
+
+                box-shadow: 0 4px 15px 0 rgba(#eb4444, 0.75);
+                width:9.5rem;
+                margin-left:0;
+        }
+        }
+
+.bn632-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        }
+
+.bn632-hover:focus {
+        outline: none;
+        }
+
+.bn632-hover.bn26 {
+        background-image: linear-gradient(
+            to right,
+            #25aae1,
+            #4481eb,
+            #04befe,
+            #3f86ed
+        );
+        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
+
+
+// media-queries
+
+@media screen and (max-width:992px){
+    .main-wrapper-doctors.row{
+        width:90%;
+    }
+  }
+  @media screen and (max-width:576px){
+
+
+  }
+
+  @media screen and (min-width:589px){
+      h1.blue.text-center{
+          display:none;
+      }
+  }
+
+@media screen and (max-width:588px){
+    // da cancellare, mediaquey di Sara
+    .col-2.m-0.p-0{
+        display:none;
+    }
+
+    .main-wrapper-doctors.row{
+        .left.row{
+            position: relative;
+            .col-sm-5.col-12.profile-photo.p-0{
+                position:absolute;
+                left:calc(50% - 4rem);
+            }
+            .col-sm-7.details{
+                text-align: center;
+                display:block;
+                width:100%;
+                margin-top:5.5rem;
+                padding-top:40px;
+                border-radius: 0.375rem;
+                background: linear-gradient(90deg, rgba(61,136,238,1) 0%, rgba(166,229,255,1) 100%);
+                .badge.spec-badge{
+                    background-color: $dark-blue;
+                    color:white;
+                }
+                h4.text.blue{
+                    color:$dark-blue;
+                    font-size:1.8rem;
+                }
+                h6.profile-section{
+                    color:white;
+                }
+
+            }
+            .col-12.contacts{
+                font-size:1.1rem;
+                margin-top:1.3rem;
+                p{
+                    margin-bottom:0.8rem;
+                    i{
+                        font-size:1.6rem;
+                    }
+                }
+
+
+
+            }
+            .col-12.doctor-services{
+                padding:0;
+                .bordered-container{
+                    width:100%;
+                    margin:0;
+                }
+            }
+
+        }
+        .right.flex-column.row{
+            .sections-blue{
+                min-width:270px;
+                padding:0;
+                .section-blue.ratings-section{
+                    a{
+                        text-decoration: none;
+                        color:white;
+                        span.ratings-container{
+                            font-size:110%;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+  }

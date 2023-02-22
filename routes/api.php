@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\SpecController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::namespace('Api')
+    ->prefix('doctors')
+    ->group(function () {
+        Route::get('/', [DoctorController::class, 'index']);
+        Route::get("/{spec}", [DoctorController::class, "filterDoctors"]);
+    });
+
+Route::get("/specs", [SpecController::class, "getSpecs"]);

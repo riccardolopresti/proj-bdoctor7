@@ -2,8 +2,6 @@
     a{
         text-decoration: none;
         color:rgb(71, 71, 71);
-
-
     }
 
     .limiter{
@@ -111,7 +109,6 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
     }
     .column1{
         width: 150px;
@@ -138,93 +135,39 @@
 
         text-align:left;
     }
+    .column6{
+        text-align:left;
+    }
+    .column7{
+        width: 700px;
 
-    @media screen and (max-width:992px){
+        text-align:left;
+    }
+    .column8{
+        width: 200px;
+
+        text-align:left;
+    }
+    .column9{
+        text-align:left;
+    }
+    .column10{
+        width: 100px;
+
+        text-align:left;
+    }
+    .column11{
+        width: 800px;
+
+        text-align:left;
+    }
+    .column12{
+        text-align:left;
+    }
+
+    @media screen and (max-width:990px){
         table{
-            display:block
-        }
-
-        table>*,table tr,table td,table th{
-            display:block
-        }
-
-        td, th {
-            vertical-align:center;
-        }
-
-        table thead{
-            display:none
-        }
-
-        table tbody tr{
-            height:auto;
-            padding:37px 0
-        }
-
-        table tbody tr td{
-            padding-left:40%!important;
-            margin-bottom:24px;
-        }
-
-        table tbody tr td:last-child{
-            margin-bottom:0;
-        }
-
-        table tbody tr td:before{
-            font-size:14px;
-            color:#3d3d3d;
-            //line-height:1.2;
-            font-weight:unset;
-            position:absolute;
-            width:40%;
-            left:30px;
-            //top:0
-        }
-
-        table tbody tr td:nth-child(1):before{
-            content:"Dottore";
-            width: 200px;
-            display: block;
-        }
-
-        table tbody tr td:nth-child(2):before{
-            content:"Nome Utente"
-        }
-
-        table tbody tr td:nth-child(3):before{
-            content:"Oggetto"
-        }
-
-        table tbody tr td:nth-child(4):before{
-            content:"Email"
-        }
-
-        table tbody tr td:nth-child(5):before{
-            content:"Messaggio"
-        }
-
-        table tbody tr td:nth-child(6):before{
-            content:"Azioni"
-        }
-
-        .column4,.column5,.column6{
-            text-align:left
-        }
-
-        .column4,.column5,.column6,.column1,.column2,.column3{
-            width:100%
-        }
-
-        tbody tr{
-            font-size:14px
+            display: none;
         }
     }
-
-    @media(max-width:576px){
-        .container{
-            padding-left:15px;
-            padding-right:15px
-        }
-    }
-
 }

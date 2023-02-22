@@ -1,7 +1,9 @@
 import {createRouter, createWebHistory} from "vue-router";
 
 import Home from './pages/Home.vue';
-import Contacts from './pages/Contacts.vue';
+
+import Search from './pages/Search.vue';
+
 const router = createRouter({
     history:createWebHistory(),
     linkExactActiveClass:'active',
@@ -12,10 +14,10 @@ const router = createRouter({
             component: Home
         },
         {
-            path:'/contacts',
-            name:'contacts',
-            component: Contacts
-        },
+            path: '/search',
+            name: 'search',
+            component: Search
+        }
     ]
 });
 
