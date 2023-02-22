@@ -219,56 +219,6 @@
             </div>
         </div>
 
-        <style>
-            .col.custom-messages-col{
-                padding-bottom: 200px;
-                padding-left: 40px;
-                padding-right:40px
-            }
-            .special-table.auth-special{
-                padding-top: 20px
-            }
-
-            .list-group{
-                padding-top: 30px;
-                display: none;
-            }
-
-            .mobile-pagination{
-                display: none;
-            }
-
-            .list-group:last-child{
-                padding-bottom: 200px;
-            }
-
-            .list-group-item.custom-head{
-                height: 100px;
-                background: rgb(55,130,232);
-                color: white;
-                font-size:1.7rem;
-                font-weight: bold;
-            }
-
-            @media screen and (max-width: 990px){
-                .col.custom-messages-col{
-                    margin: 5px;
-                    padding: 5px;
-                }
-
-                .list-group{
-                    padding-top: 50px;
-                    display: block;
-                    padding-bottom: 40px
-                }
-
-                .mobile-pagination{
-                    display: block;
-                    padding-bottom: 80px
-                }
-            }
-        </style>
-
         <script>
             $('.havemsg:not(:last-child)').click( function() {
                 window.location = $(this).find('a').attr('href');
