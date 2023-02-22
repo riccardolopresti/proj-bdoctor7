@@ -36,7 +36,7 @@ export default {
             <li><router-link :to="{ name: 'home'}">Home</router-link></li>
             <li><a href="#">Contatti</a></li>
             <li><a href="#">lavora con noi</a></li>
-            <li><button class="login-button" href="#">Sign In</button></li>
+            <li><a href="/login" class="login-button">Sign in</a></li>
         </ul>
         </nav>
     </header>
