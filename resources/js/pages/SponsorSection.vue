@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-<section>
-       <h1 class="fw-bold text-center mt-4 text-primary">Medici in evidenza</h1>
+<section class="pb-5">
+       <h1 class="fw-bold text-center pt-4 text-primary">Medici in evidenza</h1>
     <div class="container-fluid">
         <DocCard v-for="(doc, index) in docs" :key="index" :docName="doc.name" :docImg="doc.image" :docSpec="doc.specialization" :docMail="doc.email" :docCare="doc.description" />
     </div>
@@ -29,4 +29,5 @@ export default {
 
 
 <style scoped>
+
 </style>
