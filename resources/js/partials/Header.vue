@@ -34,7 +34,6 @@ export default {
         </div>
         <ul class="nav-links m-0">
             <li><router-link :to="{ name: 'home'}">Home</router-link></li>
-            <li><router-link :to="{ name: 'contacts'}">Contatti</router-link></li>
             <li><a href="#">Javascript</a></li>
             <li><a href="#">JQuery</a></li>
             <li><a href="#">Contact Us</a></li>
