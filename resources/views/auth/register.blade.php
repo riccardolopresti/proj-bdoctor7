@@ -75,7 +75,7 @@
                                             @if ($spec->id == old('type')) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
                                         @endforeach
                                     </select>
-                                    <span style="font-size: 0.8rem; color:green">Una volta registrato potrai aggiungere ulteriori specializazioni.</span>
+                                    <span style="font-size: 0.8rem" class="blue">Una volta registrato potrai aggiungere ulteriori specializzazioni.</span>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -94,6 +94,7 @@
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" placeholder="Inserisci la tua email">
 
+
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -104,12 +105,18 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
+                                    class="col-md-4 col-form-label align-self-center text-md-right">{{ __('Password *') }}</label>
 
                                 <div class="col-md-6">
+
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password" placeholder="Inserisci una password sicura">
+                                        required autocomplete="new-password" placeholder="Inserisci una password sicura" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                        <div style="font-size: 0.8rem;" class="blue" id="psw-check">La password deve contenere almeno
+                                            <span class="pw-invalid" id="chars">8 caratteri</span>
+                                            tra cui almeno
+                                            <span class="pw-invalid" id="low-letters">una lettera minuscola</span>, <span class="pw-invalid" id="cap-letters">una maiuscola</span> e <span class="pw-invalid" id="numbers">un numero.</span>
+                                        </div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -124,8 +131,11 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                                 <div class="col-md-6">
+
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password" placeholder="Conferma la tua password">
+                                        <div style="font-size: 0.8rem;" class="blue" id="psw-double-check">Le password
+                                            <span class="pw-invalid" id="identical">devono coincidere.</span></div>
                                 </div>
                             </div>
 
@@ -206,12 +216,97 @@
         box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
         }
 
+        .pw-invalid{
+            color:red;
+        }
+
+        .pw-valid{
+            color:green;
+        }
+
         @media screen and (max-width: 550px) {
             .card-header.custom-register{
             font-size: 1.85rem;
             }
         }
     </style>
+    <script>
+
+            const confirmPassword = document.getElementById('password-confirm');
+            const password = document.getElementById('password');
+            const identical = document.getElementById('identical');
+            const lowLetters=document.getElementById('low-letters')
+            const capLetters=document.getElementById('cap-letters')
+            const numbers=document.getElementById('numbers')
+            const chars=document.getElementById('chars')
+
+            // When the user clicks on the password field, show the message box
+            password.onfocus = function() {
+            document.getElementById("psw-check").style.display = "block";
+            document.getElementById("psw-double-check").style.display = "block";
+            }
+
+            // When the user clicks outside of the password field, hide the message box
+            password.onblur = function() {
+            document.getElementById("psw-check").style.display = "none";
+            }
+
+            // When the user starts to type something inside the password field
+            password.onkeyup = function() {
+            // Validate lowercase letters
+            const lowerCaseLetters = /[a-z]/g;
+            if(password.value.match(lowerCaseLetters)) {
+                lowLetters.classList.remove("pw-invalid");
+                lowLetters.classList.add("pw-valid");
+            } else {
+                lowLetters.classList.remove("pw-valid");
+                lowLetters.classList.add("pw-invalid");
+            }
+
+            // Validate capital letters
+            const upperCaseLetters = /[A-Z]/g;
+            if(password.value.match(upperCaseLetters)) {
+                capLetters.classList.remove("pw-invalid");
+                capLetters.classList.add("pw-valid");
+            } else {
+                capLetters.classList.remove("pw-valid");
+                capLetters.classList.add("pw-invalid");
+            }
+
+            // Validate numbers
+            const numeri = /[0-9]/g;
+            if(password.value.match(numeri)) {
+                numbers.classList.remove("pw-invalid");
+                numbers.classList.add("pw-valid");
+            } else {
+                numbers.classList.remove("pw-valid");
+                numbers.classList.add("pw-invalid");
+            }
+
+            // Validate length
+            if(password.value.length >= 8) {
+                chars.classList.remove("pw-invalid");
+                chars.classList.add("pw-valid");
+            } else {
+                chars.classList.remove("pw-valid");
+                chars.classList.add("invalid");
+            }
+            // Validate vales
+            if(confirmPassword.value !== password.value) {
+                console.log(false);
+                identical.classList.add("pw-invalid");
+                identical.classList.remove("pw-valid");
+                return;
+            } else {
+                identical.classList.remove("pw-invalid");
+                identical.classList.add("pw-valid");
+            }
+
+
+            }
+
+
+    </script>
 
 
 @endsection
