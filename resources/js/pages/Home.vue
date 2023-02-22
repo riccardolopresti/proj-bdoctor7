@@ -1,13 +1,15 @@
 <script>
 import Header from '../partials/Header.vue'
 import Jumbotron from '../partials/Jumbotron.vue'
+import SponsorSection from './SponsorSection.vue'
 
 export default {
     name: 'Home',
 
     components:{
         Header,
-        Jumbotron
+        Jumbotron,
+        SponsorSection
     },
 }
 </script>
@@ -15,6 +17,7 @@ export default {
 <template>
     <Header/>
     <Jumbotron/>
+    <SponsorSection/>>
 
 </template>
 
@@ -23,6 +26,10 @@ export default {
 *{
     margin:0; padding:0;
     font-family: sans-serif;
+}
+
+body{
+    overflow-x: hidden;
 }
 
 </style>
