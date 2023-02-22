@@ -144,7 +144,7 @@
                                 <tbody>
                                     @forelse ( $user_logged->reviews as $review )
                                         <tr>
-                                            <td>{{ $review->created_at }}</td>
+                                            <td><span class="data-it"></span></td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->text }}</td>
                                         </tr>
@@ -161,7 +161,7 @@
                                 @forelse  ( $user_logged->reviews as $review)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$review->name}}</li>
-                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> <span class="data-it">{{$review->created_at}}</span></li>
+                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> <span class="data-it-2"></span></li>
                                     <li class="list-group-item mb-2"><strong>Recensione: <br> </strong>{{ $review->text}}</li>
                                 @empty
                                     <li class="list-group-item custom-last">
@@ -243,9 +243,15 @@
                 return new_date
             }
 
-            let date = "<?php echo $review->created_at; ?>";
-            const putDate=document.querySelector('.data-it')
-            putDate.innerHTML=changeDateFormat(date)
-
+            const msgDate = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate.length; i++){
+                let dateContainer=document.querySelectorAll('.data-it')
+                dateContainer[i].innerHTML=changeDateFormat(msgDate[i]['created_at'])
+            }
+            const msgDate2 = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate2.length; i++){
+                let dateContainer2=document.querySelectorAll('.data-it-2')
+                dateContainer2[i].innerHTML=changeDateFormat(msgDate2[i]['created_at'])
+            }
     </script>
 @endsection
