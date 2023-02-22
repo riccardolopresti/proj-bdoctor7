@@ -1,8 +1,12 @@
 <script>
+
 import Header from "../partials/Header.vue";
 import Jumbotron from "../partials/Jumbotron.vue";
+import SponsorSection from './SponsorSection.vue'
 
 import axios from "axios";
+
+
 
 export default {
     name: "Home",
@@ -10,6 +14,7 @@ export default {
     components: {
         Header,
         Jumbotron,
+        SponsorSection
     },
     data() {
         return {
@@ -35,8 +40,11 @@ export default {
 </script>
 
 <template>
+
     <Header />
     <Jumbotron :specs="specs" />
+    <SponsorSection/>>
+
 </template>
 
 <style lang="scss">
@@ -45,4 +53,9 @@ export default {
     padding: 0;
     font-family: sans-serif;
 }
+
+body{
+    overflow-x: hidden;
+}
+
 </style>

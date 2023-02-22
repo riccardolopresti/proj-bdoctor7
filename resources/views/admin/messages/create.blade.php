@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Crea un nuovo messaggio</h2>
+    <div class="container mt-5 ms-3">
+        <h2 class="mb-4">Crea un nuovo messaggio</h2>
 
 
-        <form action="{{ route('admin.messages.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.messages.store') }}" method="POST" enctype="multipart/form-data" class="w-50">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome *</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label for="doctor_id" class="form-label">ID Dottore *</label>
-                <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id') }}">
+                <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="{{ old('doctor_id') }}" placeholder="Seleziona l'id del dottore">
 
                 @error('doctor_id')
                         <p class="text-danger">
@@ -52,7 +52,7 @@
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Messaggio *</label>
-                <textarea class="form-control" id="text" name="text" rows="3">{{ old('message') }}</textarea>
+                <textarea class="form-control" id="text" name="text" rows="3" placeholder="Scrivi il tuo messagio">{{ old('message') }}</textarea>
 
                 @error('text')
                         <p class="text-danger">
@@ -60,7 +60,7 @@
                         </p>
                     @enderror
             </div>
-            <button type="submit" class="btn btn-success mt-4">Crea</button>
+            <button type="submit" class="bn632-hover bn26 create-message mt-4">Crea</button>
         </form>
 
     </div>

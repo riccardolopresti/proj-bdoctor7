@@ -1,4 +1,5 @@
 @use 'temporary-scss-doctors.scss' as *;
+@use 'messages-scss.scss' as *;
 @use 'partials/variables.scss' as *;
 
 @import '~bootstrap/scss/bootstrap';
@@ -47,6 +48,11 @@ header{
 
             li a{
                 margin-right: 30px;
+                font-weight: bold;
+
+                i{
+                    font-size: 1.35rem;
+                }
             }
         }
 

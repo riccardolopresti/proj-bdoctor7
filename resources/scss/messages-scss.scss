@@ -1,0 +1,109 @@
+.col.custom-messages-col{
+    padding-bottom: 200px;
+    padding-right:40px
+}
+.special-table.auth-special{
+    padding-top: 20px
+}
+
+ul.list-group{
+    padding-top: 30px;
+    display: none;
+}
+
+.mobile-pagination{
+    display: none;
+}
+
+.list-group:last-child{
+    padding-bottom: 200px;
+}
+
+.list-group-item.custom-head{
+    height: 100px;
+    background: rgb(55,130,232);
+    color: white;
+    font-size:1.7rem;
+    font-weight: bold;
+}
+
+.bn632-hover.bn26 {
+
+    &.delete-sm-btn{
+        background-image: linear-gradient(
+            to right,
+            #e12541,
+            #eb4444,
+            #fe042e,
+            #ed3f3f);
+
+            box-shadow: 0 4px 15px 0 rgba(#eb4444, 0.75);
+            width:5.5rem;
+            margin-left:0;
+    }
+    &.create-message{
+        background-image: linear-gradient(
+            to right,
+            #23d75f,
+            #00bb3e,
+            #18cd4e,
+            #00ac39);
+
+            box-shadow: 0 4px 15px 0 rgba(#00bb3e, 0.75);
+            width:9.5rem;
+            margin-left:0;
+    }
+    &.close-btn{
+        background-image: linear-gradient(
+            to right,
+            #515151,
+            #7d7d7d,
+            #9a9a9a,
+            #3e3e3e);
+
+            box-shadow: 0 4px 15px 0 rgba(#515151, 0.75);
+            width:5.5rem;
+            margin-left:0;
+    }
+    &.edit-btn{
+        background-image: linear-gradient(
+            to right,
+            #e4ce06,
+            #dac60d,
+            #f5e23a,
+            #b9a704);
+            box-shadow: 0 4px 15px 0 rgba(#c0ad07, 0.75);
+            width:5.5rem;
+            margin-left:0;
+            color: black;
+    }
+    }
+    .bn632-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        }
+
+.bn632-hover:focus {
+        outline: none;
+        }
+
+@media screen and (max-width: 990px){
+    .col.custom-messages-col{
+        margin: 5px;
+        padding: 5px;
+    }
+
+    ul.list-group{
+        padding-top: 50px;
+        display: block;
+        padding-bottom: 40px
+    }
+
+    .mobile-pagination{
+        display: block;
+        padding-bottom: 80px
+    }
+}

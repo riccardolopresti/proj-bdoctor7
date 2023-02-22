@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5 ms-3">
         <h2>Crea una nuova recensione</h2>
 
-
-        <form action="{{ route('admin.reviews.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.reviews.store') }}" method="POST" enctype="multipart/form-data" class="w-50 mt-4">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome *</label>
@@ -30,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Recensione *</label>
-                <textarea class="form-control" id="text" name="text" rows="3">{{ old('review') }}</textarea>
+                <textarea class="form-control" id="text" name="text" rows="3" placeholder="Scrivi la tua recensione">{{ old('review') }}</textarea>
                 @error('text')
                     <p class="text-danger">
                         {{$message}}
@@ -38,7 +37,7 @@
                 @enderror
 
             </div>
-            <button type="submit" class="btn btn-success mt-4">Crea</button>
+            <button type="submit" class="bn632-hover bn26 create-message mt-5">Crea</button>
         </form>
 
     </div>

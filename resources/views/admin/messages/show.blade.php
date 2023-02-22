@@ -9,12 +9,13 @@
         <div class="row">
             <div class="col custom-messages-col-show">
 
-                <ul class="list-group">
+                <ul class="list-group d-block">
                     <li id="primo-li" class="list-group-item custom-group text-capitalize">
-                        Dettaglio del messaggio di {{$message->name}}
+                        Messaggio di  {{$message->name}}
                     </li>
                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                     <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'nessun oggetto'}}</li>
+                    <li class="list-group-item"><strong>Data: </strong>{{ $message->created_at }}</li>
                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                     <li class="list-group-item">
                         <p>
@@ -23,7 +24,7 @@
                     </li>
                 </ul>
 
-                <a href="{{route('admin.messages.index')}}" class="btn btn-primary mt-5">Torna a tutti i messaggi</a>
+                <a href="{{route('admin.messages.index')}}" class="bn632-hover bn26 mt-5" style="width: 11rem">Torna a tutti i messaggi</a>
 
             </div>
         </div>

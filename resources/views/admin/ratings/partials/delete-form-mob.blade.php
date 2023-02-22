@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="bn632-hover bn26 delete-sm-btn" data-bs-toggle="modal" data-bs-target="#modal{{$rating->id}}">
+<button type="button" class="bn632-hover bn26 delete-profile " data-bs-toggle="modal" data-bs-target="#modal{{$rating->id}}">
     Elimina
 </button>
 
@@ -20,7 +20,7 @@
             @csrf
             @method('DELETE')
 
-            <button type="submit" class="bn632-hover bn26 delete-sm-btn" title="delete">
+            <button type="submit" class="bn632-hover bn26 delete-profile " title="delete">
                 Elimina
             </button>
         </form>

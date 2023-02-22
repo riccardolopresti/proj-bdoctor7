@@ -39,7 +39,7 @@ class DoctorController extends Controller
         $doc_messages= Message::where('doctor_id', $doctor->id)->get();
         $doc_reviews= Review::where('doctor_id', $doctor->id)->orderBy('created_at', 'desc')->get();
 
-
+        // dd($doc_reviews);
         return view('admin.doctors.index', compact( 'doctors', 'doctor', 'all_users', 'users', 'user','doc_ratings', 'doc_messages', 'doc_reviews'));
     }
 
