@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { store } from "../data/store";
 
 export default {
     name: "Search",
@@ -10,6 +11,7 @@ export default {
             specs: [],
             specType: "",
             filteredDoctors: [],
+            store,
         };
     },
     methods: {
@@ -42,7 +44,7 @@ export default {
         },
     },
     mounted() {
-        this.getDoctors();
+        // this.getDoctors();
         this.getSpecs();
     },
 };
