@@ -145,7 +145,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $rating->name }}</td>
-                                            <td>{{ $rating->rating }}</td>
+                                            <td><span class="ratings-star"></span></td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -160,7 +160,8 @@
                                 @forelse  ( $user_logged->ratings as $rating)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
-                                    <li class="list-group-item mb-2"><strong>Voto: </strong>{{ $rating->rating}}</li>
+                                    <li class="list-group-item mb-2"><strong>Voto: </strong>
+                                        <span class="ratings-star"></span></li>
                                 @empty
                                     <li class="list-group-item custom-last">
                                         <p>
@@ -231,5 +232,32 @@
             }
         }
     </style>
+
+    <script>
+            function starsRating(number){
+                let newRating = (Math.ceil(number*2)/2);
+                let stars = [];
+                const diff=5-newRating;
+                console.log(newRating, diff);
+                    for(let i=newRating; i>=1; i--){
+                        stars.push(`<i class="fa-solid fa-star" style="color:gold;"></i>`);
+
+                };
+                if(diff % 1){
+                    stars.push(`<i class="fa-solid fa-star-half-stroke" style="color:gold;"></i>`);
+                }
+                for(let j = (5 - newRating); j >= 1; j--){
+                stars.push(`<i class="fa-regular fa-star" style="color:gold"></i>`);
+                }
+                return stars.join('');
+            }
+
+            const docRatings = <?php echo json_encode($user_logged->ratings); ?>;
+            for(let i=0; i<docRatings.length; i++){
+                let ratingContainer=document.querySelectorAll('.ratings-star')
+                ratingContainer[i].innerHTML=starsRating(docRatings[i]['rating'])
+            }
+
+    </script>
 
 @endsection
