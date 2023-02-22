@@ -180,13 +180,17 @@
 
             function changeDateFormat(date){
                 let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
-                console.log(new_date);
                 return new_date
             }
 
-            let date = "<?php echo $doc_review->created_at; ?>";
-            const putDate=document.querySelector('.time')
-            putDate.innerHTML=changeDateFormat(date)
+            const docReviews = <?php echo json_encode($doc_reviews); ?>
+            // let date = "<?php echo $doc_review->created_at; ?>";
+
+            for(let i=0; i<docReviews.length; i++){
+                let putDates=document.querySelectorAll('.time')
+                putDates[i].innerHTML=changeDateFormat(docReviews[i]['created_at'])
+            }
+
 
 
 
