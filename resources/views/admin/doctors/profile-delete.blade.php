@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$entity->id}}">
+<button type="button" class="bn632-hover bn26 delete-profile" data-bs-toggle="modal" data-bs-target="#modal{{$entity->id}}">
     Elimina profilo
 </button>
 {{-- modal --}}
@@ -17,7 +17,7 @@
         <form action="{{route('admin.doctors.destroy',$doctor)}}" method="POST" class="mt-2">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm" title="delete">Elimina profilo</button>
+            <button type="submit" class="bn632-hover bn26 delete-profile btn-sm" title="delete">Elimina profilo</button>
 
 
 

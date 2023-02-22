@@ -27,8 +27,7 @@ class DoctorRequest extends FormRequest
             'surname'=>'required|min:2|max:80',
             'address'=>'required|min:5',
             'specs'=>'required',
-            'phone'=>'min:10|max:15',
-            'health_care'=>'min:5',
+            'phone'=>'max:15',
 
         ];
     }
@@ -42,9 +41,7 @@ class DoctorRequest extends FormRequest
             'address.required'=>'L\'indirizzo è un campo obbligatorio',
             'specs.required'=>'La specializzazione è un campo obbligatorio',
             'address.min'=>'L\'indirizzo deve contenere almeno :min caratteri',
-            'phone.min'=>'Il telefono deve contenere almeno :min caratteri',
             'phone.max'=>'Il telefono può contenere al massimo :max caratteri',
-            'health_care'=>'Il campo dei servizi deve contenere almeno :min caratteri',
 
         ];
     }
