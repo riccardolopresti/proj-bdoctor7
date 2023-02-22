@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container ms-3 me-5">
+    <div class="container me-5">
 
         @if (session('message'))
             <div class="alert alert-success" role="alert">
@@ -156,7 +156,7 @@
                                 </tbody>
                             </table>
 
-                            <ul class="list-group">
+                            <ul class="list-group me-2">
                                 <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
                                 @forelse  ( $user_logged->reviews as $review)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
@@ -215,6 +215,9 @@
         }
 
         @media screen and (max-width: 990px){
+            .container{
+                margin-left:0;
+            }
             .col.custom-messages-col{
                 margin: 5px;
                 padding: 5px;
