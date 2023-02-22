@@ -144,7 +144,7 @@
                                 <tbody>
                                     @forelse ( $user_logged->reviews as $review )
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $review->created_at }}</td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->text }}</td>
                                         </tr>
@@ -161,6 +161,7 @@
                                 @forelse  ( $user_logged->reviews as $review)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$review->name}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> <span class="data-it">{{$review->created_at}}</span></li>
                                     <li class="list-group-item mb-2"><strong>Recensione: <br> </strong>{{ $review->text}}</li>
                                 @empty
                                     <li class="list-group-item custom-last">
@@ -235,4 +236,16 @@
             }
         }
     </style>
+
+    <script>
+        function changeDateFormat(date){
+                let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
+                return new_date
+            }
+
+            let date = "<?php echo $review->created_at; ?>";
+            const putDate=document.querySelector('.data-it')
+            putDate.innerHTML=changeDateFormat(date)
+
+    </script>
 @endsection

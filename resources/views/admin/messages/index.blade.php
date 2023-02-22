@@ -150,6 +150,7 @@
                                                 <tr class="table100-head">
                                                     <th class="column1">Nome Utente</th>
                                                     <th class="column2">Oggetto</th>
+                                                    <th class="column5">Data</th>
                                                     <th class="column3">Email</th>
                                                     <th class="column6">Messaggio</th>
                                                 </tr>
@@ -165,6 +166,11 @@
                                                         <td class="ellipsis">
                                                             <span>
                                                                 {{ $message->object }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="ellipsis data-msg">
+                                                            <span>
+                                                                {{ $message->created_at }}
                                                             </span>
                                                         </td>
                                                         <td class="ellipsis">
@@ -193,11 +199,19 @@
                                                 <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                                                 <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
+                                                <li class="list-group-item "><strong>Data: </strong> <span class="data-it"></span></li>
                                                 <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
-                                                <li class="list-group-item custom-last mb-2">
-                                                    <p>
-                                                        {{$message->text}}
+                                                <li class="list-group-item custom-last">
+                                                    <p class="text-truncate-custom">
+
                                                     </p>
+                                                </li>
+                                                <li class="list-group-item custom-last mb-2">
+                                                    <div class="show-msg pe-2">
+                                                        <a class="bn632-hover bn26 create-profile" href="{{route('admin.messages.show', $message->id)}}">
+                                                            Visualizza
+                                                        </a>
+                                                    </div>
                                                 </li>
                                             @empty
                                                 <li class="list-group-item  custom-last">
@@ -238,5 +252,23 @@
                     text=text.slice(0, 100)+'...'  }
                 return text
             }
+
+            const data = "<?php foreach($user_logged->messages as $message){ echo $message->text;}; ?>";
+            const textContainer = document.querySelector('.text-truncate-custom')
+            $(document).ready(function() {
+                textContainer.innerHTML=cutText(data);
+            });
+
+
+            function changeDateFormat(date){
+                let new_date=date.substring(0,10).split("-").reverse().slice().join("/");
+                return new_date
+            }
+
+            let date = "<?php echo $message->created_at; ?>";
+            const putDate=document.querySelector('.data-it')
+            putDate.innerHTML=changeDateFormat(date)
+
+
         </script>
 @endsection

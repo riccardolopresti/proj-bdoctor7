@@ -15,6 +15,7 @@
                     </li>
                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                     <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'nessun oggetto'}}</li>
+                    <li class="list-group-item"><strong>Data: </strong>{{ $message->created_at }}</li>
                     <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                     <li class="list-group-item">
                         <p>
