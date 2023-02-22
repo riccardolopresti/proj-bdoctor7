@@ -160,8 +160,10 @@
                                 @forelse  ( $user_logged->ratings as $rating)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
-                                    <li class="list-group-item mb-2"><strong>Voto: </strong>
-                                        <span class="ratings-star"></span></li>
+                                    <li class="list-group-item mb-2">
+                                        <strong>Voto: </strong>
+                                        <span class="ratings-star-2"></span>
+                                    </li>
                                 @empty
                                     <li class="list-group-item custom-last">
                                         <p>
@@ -256,6 +258,12 @@
             for(let i=0; i<docRatings.length; i++){
                 let ratingContainer=document.querySelectorAll('.ratings-star')
                 ratingContainer[i].innerHTML=starsRating(docRatings[i]['rating'])
+            }
+
+            const docRatings2 = <?php echo json_encode($user_logged->ratings); ?>;
+            for(let i=0; i<docRatings.length; i++){
+                let ratingContainer2=document.querySelectorAll('.ratings-star-2')
+                ratingContainer2[i].innerHTML=starsRating(docRatings2[i]['rating'])
             }
 
     </script>

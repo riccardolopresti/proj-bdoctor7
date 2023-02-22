@@ -149,10 +149,10 @@
                                                 </tr>
                                                 <tr class="table100-head">
                                                     <th class="column1">Nome Utente</th>
-                                                    <th class="column2">Oggetto</th>
-                                                    <th class="column5">Data</th>
+                                                    <th class="column1">Oggetto</th>
+                                                    <th class="column1">Data</th>
                                                     <th class="column3">Email</th>
-                                                    <th class="column6">Messaggio</th>
+                                                    <th class="column4">Messaggio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -165,13 +165,11 @@
                                                         </td>
                                                         <td class="ellipsis">
                                                             <span>
-                                                                {{ $message->object }}
+                                                                {{ $message->object ? $message->object : 'Nessun oggetto'}}
                                                             </span>
                                                         </td>
                                                         <td class="ellipsis data-msg">
-                                                            <span>
-                                                                {{ $message->created_at }}
-                                                            </span>
+                                                            <span class="data-it-2"></span>
                                                         </td>
                                                         <td class="ellipsis">
                                                             <span>
@@ -269,6 +267,12 @@
             for(let i=0; i<msgDate.length; i++){
                 let dateContainer=document.querySelectorAll('.data-it')
                 dateContainer[i].innerHTML=changeDateFormat(msgDate[i]['created_at'])
+            }
+
+            const msgDate2 = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate2.length; i++){
+                let dateContainer2=document.querySelectorAll('.data-it-2')
+                dateContainer2[i].innerHTML=changeDateFormat(msgDate2[i]['created_at'])
             }
 
         </script>
