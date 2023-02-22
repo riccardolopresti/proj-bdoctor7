@@ -19,14 +19,9 @@ export default {
             :key="doctor.id"
             class="doctor-card"
         >
-            <p>{{ doctor.slug }}</p>
+            <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
             <p>{{ doctor.address }}</p>
-            <!-- <ul>
-                <li v-for="spec in doctor.specs" :key="spec.id">
-                    <p>{{ spec.type }}</p>
-                </li>
-            </ul> -->
         </div>
     </div>
 </template>

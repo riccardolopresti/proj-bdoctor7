@@ -15,12 +15,10 @@ export default {
     },
     methods: {
         filterDoctors() {
-            axios
-                .get("http://127.0.0.1:8000/api/doctors/" + this.specType)
-                .then((result) => {
-                    store.filteredDoctors = result.data.filteredDoctors;
-                    // console.log(result.data.filteredDoctors);
-                });
+            axios.get(store.apiUrl + this.specType).then((result) => {
+                store.filteredDoctors = result.data.filteredDoctors;
+                console.log(store.filteredDoctors);
+            });
         },
     },
 };
