@@ -69,7 +69,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione *') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-select" aria-label="Default select example" name="type">
+                                    <select class="form-select" aria-label="Default select example" name="type" required>
                                         @foreach ($specs as $spec)
                                             <option
                                             @if ($spec->id == old('type')) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
@@ -212,4 +212,7 @@
             }
         }
     </style>
+
+
 @endsection
+

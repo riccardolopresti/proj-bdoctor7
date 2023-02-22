@@ -95,7 +95,7 @@
 
                             <div class="text-container">
                                 <span class="doc_reviews">
-                                    @if ($doc_reviews)
+                                    @if (is_null($doc_reviews))
                                         <section class="slider-wrapper">
                                             <button class="slide-arrow d-flex align-items-center" id="slide-arrow-prev">
                                                 <i class="fa-solid blue fa-chevron-left"></i>
@@ -184,7 +184,7 @@
             }
 
             const docReviews = <?php echo json_encode($doc_reviews); ?>
-            // let date = "<?php echo $doc_review->created_at; ?>";
+
 
             for(let i=0; i<docReviews.length; i++){
                 let putDates=document.querySelectorAll('.time')
