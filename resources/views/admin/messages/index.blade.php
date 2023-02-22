@@ -253,11 +253,11 @@
                 return text
             }
 
-            const data = "<?php foreach($user_logged->messages as $message){ echo $message->text;}; ?>";
-            const textContainer = document.querySelector('.text-truncate-custom')
-            $(document).ready(function() {
-                textContainer.innerHTML=cutText(data);
-            });
+            const docMsg = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<docMsg.length; i++){
+                let msgContainer=document.querySelectorAll('.text-truncate-custom')
+                msgContainer[i].innerHTML=cutText(docMsg[i]['text'])
+            }
 
 
             function changeDateFormat(date){
@@ -265,10 +265,11 @@
                 return new_date
             }
 
-            let date = "<?php echo $message->created_at; ?>";
-            const putDate=document.querySelector('.data-it')
-            putDate.innerHTML=changeDateFormat(date)
-
+            const msgDate = <?php echo json_encode($user_logged->messages); ?>;
+            for(let i=0; i<msgDate.length; i++){
+                let dateContainer=document.querySelectorAll('.data-it')
+                dateContainer[i].innerHTML=changeDateFormat(msgDate[i]['created_at'])
+            }
 
         </script>
 @endsection
