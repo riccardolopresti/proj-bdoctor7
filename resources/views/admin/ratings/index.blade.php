@@ -85,7 +85,7 @@
                                                         action="{{route('admin.ratings.destroy', $rating)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                            <button type="submit" class="bn632-hover bn26 delete-profile " title="delete">Elimina</button>
+                                                            <button type="submit" class="bn632-hover bn26 delete-sm-btn " title="delete">Elimina</button>
                                                         </form>
                                                     </div>
                                                 </li>

@@ -29,30 +29,8 @@ ul.list-group{
 }
 
 .bn632-hover.bn26 {
-    text-decoration: none;
-    padding:5px 8px;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    width: 6.5rem;
-    font-size: 13px;
-    font-weight: 500;
-    color: #fff;
-    cursor: pointer;
-    margin: 20px;
-    height: 40px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
-    border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    &.edit-profile{
-        width:10rem;
-    }
-    &.delete-profile{
+
+    &.delete-sm-btn{
         background-image: linear-gradient(
             to right,
             #e12541,
