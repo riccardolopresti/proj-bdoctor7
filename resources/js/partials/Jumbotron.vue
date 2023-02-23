@@ -9,13 +9,12 @@ export default {
     },
     data() {
         return {
-            specType: "",
             store,
         };
     },
     methods: {
         filterDoctors() {
-            axios.get(store.apiUrl + this.specType).then((result) => {
+            axios.get(store.apiUrl + store.specType).then((result) => {
                 store.filteredDoctors = result.data.filteredDoctors;
                 store.doc_ratings = result.data.doc_ratings;
                 console.log(result.data.doc_ratings);
@@ -43,7 +42,7 @@ export default {
                     >
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <select v-model="specType">
+                    <select v-model="store.specType">
                         <option selected>Seleziona una specializzazione</option>
                         <option
                             v-for="spec in specs"
