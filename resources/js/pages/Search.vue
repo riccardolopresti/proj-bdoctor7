@@ -8,9 +8,19 @@ export default {
             store,
             rangeValue: "",
             reviewsNumber: "",
+            results:""
         };
     },
-    methods: {},
+    methods: {
+        getAverage(id){
+            for(let i=0; i <= this.store.doc_ratings.length;i++){
+                if(i == id){
+                    let myAvg= this.store.doc_ratings[i-1].average_rating
+                    return myAvg;
+                }
+            }
+        }
+    },
 };
 </script>
 
@@ -31,7 +41,7 @@ export default {
             class="form-select"
             aria-label="reviewRange"
         >
-            <option selected>filtra per numero di recensioni</option>
+            <option selected value="">filtra per numero di recensioni</option>
             <option value="1">almeno 1 recensione</option>
             <option value="2">almeno 2 recensioni</option>
             <option value="3">almeno 3 recensioni</option>
@@ -40,9 +50,10 @@ export default {
     <div class="doctor-container">
         <div
             v-for="doctor in store.filteredDoctors"
-            v-show="doctor.reviews.length >= this.reviewsNumber"
             :key="doctor.id"
+            v-show="doctor.reviews.length >= this.reviewsNumber && getAverage(doctor.id) >= this.rangeValue"
             class="doctor-card"
+
         >
             <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
@@ -52,7 +63,9 @@ export default {
                 <p v-if="rating.doctor_id == doctor.id">
                     {{ rating.average_rating }}
                 </p>
+
             </div>
+            <span>Il mio voto {{getAverage(doctor.id)}}</span>
         </div>
     </div>
 </template>
