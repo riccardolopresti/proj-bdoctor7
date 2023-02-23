@@ -31,7 +31,7 @@ export default {
             class="form-select"
             aria-label="reviewRange"
         >
-            <option selected>filtra per numero di recensioni</option>
+            <option value="" selected>filtra per numero di recensioni</option>
             <option value="1">almeno 1 recensione</option>
             <option value="2">almeno 2 recensioni</option>
             <option value="3">almeno 3 recensioni</option>
