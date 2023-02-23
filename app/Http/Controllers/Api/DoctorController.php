@@ -35,7 +35,7 @@ class DoctorController extends Controller
     }
 
     public function show($slug){
-        $doctor = Doctor::where('slug', $slug)->with(['user', 'reviews', 'messages', 'ratings', 'offers'])->first();
+        $doctor = Doctor::where('slug', $slug)->with(['user', 'specs','reviews', 'messages', 'ratings', 'offers'])->first();
 
         return response()->json($doctor);
     }
