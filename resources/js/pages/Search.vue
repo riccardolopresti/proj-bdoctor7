@@ -26,7 +26,7 @@ export default {
 
 <template>
     <div class="top-section">
-        <h2>Risultati: {{ store.filteredDoctors.length }}</h2>
+        <h2>Risultati per la ricerca: <span class="blue">{{store.specType}}</span></h2>
         <label for="ratingRange" class="form-label">Filtro</label>
         <input
             v-model="rangeValue"
