@@ -69,13 +69,13 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione *') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-select" aria-label="Default select example" name="type" required>
+                                    <select class="form-select" aria-label="Default select example" name="type" id="type" required>
                                         @foreach ($specs as $spec)
                                             <option
                                             @if ($spec->id == old('type')) selected @endif value="{{ $spec->id }}">{{ $spec->type }}</option>
                                         @endforeach
                                     </select>
-                                    <span style="font-size: 0.8rem" class="blue">Una volta registrato potrai aggiungere ulteriori specializzazioni.</span>
+                                    <span style="font-size: 0.8rem" class="blue" id="specsInfo">Una volta registrato potrai aggiungere ulteriori specializzazioni.</span>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
 
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password" placeholder="Inserisci una password sicura" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                        required autocomplete="new-password" placeholder="Inserisci una password sicura" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeyup='check();'>
                                         <div style="font-size: 0.8rem;" class="blue" id="psw-check">La password deve contenere almeno
                                             <span class="pw-invalid" id="chars">8 caratteri</span>
                                             tra cui almeno
@@ -133,7 +133,7 @@
                                 <div class="col-md-6">
 
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password" placeholder="Conferma la tua password">
+                                        name="password_confirmation" required autocomplete="new-password" placeholder="Conferma la tua password" onkeyup='check();'>
                                         <div style="font-size: 0.8rem;" class="blue" id="psw-double-check">Le password
                                             <span class="pw-invalid" id="identical">devono coincidere.</span></div>
                                 </div>
@@ -216,6 +216,16 @@
         box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
         }
 
+        #specsInfo{
+            display: none;
+        }
+
+        #psw-check{
+            display: none;
+        }
+        #psw-double-check{
+            display: none;
+        }
 
         .pw-invalid{
             color:red;
@@ -238,23 +248,26 @@
     </style>
     <script>
 
-            const confirmPassword = document.getElementById('password-confirm');
+            const selectSpec = document.getElementById('type');
             const password = document.getElementById('password');
+            const confirmPassword = document.querySelector('#password-confirm');
             const identical = document.getElementById('identical');
             const lowLetters=document.getElementById('low-letters')
             const capLetters=document.getElementById('cap-letters')
             const numbers=document.getElementById('numbers')
             const chars=document.getElementById('chars')
 
-            // When the user clicks on the password field, show the message box
-            password.onfocus = function() {
-            document.getElementById("psw-check").style.display = "block";
-            document.getElementById("psw-double-check").style.display = "block";
+            selectSpec.onchange = function() {
+                document.getElementById("specsInfo").style.display = "block";
             }
 
-            // When the user clicks outside of the password field, hide the message box
-            password.onblur = function() {
-            document.getElementById("psw-check").style.display = "none";
+            // When the user clicks on the password field, show the message box
+            password.onfocus = function() {
+                document.getElementById("psw-check").style.display = "block";
+            }
+
+            confirmPassword.onfocus = function() {
+                document.getElementById("psw-double-check").style.display = "block";
             }
 
             // When the user starts to type something inside the password field
@@ -297,18 +310,19 @@
                 chars.classList.remove("pw-valid");
                 chars.classList.add("invalid");
             }
+        }
+
+        confirmPassword.onkeyup = function() {
             // Validate vales
-            if(confirmPassword.value != password.value) {
-                console.log(false);
-                identical.classList.add("pw-invalid");
-                identical.classList.remove("pw-valid");
-            } else {
+            if(password.value === confirmPassword.value) {
+                console.log(true);
                 identical.classList.remove("pw-invalid");
                 identical.classList.add("pw-valid");
+            } else {
+                identical.classList.add("pw-invalid");
+                identical.classList.remove("pw-valid");
             }
-
-
-            }
+        }
 
         $(document).ready(function() {
             $("#regForm").validate({
