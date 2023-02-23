@@ -6,32 +6,48 @@ export default {
     data() {
         return {
             store,
+            rangeValue: "",
+            reviewsNumber: "",
         };
     },
-    methods: {
-        getAverage(array, number) {
-            let somma = 0;
-            for (let i = 0; i < array.length; i++) {
-                somma += array[i];
-            }
-            return somma / array.length;
-            console.log(array);
-        },
-    },
+    methods: {},
 };
 </script>
 
 <template>
-    <h2>Risultati: {{ store.filteredDoctors.length }}</h2>
+    <div class="top-section">
+        <h2>Risultati: {{ store.filteredDoctors.length }}</h2>
+        <label for="ratingRange" class="form-label">Filtro</label>
+        <input
+            v-model="rangeValue"
+            type="range"
+            class="form-range"
+            min="0"
+            max="5"
+            id="ratingRange"
+        />
+        <select
+            v-model="reviewsNumber"
+            class="form-select"
+            aria-label="reviewRange"
+        >
+            <option selected>filtra per numero di recensioni</option>
+            <option value="1">almeno 1 recensione</option>
+            <option value="2">almeno 2 recensioni</option>
+            <option value="3">almeno 3 recensioni</option>
+        </select>
+    </div>
     <div class="doctor-container">
         <div
             v-for="doctor in store.filteredDoctors"
+            v-show="doctor.reviews.length >= this.reviewsNumber"
             :key="doctor.id"
             class="doctor-card"
         >
             <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
             <p>{{ doctor.address }}</p>
+            <p>numero di recensioni: {{ doctor.reviews.length }}</p>
             <div v-for="rating in store.doc_ratings">
                 <p v-if="rating.doctor_id == doctor.id">
                     {{ rating.average_rating }}
@@ -42,12 +58,24 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.top-section {
+    display: flex;
+    align-items: center;
+    #ratingRange {
+        width: 300px;
+        margin-left: 1rem;
+    }
+    select {
+        width: 300px;
+        margin-left: 1rem;
+    }
+}
 .doctor-container {
     display: flex;
     flex-wrap: wrap;
     .doctor-card {
         outline: 1px solid black;
-        width: 200px;
+        width: 400px;
         height: 300px;
         margin: 1rem;
         padding: 0.5rem;
