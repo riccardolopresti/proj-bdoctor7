@@ -4,6 +4,8 @@ import Home from './pages/Home.vue';
 
 import Search from './pages/Search.vue';
 
+import DoctorDetail from './pages/DoctorDetail.vue';
+
 const router = createRouter({
     history:createWebHistory(),
     linkExactActiveClass:'active',
@@ -17,7 +19,12 @@ const router = createRouter({
             path: '/search',
             name: 'search',
             component: Search
-        }
+        },
+        {
+            path: '/search/doctor-detail/:slug',
+            name: 'detail',
+            component: DoctorDetail
+        },
     ]
 });
 

@@ -33,4 +33,10 @@ class DoctorController extends Controller
 
         return response()->json(compact('filteredDoctors', 'doc_ratings'));
     }
+
+    public function show($slug){
+        $doctor = Doctor::where('slug', $slug)->with(['user', 'reviews', 'messages', 'ratings', 'offers']);
+
+        return response()->json(compact('doctor'));
+    }
 }
