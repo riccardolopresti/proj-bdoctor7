@@ -55,7 +55,7 @@ export default {
             class="doctor-card"
 
         >
-            <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
+            <p><router-link :to="{name:'detail', params:{slug: doctor.slug}}">{{ doctor.user.name }} {{ doctor.surname }}</router-link></p>
             <p>{{ doctor.phone }}</p>
             <p>{{ doctor.address }}</p>
             <p>numero di recensioni: {{ doctor.reviews.length }}</p>

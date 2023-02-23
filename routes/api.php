@@ -28,3 +28,4 @@ Route::namespace('Api')
     });
 
 Route::get("/specs", [SpecController::class, "getSpecs"]);
+Route::get('/{slug}', [DoctorController::class, 'show']);
