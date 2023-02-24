@@ -11,40 +11,79 @@ export default {
     props: {
         doctor: Object,
     },
+    methods: {
+        roundNumber(number) {
+            console.log(Math.round(number));
+            return Math.round(number * 2) / 2;
+        },
+        // printStars() {
+        //     for (let i = 0; i <= 2; i++) {
+        //         return `<i class="fa fa-star-o" aria-hidden="true"></i>`;
+        //     }
+        // },
+        starsRating(number) {
+            let newRating = Math.ceil(number * 2) / 2;
+            let stars = [];
+            const diff = 5 - newRating;
+            console.log(newRating, diff);
+            for (let i = newRating; i >= 1; i--) {
+                stars.push(
+                    `<i class="fa-solid fa-star" style="color:gold;"></i>`
+                );
+            }
+            if (diff % 1) {
+                stars.push(
+                    `<i class="fa-solid fa-star-half-stroke" style="color:gold;"></i>`
+                );
+            }
+            for (let j = 5 - newRating; j >= 1; j--) {
+                stars.push(
+                    `<i class="fa-regular fa-star" style="color:gold"></i>`
+                );
+            }
+            return stars.join("");
+        },
+    },
 };
 </script>
 
 <template>
     <div id="container">
-        <div class="product-details">
+        <div class="doctor-details">
             <h1>{{ doctor.user.name }} {{ doctor.surname }}</h1>
             <br />
             <div class="hint-star star mt-2 mb-2">
+                <!-- <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i> -->
+                {{}}
             </div>
 
-            <p class="information">{{ doctor.user.email }}</p>
+            <ul class="information">
+                <li class="d-flex align-items-center">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="ms-2">{{ doctor.user.email }}</span>
+                </li>
+                <li class="d-flex align-items-center">
+                    <i class="fa-solid fa-phone"></i>
+                    <span class="ms-2">{{ doctor.phone }}</span>
+                </li>
+                <li class="d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="ms-2">{{ doctor.address }}</span>
+                </li>
+            </ul>
+
+            <div v-for="rating in store.doc_ratings">
+                <p v-if="rating.doctor_id == doctor.id">
+                    {{ roundNumber(rating.average_rating) }}
+                </p>
+            </div>
         </div>
 
-        <div class="product-image">
+        <div class="doctor-image">
             <img :src="doctor.image" :alt="doctor.slug" />
-
-            <!-- <div class="info">
-                <h2>About</h2>
-                <ul>
-                    <li>
-                        <strong>Name: <br /> </strong>{{ doctor.user.name }}
-                    </li>
-                    <li>
-                        <strong>Contatti: <br /> </strong
-                        >{{ doctor.user.email }}
-                    </li>
-                </ul>
-            </div> -->
         </div>
     </div>
 </template>
@@ -52,26 +91,36 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bree+Serif&family=EB+Garamond:ital,wght@0,500;1,800&display=swap");
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 #container {
-    box-shadow: 0 15px 30px 1px grey;
+    box-shadow: 0 5px 10px grey;
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
-    border-radius: 5px;
+    border-radius: 15px;
     overflow: hidden;
     margin: 5em auto;
-    width: 700px;
+    width: 500px;
+    // outline: 3px solid lime;
+    margin: 1rem;
+    height: 250px;
 }
-.product-details {
+.doctor-details {
     position: relative;
     text-align: left;
     overflow: hidden;
     padding: 30px;
     height: 100%;
     float: left;
-    width: 50%;
+    width: 70%;
+    // outline: 3px solid blue;
 }
 
-#container .product-details h1 {
+#container .doctor-details h1 {
     font-family: "Bebas Neue", cursive;
     display: inline-block;
     position: relative;
@@ -80,7 +129,7 @@ export default {
     margin: 0;
 }
 
-#container .product-details h1:before {
+#container .doctor-details h1:before {
     position: absolute;
     content: "";
     right: 0%;
@@ -104,67 +153,63 @@ export default {
     width: 50%;
 }
 
-#container .product-details > p {
+#container .doctor-details > p {
     font-family: "EB Garamond", serif;
     text-align: center;
     font-size: 18px;
     color: #7d7d7d;
 }
-.control {
-    position: absolute;
-    bottom: 20%;
-    left: 22.8%;
-}
 
-.product-image {
-    transition: all 0.3s ease-out;
+.doctor-image {
+    // transition: all 0.3s ease-out;
     display: inline-block;
     position: relative;
     overflow: hidden;
     height: 100%;
     // float: right;
-    width: 45%;
+    width: 30%;
     display: inline-block;
+    // outline: 2px solid red;
 }
 
 #container img {
-    max-width: 100%;
-}
-
-.info {
-    background: rgba(27, 26, 26, 0.9);
-    font-family: "Bree Serif", serif;
-    transition: all 0.3s ease-out;
-    transform: translateX(-100%);
-    position: absolute;
-    line-height: 1.8;
-    text-align: left;
-    font-size: 105%;
-    color: #fff;
-    height: 100%;
     width: 100%;
-    left: 0;
-    top: 0;
 }
 
-.info h2 {
-    text-align: center;
-}
-.product-image:hover .info {
-    transform: translateX(0);
-}
+// .info {
+//     background: rgba(27, 26, 26, 0.9);
+//     font-family: "Bree Serif", serif;
+//     transition: all 0.3s ease-out;
+//     transform: translateX(-100%);
+//     position: absolute;
+//     line-height: 1.8;
+//     text-align: left;
+//     font-size: 105%;
+//     color: #fff;
+//     height: 100%;
+//     width: 100%;
+//     left: 0;
+//     top: 0;
+// }
 
-.info ul li {
-    transition: 0.3s ease;
-}
-.info ul li:hover {
-    transform: translateX(50px) scale(1.3);
-}
+// .info h2 {
+//     text-align: center;
+// }
+// .product-image:hover .info {
+//     transform: translateX(0);
+// }
 
-.product-image:hover img {
-    transition: all 0.3s ease-out;
-}
-.product-image:hover img {
-    transform: scale(1.2, 1.2);
-}
+// .info ul li {
+//     transition: 0.3s ease;
+// }
+// .info ul li:hover {
+//     transform: translateX(50px) scale(1.3);
+// }
+
+// .product-image:hover img {
+//     transition: all 0.3s ease-out;
+// }
+// .product-image:hover img {
+//     transform: scale(1.2, 1.2);
+// }
 </style>

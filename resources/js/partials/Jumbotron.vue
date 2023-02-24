@@ -32,7 +32,7 @@ export default {
                     Prenota subito il tuo appuntamento daxx xxxx
                 </h2>
                 <form class="search-form ms-4">
-                    <div class="select-bg">
+                    <div class="custom-select">
                         <button
                             @click="
                                 $router.push({ name: 'search' });
@@ -82,19 +82,26 @@ export default {
             justify-content: center;
             width: 55vw;
             // outline: 3px solid lime;
-            .select-bg {
+            .custom-select {
                 background-color: #f4f7fc;
                 border-radius: 30px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            }
-            .search-btn {
-                background-color: transparent;
-                border: none;
-                padding: 10px 20px;
-                font-size: 16px;
-                color: gray;
-                border-radius: 30px 0px 0px 30px;
-                cursor: pointer;
+                select {
+                    background-color: transparent;
+                    outline: 0;
+                    border: 0;
+                    margin-right: 20px;
+                    padding: 1rem;
+                }
+                .search-btn {
+                    background-color: transparent;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    color: gray;
+                    border-radius: 30px 0px 0px 30px;
+                    cursor: pointer;
+                }
             }
 
             // input {
@@ -102,12 +109,6 @@ export default {
             //     border-radius: 0px 30px 30px 0px;
             //     flex: 1;
             // }
-            select {
-                background-color: transparent;
-                outline: 0;
-                border: 0;
-                // appearance: none;
-            }
         }
     }
 }
