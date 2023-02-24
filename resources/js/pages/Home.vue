@@ -45,9 +45,9 @@ export default {
 
 <template>
 
-    <!-- <Header />
+    <Header />
     <Jumbotron :specs="specs" />
-    <SponsorSection/> -->
+    <SponsorSection/>
     <FormContact/>
     <ReviewsRatings/>
 
