@@ -146,9 +146,8 @@ export default {
                                         <div class="row">
                                             <div class="form-group mb-3">
                                                 <label for="" class="col-form-label mb-3">Nome e Cognome*</label>
-                                                <input v-model.trim="name" type="text" class="form-control" name="name" id="name" placeholder="Inserisci nome e cognome">
-
-                                                <input type="text" class="form-control d-none" name="name-rating" id="name2" placeholder="Inserisci nome e cognome">
+                                                <input v-model.trim="name" type="text" class="form-control" :class="{'is-invalid' : errors.name}"  name="name" id="name" placeholder="Inserisci nome e cognome">
+                                                <p class="invalid-feedback" v-for="error in errors.name" :key="error">{{ error }}</p>
                                             </div>
 
                                         </div>
@@ -156,7 +155,8 @@ export default {
                                         <div class="row">
                                             <div class="col-md-12 form-group mb-3">
                                                 <label for="text" class="col-form-label mb-3">Recensione*</label>
-                                                <textarea v-model.trim="text" class="form-control" name="text" id="text" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
+                                                <textarea v-model.trim="text" class="form-control" :class="{'is-invalid' : errors.text}"  name="text" id="text" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
+                                                <p class="invalid-feedback" v-for="error in errors.text" :key="error">{{ error }}</p>
                                             </div>
                                         </div>
 
@@ -164,7 +164,7 @@ export default {
                                             <div class="col-md-12 form-group mb-3">
                                                 <p>Valutazione*</p>
 
-                                                <fieldset class="rating-wrapper">
+                                                <fieldset class="rating-wrapper" :class="{'is-invalid' : errors.rating}">
                                                     <input v-model.trim="rating" type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stelle"></label>
                                                     <input v-model.trim="rating" type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="4.5 stelle"></label>
                                                     <input v-model.trim="rating" type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 stelle"></label>
@@ -176,6 +176,9 @@ export default {
                                                     <input v-model.trim="rating" type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 stella"></label>
                                                     <input v-model.trim="rating" type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="0.5 stelle"></label>
                                                 </fieldset>
+
+                                                <p class="invalid-feedback" v-for="error in errors.rating" :key="error">{{ error }}</p>
+
                                             </div>
                                         </div>
 
