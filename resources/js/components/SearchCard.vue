@@ -61,15 +61,15 @@ export default {
             </div>
 
             <ul class="information">
-                <li class="d-flex align-items-center">
+                <li class="d-flex align-items-center my-1">
                     <i class="fa-solid fa-envelope"></i>
                     <span class="ms-2">{{ doctor.user.email }}</span>
                 </li>
-                <li class="d-flex align-items-center">
+                <li class="d-flex align-items-center my-1">
                     <i class="fa-solid fa-phone"></i>
                     <span class="ms-2">{{ doctor.phone }}</span>
                 </li>
-                <li class="d-flex align-items-center">
+                <li class="d-flex align-items-center my-1">
                     <i class="fa-solid fa-location-dot"></i>
                     <span class="ms-2">{{ doctor.address }}</span>
                 </li>
@@ -77,7 +77,7 @@ export default {
 
             <div v-for="rating in store.doc_ratings">
                 <p v-if="rating.doctor_id == doctor.id">
-                    {{ roundNumber(rating.average_rating) }}
+                    Rating: {{ roundNumber(rating.average_rating) }}
                 </p>
             </div>
         </div>
@@ -98,7 +98,7 @@ ul {
 }
 
 #container {
-    box-shadow: 0 5px 10px grey;
+    // box-shadow: 0 5px 10px rgb(160, 160, 160);
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
     border-radius: 15px;

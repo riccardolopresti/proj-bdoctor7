@@ -30,20 +30,21 @@ export default {
 
 <template>
     <div class="wrapper">
-        <div class="container">
+        <div class="container-fluid">
             <div class="top-section">
-                <div class="left">
+                <div class="left ps-3">
                     <h2>
                         Risultati per:
                         <span class="blue">{{ store.specType }}</span>
                     </h2>
                 </div>
-                <div class="right">
-                    <label for="ratingRange" class="form-label">Filtro</label>
+                <div class="right pe-3">
+                    <!-- <label for="ratingRange" class="form-label">Filtro</label> -->
+                    <span>Filtro per Rating:</span>
                     <input
                         v-model="rangeValue"
                         type="range"
-                        class="form-range"
+                        class="form-range ms-3"
                         min="0"
                         max="5"
                         id="ratingRange"
@@ -99,26 +100,27 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-    background-color: rgb(69, 84, 114);
+    background-color: rgb(98, 131, 197);
     padding: 2rem;
     min-height: 100vh;
+    // color: white;
 }
-.container {
+.container-fluid {
     // outline: 1px solid red;
     padding: 0;
     // glass
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    // background: rgba(255, 255, 255, 0.2);
+    // border-radius: 16px;
+    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    // backdrop-filter: blur(5px);
+    // -webkit-backdrop-filter: blur(5px);
+    // border: 1px solid rgba(255, 255, 255, 0.3);
     .top-section {
         display: flex;
         align-items: center;
         justify-content: space-between;
         // outline: 3px solid lime;
-        padding: 2rem 0 0.5rem;
+        padding: 30px 10px;
         border-bottom: 1px solid black;
         .left {
             padding: 0;
@@ -146,6 +148,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 50px;
 
     // .doctor-card {
     //     // outline: 3px solid lime;
