@@ -22,15 +22,20 @@ export default {
                 email : this.email,
                 object : this.object,
                 text : this.text,
-                doctor_id : 11,
+                doctor_id : 11, //da sistemare con id dinamico
             }
 
             axios.post('http://127.0.0.1:8000/api/contacts', data)
             .then(result=>{
                 this.isLoading=false;
-                this.formShow=false;
                 if(!result.data.success){
                     this.errors = result.data.errors;
+                }else{
+                    this.formShow=false;
+                    this.name='';
+                    this.email='';
+                    this.message='';
+                    this.errors={};
                 }
             });
 
@@ -64,28 +69,32 @@ export default {
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="label" for="name">Nome e Cognome*</label>
-                                                <input v-model.trim="name" type="text" class="form-control my-3" name="name" id="name" placeholder="Inserisci nome e cognome">
+                                                <input v-model.trim="name" type="text" class="form-control my-3" :class="{'is-invalid' : errors.name}" name="name" id="name" placeholder="Inserisci nome e cognome">
+                                                <p class="invalid-feedback" v-for="error in errors.name" :key="error">{{ error }}</p>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="label" for="email">Indirizzo Email*</label>
-                                                <input v-model.trim="email" type="email" class="form-control my-3" name="email" id="email" placeholder="Inserisci l'email">
+                                                <input v-model.trim="email" type="email" class="form-control my-3" :class="{'is-invalid' : errors.email}" name="email" id="email" placeholder="Inserisci l'email">
+                                                <p class="invalid-feedback" v-for="error in errors.email" :key="error">{{ error }}</p>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="object">Oggetto</label>
-                                                <input  v-model.trim="object" type="text" class="form-control my-3" name="object" id="object" placeholder="Oggetto">
+                                                <input  v-model.trim="object" type="text" class="form-control my-3" :class="{'is-invalid' : errors.object}" name="object" id="object" placeholder="Oggetto">
+                                                <p class="invalid-feedback" v-for="error in errors.object" :key="error">{{ error }}</p>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="#">Messaggio*</label>
-                                                <textarea  v-model.trim="text" name="text" class="form-control my-3" id="text" cols="30" rows="4" placeholder="Scrivi il messaggio"></textarea>
+                                                <textarea  v-model.trim="text" name="text" class="form-control my-3" :class="{'is-invalid' : errors.text}" id="text" cols="30" rows="4" placeholder="Scrivi il messaggio"></textarea>
+                                                <p class="invalid-feedback" v-for="error in errors.text" :key="error">{{ error }}</p>
                                             </div>
                                         </div>
 
