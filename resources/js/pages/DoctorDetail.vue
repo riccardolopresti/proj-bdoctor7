@@ -2,11 +2,16 @@
 import axios from 'axios';
 import Header from "../partials/Header.vue";
 
+import FormContact from '../components/FormContact.vue'
+import ReviewsRatings from '../components/ReviewsRatings.vue'
+
 export default {
     name: 'DoctorDetail',
 
     components: {
         Header,
+        FormContact,
+        ReviewsRatings
     },
 
     data(){
@@ -102,6 +107,9 @@ export default {
 
 
     </section>
+
+    <FormContact/>
+    <ReviewsRatings/>
 
 
 
