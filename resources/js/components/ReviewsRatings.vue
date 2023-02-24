@@ -1,4 +1,5 @@
 <script>
+import {Swiper, SwiperSlide } from "swiper/vue";
 
 export default {
     name: 'RaviewsRatings',
@@ -9,12 +10,16 @@ export default {
 
 <section class="mt-5">
     <div class="container ">
-        <div class="row custom-row justify-content-center mx-1">
-            <div class="col-10 reviews-wrapper">
+        <div class="row custom-row justify-content-center">
+            <div class="col-12 col-lg-5  debug">
+                <P>BDFSBDFSBFDSBDSF</P>
+
+            </div>
+            <div class="col-12 col-lg-5 reviews-wrapper">
                 <div class="content ">
                     <div class="container">
                         <div class="row align-items-stretch justify-content-center no-gutters">
-                            <div class="col-12 w-75">
+                            <div class="col-6 w-75">
                                 <div class="form h-100 contact-wrap p-4 pt-5">
 
                                     <h3 class="text-center pb-4">Lascia una recesione!</h3>
@@ -57,10 +62,6 @@ export default {
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-lg-5  debug">
-                <P>BDFSBDFSBFDSBDSF</P>
-
-            </div> -->
         </div>
     </div>
 </section>
