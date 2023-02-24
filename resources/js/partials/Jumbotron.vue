@@ -43,7 +43,7 @@ export default {
                         >
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                        <select v-model="store.specType">
+                        <!-- <select v-model="store.specType">
                             <option selected>
                                 Seleziona una specializzazione
                             </option>
@@ -54,7 +54,25 @@ export default {
                             >
                                 {{ spec.type }}
                             </option>
-                        </select>
+                        </select> -->
+
+                        <!-- custom dropdown -->
+
+                        <input
+                            type="text"
+                            id="specSearch"
+                            name="specSearch"
+                            list="spec-list"
+                            placeholder="Cerca una specializzazione"
+                            v-model="store.specType"
+                        />
+                        <datalist id="spec-list">
+                            <option
+                                v-for="spec in specs"
+                                :key="spec.id"
+                                :value="spec.type"
+                            ></option>
+                        </datalist>
                     </div>
                 </form>
             </div>
@@ -86,12 +104,42 @@ export default {
                 background-color: #f4f7fc;
                 border-radius: 30px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-                select {
-                    background-color: transparent;
-                    outline: 0;
-                    border: 0;
-                    margin-right: 20px;
-                    padding: 1rem;
+                // outline: 3px solid lime;
+                // select {
+                //     background-color: transparent;
+                //     outline: 0;
+                //     border: 0;
+                //     margin-right: 20px;
+                //     padding: 1rem 0;
+                // }
+
+                // custom dropdown
+
+                input[type="text"] {
+                    border: none;
+                    padding: 8px;
+                    font-size: 16px;
+                    border-radius: 30px;
+                    background-color: #f4f7fc;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                datalist {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                datalist option {
+                    padding: 8px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+
+                datalist option:checked {
+                    background-color: #ccc;
                 }
                 .search-btn {
                     background-color: transparent;
@@ -103,12 +151,6 @@ export default {
                     cursor: pointer;
                 }
             }
-
-            // input {
-            //     width: 20vw;
-            //     border-radius: 0px 30px 30px 0px;
-            //     flex: 1;
-            // }
         }
     }
 }
