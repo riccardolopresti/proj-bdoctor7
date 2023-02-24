@@ -13,7 +13,6 @@ export default {
     },
     methods: {
         roundNumber(number) {
-            console.log(Math.round(number));
             return Math.round(number * 2) / 2;
         },
         // printStars() {
@@ -165,11 +164,14 @@ ul {
     display: inline-block;
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 100px;
     // float: right;
-    width: 30%;
+    padding: 1rem;
+    border-radius: 50%;
+    width: 100px;
     display: inline-block;
     // outline: 2px solid red;
+    margin-top: 20px;
 }
 
 #container img {

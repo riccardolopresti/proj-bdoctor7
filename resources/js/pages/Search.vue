@@ -10,7 +10,7 @@ export default {
     data() {
         return {
             store,
-            rangeValue: "",
+            rangeValue: 0,
             reviewsNumber: "",
             results: "",
         };
@@ -100,7 +100,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-    background-color: rgb(98, 131, 197);
+    background-color: rgb(91, 121, 179);
     padding: 2rem;
     min-height: 100vh;
     // color: white;
