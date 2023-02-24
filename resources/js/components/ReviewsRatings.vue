@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 
-import {Autoplay, Pagination, Navigation } from "swiper";
+import {Autoplay, Navigation } from "swiper";
 
 
 export default {
@@ -18,7 +18,7 @@ export default {
     },
     setup() {
         return {
-        modules: [Autoplay, Pagination, Navigation],
+        modules: [Autoplay, Navigation],
         };
     }
 }
@@ -46,10 +46,11 @@ export default {
                     }"
                     :navigation="true"
                     :modules="modules"
+                    :rewind="true"
                     class="mySwiper"
                 >
                     <swiper-slide>
-                        <div class="prova">
+                        <div class="prova d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -63,7 +64,7 @@ export default {
                     </swiper-slide>
 
                     <swiper-slide>
-                        <div class="prova">
+                        <div class="prova d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -76,7 +77,7 @@ export default {
                         </div>
                     </swiper-slide>
                     <swiper-slide>
-                        <div class="prova">
+                        <div class="prova d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -147,6 +148,10 @@ export default {
 
 <style scoped lang="scss">
 @use '../../scss/appVue.scss';
+h3{
+    color: #061761;
+    font-weight: bold;
+}
 
 section{
     background: url('/cool-background.png') no-repeat;
@@ -164,80 +169,75 @@ section{
 
 .reviews-wrapper{
     margin: 0px 20px;
-/* From https://css.glass */
-background: rgba(255, 255, 255, 0.31);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(255, 255, 255, 0.21);
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.31);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.21);
     border-radius: 15px;
 }
 
-.rating{
-    margin-top: 50px;
-
-    background: rgb(15, 109, 233);
-}
 
 .snip1533 {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  color: #9e9e9e;
-  display: inline-block;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: 16px;
-  margin: 35px 10px 10px;
-  max-width: 310px;
-  min-width: 250px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-/* From https://css.glass */
-background: rgba(255, 255, 255, 0.31);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(255, 255, 255, 0.21);
-  border-radius: 5px;
-  border-top: 5px solid #d2652d;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    color: #9e9e9e;
+    display: inline-block;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    margin: 35px 10px 10px;
+    max-width: 370px;
+    min-width: 250px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.31);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.21);
+    border-radius: 5px;
+    border-top: 5px solid #061761;
 }
 
 .snip1533 *,
 .snip1533 *:before {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
 }
 
 .snip1533 figcaption {
-  padding: 13% 10% 12%;
+    padding: 13% 10% 12%;
 }
 
 .snip1533 figcaption:before {
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  /* From https://css.glass */
-background: rgba(255, 255, 255, 0.31);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(255, 255, 255, 0.21);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  color: #d2652d;
-  content: "\f10e";
-  font-family: 'FontAwesome';
-  font-size: 32px;
-  font-style: normal;
-  left: 50%;
-  line-height: 60px;
-  position: absolute;
-  top: -30px;
-  width: 60px;
-}
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.31);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.21);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    color: #061761;
+    content: "\f10e";
+    font-family: 'FontAwesome';
+    font-size: 32px;
+    font-style: normal;
+    left: 50%;
+    line-height: 60px;
+    position: absolute;
+    top: -30px;
+    width: 60px;
+    }
 
 .snip1533 h3 {
   color: #3c3c3c;
