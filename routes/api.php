@@ -34,4 +34,5 @@ Route::post('/feedback', [FeedbackController::class, 'store']);
 
 Route::get("/specs", [SpecController::class, "getSpecs"]);
 
+Route::get('/{slug}', [DoctorController::class, 'show']);
 
