@@ -3,8 +3,7 @@
 import Header from "../partials/Header.vue";
 import Jumbotron from "../partials/Jumbotron.vue";
 import SponsorSection from './SponsorSection.vue'
-import FormContact from '../components/FormContact.vue'
-import ReviewsRatings from '../components/ReviewsRatings.vue'
+
 
 import axios from "axios";
 
@@ -17,8 +16,6 @@ export default {
         Header,
         Jumbotron,
         SponsorSection,
-        FormContact,
-        ReviewsRatings
     },
     data() {
         return {
@@ -48,8 +45,7 @@ export default {
     <Header />
     <Jumbotron :specs="specs" />
     <SponsorSection/>
-    <FormContact/>
-    <ReviewsRatings/>
+
 
 </template>
 
