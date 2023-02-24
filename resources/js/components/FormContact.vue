@@ -99,8 +99,8 @@ export default {
                                         </div>
 
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <button  type="submit" class="bn632-hover bn26 ms-0" :disabled="isLoading">{{ isLoading ? 'Invio in corso...' : 'Invia'}}</button>
+                                            <div class="form-group" id="btn-wrapper">
+                                                <button  type="submit" class="bn632-hover bn26 ms-0 " :disabled="isLoading">{{ isLoading ? 'Invio in corso...' : 'Invia'}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -141,5 +141,12 @@ h4{
 
 .custom-row{
     height: 600px;
+}
+
+@media screen and (max-width: 768px) {
+    #btn-wrapper{
+        display: flex;
+        justify-content: center;
+    }
 }
 </style>
