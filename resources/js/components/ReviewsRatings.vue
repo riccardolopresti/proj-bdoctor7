@@ -48,6 +48,7 @@ export default {
                 this.isLoading=false;
                 if(!result.data.success){
                     this.errors = result.data.errors;
+                    console.log(this.errors);
                 }else{
                     this.formShow=false;
                     this.name='';
