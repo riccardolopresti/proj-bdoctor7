@@ -142,7 +142,12 @@ export default {
 
                                     <h3 class=" pb-4">Lascia una recesione!</h3>
 
-                                    <form class="" method="post" id="contactForm" name="contactForm" @submit.prevent="sendForm()">
+                                    <h4 v-if="!formShow">
+                                    Il feedback è stato inviato correttamente. <br>
+                                    <p class="mt-4">Grazie per aver scelto BDoctors7!</p>
+                                    </h4>
+
+                                    <form v-if="formShow" class="" method="post" id="contactForm" name="contactForm" @submit.prevent="sendForm()">
                                         <div class="row">
                                             <div class="form-group mb-3">
                                                 <label for="" class="col-form-label mb-3">Nome e Cognome*</label>
@@ -235,6 +240,7 @@ section{
     border: 1px solid rgba(255, 255, 255, 0.21);
     border-radius: 5px;
     border-top: 5px solid #061761;
+    min-height: 249.7px;
 }
 
 
