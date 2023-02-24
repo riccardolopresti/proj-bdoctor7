@@ -1,32 +1,39 @@
 <script>
 import { store } from "../data/store";
+import SearchCard from "../components/SearchCard.vue";
 
 export default {
     name: "Search",
+    components: {
+        SearchCard,
+    },
     data() {
         return {
             store,
             rangeValue: "",
             reviewsNumber: "",
-            results:""
+            results: "",
         };
     },
     methods: {
-        getAverage(id){
-            for(let i=0; i <= this.store.doc_ratings.length;i++){
-                if(i == id){
-                    let myAvg= this.store.doc_ratings[i-1].average_rating
+        getAverage(id) {
+            for (let i = 0; i <= this.store.doc_ratings.length; i++) {
+                if (i == id) {
+                    let myAvg = this.store.doc_ratings[i - 1].average_rating;
                     return myAvg;
                 }
             }
-        }
+        },
     },
 };
 </script>
 
 <template>
     <div class="top-section">
-        <h2>Risultati per la ricerca: <span class="blue">{{store.specType}}</span></h2>
+        <h2>
+            Risultati per la ricerca:
+            <span class="blue">{{ store.specType }}</span>
+        </h2>
         <label for="ratingRange" class="form-label">Filtro</label>
         <input
             v-model="rangeValue"
@@ -48,12 +55,23 @@ export default {
         </select>
     </div>
     <div class="doctor-container">
-        <div
+        <SearchCard
             v-for="doctor in store.filteredDoctors"
             :key="doctor.id"
-            v-show="doctor.reviews.length >= this.reviewsNumber && getAverage(doctor.id) >= this.rangeValue"
+            v-show="
+                doctor.reviews.length >= this.reviewsNumber &&
+                getAverage(doctor.id) >= this.rangeValue
+            "
+            :doctor="doctor"
+        />
+        <!-- <div
+            v-for="doctor in store.filteredDoctors"
+            :key="doctor.id"
+            v-show="
+                doctor.reviews.length >= this.reviewsNumber &&
+                getAverage(doctor.id) >= this.rangeValue
+            "
             class="doctor-card"
-
         >
             <p>{{ doctor.user.name }} {{ doctor.surname }}</p>
             <p>{{ doctor.phone }}</p>
@@ -63,10 +81,9 @@ export default {
                 <p v-if="rating.doctor_id == doctor.id">
                     {{ rating.average_rating }}
                 </p>
-
             </div>
-            <span>Il mio voto {{getAverage(doctor.id)}}</span>
-        </div>
+            <span>Il mio voto {{ getAverage(doctor.id) }}</span>
+        </div> -->
     </div>
 </template>
 
