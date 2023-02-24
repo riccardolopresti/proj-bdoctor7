@@ -133,7 +133,7 @@
                             <p>Durata <strong style="color:#3782e8">{{$offer->duration}} Ore</strong>  </p>
                             <p class="price"><span>&euro; {{$offer->price}}</span></p>
 
-                            <a href="#" class="bn632-hover bn26">Acquista ora</a>
+                            <a href="{{route('admin.payment.create', $offer)}}" class="bn632-hover bn26">Acquista ora</a>
                         </div>
                     </div>
                     @endforeach
@@ -173,6 +173,9 @@
 
 .price-card{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background: #f5f5f6;
+    padding: 40px 35px;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {

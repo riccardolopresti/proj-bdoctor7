@@ -35,12 +35,12 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('doctors', DoctorController::class);
         Route::resource('specializations', SpecController::class)->except(['show', 'edit', 'create']);
-        Route::resource('offers', OfferController::class)->except(['show']);
+        Route::resource('offers', OfferController::class);
         Route::resource('messages', MessageController::class)->except(['edit']);
         Route::resource('ratings', RatingController::class)->except(['show', 'edit']);
         Route::resource('reviews', ReviewController::class)->except(['show', 'edit']);
-        Route::get('/payment', [PaymentController::class, 'create'])->name('payment.create');
-        Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+        Route::get('/payment/{offer}', [PaymentController::class, 'create'])->name('payment.create');
+        Route::post('/payment/{offer}', [PaymentController::class, 'store'])->name('payment.store');
     });
 
 Route::middleware('auth')->group(function () {

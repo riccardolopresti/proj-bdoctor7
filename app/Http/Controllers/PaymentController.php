@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -23,9 +25,7 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-
-        $offers=Offer::all();
+    public function create(Offer $offer){
 
         $gateway = new Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
@@ -34,7 +34,7 @@ class PaymentController extends Controller
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
             $clientToken = $gateway->clientToken()->generate();
-            return view ('admin.payment', compact('clientToken', 'offers'));
+            return view ('admin.payment', compact('clientToken', 'offer'));
         }
 
 
@@ -44,8 +44,11 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Offer $offer)
+
     {
+
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
 
         $gateway = new Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
@@ -54,10 +57,20 @@ class PaymentController extends Controller
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
 
+        $nowDate=date("Y-m-d H:i:s");
+        $start_str = strtotime($nowDate);
+        $end_str = $start_str + (($offer->duration) * 3600);
+        $end_at = date("Y-m-d h:i:s", $end_str);
+
+        $offer->doctors()->sync($doctor->id,
+        ['start_at' => $nowDate,
+        'end_at'=> $end_at]);
+
+
         //$nonce = $request->payment_method_nonce;
 
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $offer->price,
             'paymentMethodNonce' => 'fake-valid-nonce',
             'options' => [
                 'submitForSettlement' => true
@@ -68,6 +81,7 @@ class PaymentController extends Controller
             // pagamento completato
             $transaction = $result->transaction;
             $transaction->status;
+            return redirect()->route('admin.doctors.index')->with('message', 'Nuova sponsorizzazione attiva');;
 
             //dd('completato');
         } else {

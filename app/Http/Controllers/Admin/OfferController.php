@@ -55,7 +55,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        //
+        return view('admin.payment.create', compact('offer'));
     }
 
     /**
