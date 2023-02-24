@@ -67,7 +67,7 @@ export default {
 
 
 <section class="">
-    <div class="container ">
+    <div class="container">
         <div class="row custom-row justify-content-center">
             <div class="col-12 col-lg-5">
 
@@ -89,7 +89,7 @@ export default {
                     class="mySwiper"
                 >
                     <swiper-slide>
-                        <div class="prova d-flex justify-content-center">
+                        <div class="slider-reviews d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -103,7 +103,7 @@ export default {
                     </swiper-slide>
 
                     <swiper-slide>
-                        <div class="prova d-flex justify-content-center">
+                        <div class="slider-reviews d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -116,7 +116,7 @@ export default {
                         </div>
                     </swiper-slide>
                     <swiper-slide>
-                        <div class="prova d-flex justify-content-center">
+                        <div class="slider-reviews d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
@@ -133,7 +133,7 @@ export default {
 
             </div>
 
-            <div class="col-12 col-lg-5 reviews-wrapper">
+            <div class="col-12 col-lg-5 reviews-wrapper ">
                 <div class="content ">
                     <div class="container">
                         <div class="row align-items-stretch justify-content-center no-gutters">
@@ -217,14 +217,12 @@ section{
     background: url('/cool-background.png') no-repeat;
     background-size: cover;
     padding:100px 0px;
-    
-}
-.debug{
-    background-color: bisque;
-    border: 1px solid navy;
 }
 
-.prova{
+
+
+
+.slider-reviews{
     height: 100%;
     
 }
@@ -367,4 +365,21 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating-wrapper > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating-wrapper > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
+@media screen and (max-width: 768px) {
+    #btn-wrapper, h3{
+        display: flex;
+        justify-content: center;
+    }
+    h3{
+        font-size: 1.25rem;
+    }
+    .reviews-wrapper{
+        margin-top: 125px;
+    }
+
+    .container{
+    padding: 0 25px;
+}
+    
+}
 </style>
