@@ -1,5 +1,7 @@
 <script>
+
 import {Swiper, SwiperSlide } from "swiper/vue";
+import axios from 'axios';
 
 import "swiper/css";
 
@@ -20,6 +22,42 @@ export default {
         return {
         modules: [Autoplay, Navigation],
         };
+    },
+    data(){
+        return{
+            name:'',
+            text:'',
+            rating:'',
+            errors:{},
+            isLoading:false,
+            formShow:true
+        }
+    },
+    methods:{
+        sendForm(){
+            this.isLoading=true;
+            const data = {
+                name : this.name,
+                text : this.text,
+                rating : this.rating,
+                doctor_id : 11, //da sistemare con id dinamico
+            }
+
+            axios.post('http://127.0.0.1:8000/api/feedback', data)
+            .then(result=>{
+                this.isLoading=false;
+                if(!result.data.success){
+                    this.errors = result.data.errors;
+                }else{
+                    this.formShow=false;
+                    this.name='';
+                    this.text='';
+                    this.rating='';
+                    this.errors={};
+                }
+            });
+
+        }
     }
 }
 </script>
@@ -101,13 +139,13 @@ export default {
                             <div class="col-6 w-100">
                                 <div class="form h-100 contact-wrap p-4 pt-5">
 
-                                    <h3 class="text-center pb-4">Lascia una recesione!</h3>
+                                    <h3 class=" pb-4">Lascia una recesione!</h3>
 
-                                    <form class="" method="post" id="contactForm" name="contactForm">
+                                    <form class="" method="post" id="contactForm" name="contactForm" @submit.prevent="sendForm()">
                                         <div class="row">
                                             <div class="form-group mb-3">
                                                 <label for="" class="col-form-label mb-3">Nome e Cognome*</label>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Inserisci nome e cognome">
+                                                <input v-model.trim="name" type="text" class="form-control" name="name" id="name" placeholder="Inserisci nome e cognome">
 
                                                 <input type="text" class="form-control d-none" name="name-rating" id="name2" placeholder="Inserisci nome e cognome">
                                             </div>
@@ -116,30 +154,31 @@ export default {
 
                                         <div class="row">
                                             <div class="col-md-12 form-group mb-3">
-                                                <label for="message" class="col-form-label mb-3">Recensione*</label>
-                                                <textarea class="form-control" name="message" id="message" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
+                                                <label for="text" class="col-form-label mb-3">Recensione*</label>
+                                                <textarea v-model.trim="text" class="form-control" name="text" id="text" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-12 form-group mb-3">
                                                 <p>Valutazione*</p>
+
                                                 <fieldset class="rating-wrapper">
-                                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="4.5 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="3.5 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="3 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="2.5 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="2 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="1.5 stelle"></label>
+                                                    <input v-model.trim="rating" type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 stella"></label>
+                                                    <input v-model.trim="rating" type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="0.5 stelle"></label>
                                                 </fieldset>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 ">
                                             <div class="form-group" id="btn-wrapper">
                                                 <button  type="submit" class="bn632-hover bn26 ms-0 " :disabled="isLoading">{{ isLoading ? 'Invio in corso...' : 'Invia'}}</button>
                                             </div>

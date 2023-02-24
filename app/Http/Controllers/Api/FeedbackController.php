@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Message;
-use App\Models\MessageLead;
+use App\Http\Controllers\Controller;
+use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MessageLeadController extends Controller
+class FeedbackController extends Controller
 {
     public function store(Request $request){
 
@@ -20,22 +21,16 @@ class MessageLeadController extends Controller
         $validator = Validator::make($data,
             [
                 'name' => 'required|min:3|max:255',
-                'email' => 'required|email|max:255',
-                'object' => 'min:3|max:255',
-                'text' => 'required|min:3'
-
+                'text' => 'required|min:3',
+                'rating' => 'required'
             ],
             [
                 'name.required' => 'Il Nome è un campo obbligatorio',
                 'name.min' => 'Il Nome deve essere lungo almeno :min caratteri',
                 'name.max' => 'Il Nome deve essere lungo al massimo :max caratteri',
-                'email.required' => 'L\'email è un campo obbligatorio',
-                'email.email' => 'L\'email è formattata in modo errato',
-                'email.max' => 'L\'email deve essere lungo massimo :max caratteri',
-                'object.min' => 'L\'oggetto deve essere lungo almeno :min caratteri',
-                'object.max' => 'L\'oggetto deve essere lungo al massimo :max caratteri',
                 'text.required' => 'Il messaggio è un campo obbligatorio',
                 'text.min' => 'Il messaggio deve essere lungo almeno :min caratteri',
+                'rating.required' => 'La valutazione è un campo obbligatorio',
             ]
         );
 
@@ -45,9 +40,17 @@ class MessageLeadController extends Controller
             return response()->json(compact('success', 'errors'));
         }
 
-        $new_msg_lead = new Message();
-        $new_msg_lead ->fill($data);
-        $new_msg_lead ->save();
+        $review = Review::create([
+            'name' => $request->name,
+            'text' => $request->text,
+            'doctor_id' => $request->doctor_id,
+        ]);
+
+        $review = Rating::create([
+            'name' => $request->name,
+            'rating' => $request->rating,
+            'doctor_id' => $request->doctor_id,
+        ]);
 
         return response()->json(compact('success'));
     }
