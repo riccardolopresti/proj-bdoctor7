@@ -103,10 +103,10 @@ export default {
 
                                     <h3 class="text-center pb-4">Lascia una recesione!</h3>
 
-                                    <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                                    <form class="" method="post" id="contactForm" name="contactForm">
                                         <div class="row">
                                             <div class="form-group mb-3">
-                                                <label for="" class="col-form-label">Nome e Cognome*</label>
+                                                <label for="" class="col-form-label mb-3">Nome e Cognome*</label>
                                                 <input type="text" class="form-control" name="name" id="name" placeholder="Inserisci nome e cognome">
 
                                                 <input type="text" class="form-control d-none" name="name-rating" id="name2" placeholder="Inserisci nome e cognome">
@@ -114,16 +114,28 @@ export default {
 
                                         </div>
 
-                                        <div class="row mb-5">
+                                        <div class="row">
                                             <div class="col-md-12 form-group mb-3">
-                                                <label for="message" class="col-form-label">Recensione*</label>
+                                                <label for="message" class="col-form-label mb-3">Recensione*</label>
                                                 <textarea class="form-control" name="message" id="message" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row mb-5">
+
+                                        <div class="row">
                                             <div class="col-md-12 form-group mb-3">
-                                                <label for="message" class="col-form-label">Recensione*</label>
-                                                <input type="range">
+                                                <p>Valutazione*</p>
+                                                <fieldset class="rating-wrapper">
+                                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                </fieldset>
                                             </div>
                                         </div>
 
@@ -157,6 +169,7 @@ section{
     background: url('/cool-background.png') no-repeat;
     background-size: cover;
     padding:100px 0px;
+    
 }
 .debug{
     background-color: bisque;
@@ -165,10 +178,11 @@ section{
 
 .prova{
     height: 100%;
+    
 }
 
 .reviews-wrapper{
-    margin: 0px 20px;
+    margin: 34px 20px;
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.31);
     border-radius: 16px;
@@ -176,7 +190,8 @@ section{
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.21);
-    border-radius: 15px;
+    border-radius: 5px;
+    border-top: 5px solid #061761;
 }
 
 
@@ -258,5 +273,49 @@ section{
   font-weight: 300;
   margin: 0 0 20px;
 }
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating-wrapper {
+    background-color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1.5px 20px;
+  float: left;
+}
+
+.rating-wrapper > input { display: none; }
+.rating-wrapper > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating-wrapper > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating-wrapper > label {
+  color: #ddd;
+ float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-wrapper > input:checked ~ label, /* show gold star when clicked */
+.rating-wrapper:not(:checked) > label:hover, /* hover current star */
+.rating-wrapper:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rarating-wrapperting > input:checked + label:hover, /* hover current star when changing rating */
+.rating-wrapper > input:checked ~ label:hover,
+.rating-wrapper > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-wrapper > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
 </style>
