@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\SpecController;
+use App\Http\Controllers\MessageLeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,8 @@ Route::namespace('Api')
         Route::get("/{spec}", [DoctorController::class, "filterDoctors"]);
     });
 
+Route::post('/contacts', [MessageLeadController::class, 'store']);
+
 Route::get("/specs", [SpecController::class, "getSpecs"]);
+
+
