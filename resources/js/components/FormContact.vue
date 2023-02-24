@@ -57,6 +57,11 @@ export default {
 
                                 <h3 class="mb-4">Contatta il medico</h3>
 
+                                <h4 v-if="!formShow">
+                                    Il messaggio è stato inviato correttamente, riceverai una risposta al più presto. <br>
+                                    <p class="mt-3">Grazie per aver scelto BDoctors7!</p>
+                                </h4>
+
                                 <form method="POST" id="contactForm" name="contactForm" class="contactForm"  @submit.prevent="sendForm()" v-if="formShow">
 
                                     <div class="row">
@@ -111,10 +116,12 @@ export default {
 
 <style scoped lang="scss">
 @use '../../scss/appVue.scss';
-
 h3{
-    color: #3782e8;
+    color: #061761;
     font-weight: bold;
+}
+h4{
+    color: #3782e8;
 }
 .debug{
     background-color: bisque;
