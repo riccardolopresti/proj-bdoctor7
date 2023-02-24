@@ -120,6 +120,14 @@ export default {
 
 <style scoped lang="scss">
 @use '../../scss/appVue.scss';
+section{
+    margin: 0;
+    padding: 100px 0px;
+    background-image: url('/prova.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center;
+}
 h3{
     color: #061761;
     font-weight: bold;
@@ -133,9 +141,14 @@ h4{
 }
 .wrapper{
     box-shadow: 0 7px 20px 7px rgba(0, 0, 0, 0.321);
-    background-image: url('/prova.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.31);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(255, 255, 255, 0.21);
+
     min-height: 698.6px;
 }
 
