@@ -120,7 +120,7 @@
                 <div class="col-xl-5 col-lg-6 col-md-8 mb-5">
                     <div class="section-title text-center title-ex1">
                             <h2>Scegli il tuo piano</h2>
-                            <p>Tutte le offerte comprendo la sponsorizzazione del profilo per le ore indicate nei seguenti piani.</p>
+                            <p>Tutte le offerte comprendo la sponsorizzazione del profilo per le ore indicate.</p>
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Review2Controller;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SpecController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('messages', MessageController::class)->except(['edit']);
         Route::resource('ratings', RatingController::class)->except(['show', 'edit']);
         Route::resource('reviews', ReviewController::class)->except(['show', 'edit']);
+        Route::get('/payment', [PaymentController::class, 'create'])->name('payment.create');
+        Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
     });
 
 Route::middleware('auth')->group(function () {
