@@ -31,6 +31,9 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
+    {{-- Braintree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
+
     {{-- validatore --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

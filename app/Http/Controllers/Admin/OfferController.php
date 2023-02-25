@@ -51,7 +51,7 @@ class OfferController extends Controller
         $new_offer->fill($form_data);
         $new_offer->save();
 
-        return redirect()->route('admin.offers.index')->with('created', "L'offerta $new_offer->offer_type è stata creata correttamente");
+        return redirect()->route('admin.offers.index')->with('message', "Nuova promo $new_offer->offer_type creata correttamente");
     }
 
     /**
