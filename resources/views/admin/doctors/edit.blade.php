@@ -120,10 +120,12 @@
                         @enderror
                     </div>
 
+                    <div class="btn-edit-wrapper d-flex">
+                        <button href="{{route('admin.doctors.index')}}"  class="bn632-hover bn26 mt-3 mb-5 ms-3 edit-btn" style="width:9.5rem" id="edits">Annulla</button>
 
+                        <button type="submit" class="bn632-hover bn26 mt-3 mb-5 edits" style="width:9.5rem" id="edits">Conferma modifiche</button>
+                    </div>
 
-
-                    <button type="submit" class="bn632-hover bn26 mt-3 mb-5 edits" style="width:9.5rem" id="edits">Conferma modifiche</button>
                 </div>
             </div>
 
