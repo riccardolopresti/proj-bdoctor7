@@ -121,6 +121,21 @@
                     <div class="section-title text-center title-ex1">
                             <h2>Scegli il tuo piano</h2>
                             <p>Tutte le offerte comprendo la sponsorizzazione del profilo per le ore indicate.</p>
+                            @if (count($active_offers)>0)
+                                <h6 class="blue">Le tue promo attive:</h6>
+                                <ul class="activePromos">
+                                    @foreach ($active_offers as $offer)
+                                        <li><span class="offerName">
+                                            {{$offer->offer_type}}
+                                        </span>
+                                             - Scade il giorno
+                                           <span class="time">{{$offer->pivot->end_at}}</span></li>
+                                    @endforeach
+                                </ul>
+
+                            @else
+
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -158,6 +173,18 @@
 </div>
 
 <style>
+
+.activePromos{
+    list-style:circle;
+    text-align: left;
+}
+
+.activePromos li::marker{
+    color:#3782e8;
+}
+
+
+
 .pricing-section{
     padding-bottom: 200px
 }
@@ -262,6 +289,11 @@
     font-weight: 300;
 }
 
+.offerName{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 
 .price-card {
     background: #f5f5f6;
@@ -334,9 +366,7 @@ p.price span {
     padding: 0 0 16px;
     line-height: 18px;
 }
-ul li {
-    list-style-type: none;
-}
+
 .btn.btn-mid {
     height: 40px;
     line-height: 40px;
@@ -345,3 +375,22 @@ ul li {
 </style>
 
 @endsection
+{{--
+@section('scripts')
+
+    <script>
+        function changeDateFormat(date) {
+                let new_date = date.substring(0, 10).split("-").reverse().slice().join("/");
+                return new_date
+            }
+
+            const promoDate = "<?php echo json_encode($offer->pivot->end_at); ?>"
+            let putDates = document.querySelectorAll('.time')
+
+
+            for (let i = 0; i < docReviews.length; i++) {
+                let putDates = document.querySelectorAll('.time')
+                putDates[i].innerHTML = changeDateFormat(promoDate[i])
+            }
+    </script>
+@endsection --}}
