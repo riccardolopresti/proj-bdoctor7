@@ -49,7 +49,12 @@ export default {
 <template>
     <div id="container">
         <div class="doctor-details">
-            <h1>{{ doctor.user.name }} {{ doctor.surname }}</h1>
+            <h1 id="test">
+                <router-link
+                    :to="{ name: 'detail', params: { slug: doctor.slug } }"
+                    >{{ doctor.user.name }} {{ doctor.surname }}</router-link
+                >
+            </h1>
             <br />
             <div class="hint-star star mt-2 mb-2">
                 <!-- <i class="fa fa-star" aria-hidden="true"></i>
