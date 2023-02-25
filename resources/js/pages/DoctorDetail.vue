@@ -108,8 +108,8 @@ export default {
 
     </section>
 
-    <FormContact/>
-    <ReviewsRatings/>
+    <FormContact :doctorId="doctor.id"/>
+    <ReviewsRatings :doctorId="doctor.id"/>
 
 
 

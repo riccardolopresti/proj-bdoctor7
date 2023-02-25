@@ -18,6 +18,9 @@ export default {
     Swiper,
     SwiperSlide,
     },
+    props:{
+        doctorId: Number
+    },
     setup() {
         return {
         modules: [Autoplay, Navigation],
@@ -40,7 +43,7 @@ export default {
                 name : this.name,
                 text : this.text,
                 rating : this.rating,
-                doctor_id : 11, //da sistemare con id dinamico
+                doctor_id : this.doctorId
             }
 
             axios.post('http://127.0.0.1:8000/api/feedback', data)
@@ -213,6 +216,10 @@ h3{
     font-weight: bold;
 }
 
+h4{
+    color: #061761;
+}
+
 section{
     background: url('/cool-background.png') no-repeat;
     background-size: cover;
@@ -220,11 +227,9 @@ section{
 }
 
 
-
-
 .slider-reviews{
     height: 100%;
-    
+
 }
 
 .reviews-wrapper{
@@ -380,6 +385,6 @@ h1 { font-size: 1.5em; margin: 10px; }
     .container{
     padding: 0 25px;
 }
-    
+
 }
 </style>
