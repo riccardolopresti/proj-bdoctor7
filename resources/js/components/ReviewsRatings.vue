@@ -19,7 +19,7 @@ export default {
     SwiperSlide,
     },
     props:{
-        doctorId: Number
+        doctor: Object
     },
     setup() {
         return {
@@ -38,12 +38,13 @@ export default {
     },
     methods:{
         sendForm(){
+            console.log(this.doctor);
             this.isLoading=true;
             const data = {
                 name : this.name,
                 text : this.text,
                 rating : this.rating,
-                doctor_id : this.doctorId
+                doctor_id : this.doctor.id
             }
 
             axios.post('http://127.0.0.1:8000/api/feedback', data)
@@ -60,7 +61,16 @@ export default {
                     this.errors={};
                 }
             });
+        },
 
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${day}-${month}-${year} ${hours}:${minutes}`;
         }
     }
 }
@@ -91,42 +101,15 @@ export default {
                     :rewind="true"
                     class="mySwiper"
                 >
-                    <swiper-slide>
+                    <swiper-slide v-for="review in doctor.reviews" :key="review">
                         <div class="slider-reviews d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
+                                        <p>{{review.text}}</p>
                                     </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide>
-                        <div class="slider-reviews d-flex justify-content-center">
-                            <figure class="snip1533">
-                                <figcaption>
-                                    <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
-                                    </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="slider-reviews d-flex justify-content-center">
-                            <figure class="snip1533">
-                                <figcaption>
-                                    <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
-                                    </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
+                                    <h6>{{formatDate(review.created_at)}}</h6>
+                                    <h3>{{review.name}}</h3>
                                 </figcaption>
                             </figure>
                         </div>

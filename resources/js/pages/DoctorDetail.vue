@@ -109,7 +109,7 @@ export default {
     </section>
 
     <FormContact :doctorId="doctor.id"/>
-    <ReviewsRatings :doctorId="doctor.id"/>
+    <ReviewsRatings :doctor="doctor"/>
 
 
 
