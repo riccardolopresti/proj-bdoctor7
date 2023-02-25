@@ -4,6 +4,8 @@ import Header from "../partials/Header.vue";
 
 import FormContact from '../components/FormContact.vue'
 import ReviewsRatings from '../components/ReviewsRatings.vue'
+import Footer from "../partials/Footer.vue";
+
 
 export default {
     name: 'DoctorDetail',
@@ -11,7 +13,8 @@ export default {
     components: {
         Header,
         FormContact,
-        ReviewsRatings
+        ReviewsRatings,
+        Footer
     },
 
     data(){
@@ -110,6 +113,8 @@ export default {
 
     <FormContact :doctorId="doctor.id"/>
     <ReviewsRatings :doctor="doctor"/>
+
+    <Footer/>
 
 
 

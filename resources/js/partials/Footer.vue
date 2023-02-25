@@ -60,8 +60,8 @@ export default {
 <style scoped>
 .site-footer
 {
-  background-color: #3B413C;
-  padding:45px 0 20px;
+  background-color: #1f1f1f;
+  padding:150px 0 40px 20px;
   font-size:15px;
   line-height:24px;
   color:#737373;
