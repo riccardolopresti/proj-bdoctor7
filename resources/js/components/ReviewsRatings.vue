@@ -80,7 +80,7 @@ export default {
 
 
 <section class="">
-    <div class="container">
+    <div class="container px-4">
         <div class="row custom-row justify-content-center">
             <div class="col-12 col-lg-5">
 

@@ -51,8 +51,8 @@ export default {
 
 <section>
     <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-lg-11">
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-10">
                 <div class="wrapper img rounded-4">
                     <div class="row">
                         <div class="col-md-9 col-lg-7">
