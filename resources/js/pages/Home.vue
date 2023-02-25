@@ -5,6 +5,7 @@ import Jumbotron from "../partials/Jumbotron.vue";
 import SponsorSection from './SponsorSection.vue';
 import Footer from "../partials/Footer.vue";
 
+
 import axios from "axios";
 
 
