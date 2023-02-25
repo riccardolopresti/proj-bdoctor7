@@ -1,11 +1,15 @@
 <script>
 import { store } from "../data/store";
 import SearchCard from "../components/SearchCard.vue";
+import Footer from "../partials/Footer.vue";
+import Header from "../partials/Header.vue";
 
 export default {
     name: "Search",
     components: {
         SearchCard,
+        Header,
+        Footer,
     },
     data() {
         return {
@@ -29,6 +33,7 @@ export default {
 </script>
 
 <template>
+    <Header />
     <div class="wrapper">
         <div class="container-fluid">
             <div class="top-section">
@@ -96,6 +101,7 @@ export default {
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
