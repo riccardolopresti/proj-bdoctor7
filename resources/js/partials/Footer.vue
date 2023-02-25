@@ -8,25 +8,13 @@ export default {
     <footer class="site-footer">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-7">
             <h6>About</h6>
             <p class="text-justify">
                 Su BDoctors7 è possibile trovare e contattare medici iscritti al nostro servizio per prenotare visite e consulenze.
                 Il nostro sito fornisce un'ampia gamma di servizi medici online, tra cui la possibilità di cercare medici in base alla specializzazione, leggere le recensioni dei pazienti e prenotare visite con facilità e comodità.
                 I medici iscritti al nostro sito sono altamente qualificati e offrono una vasta gamma di servizi, tra cui consulenze online, visite a domicilio e visite in ospedale o in clinica. Grazie alla nostra piattaforma, potrai avere accesso a professionisti medici di alto livello in qualsiasi momento.
             </p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <h6>Categories</h6>
-            <ul class="footer-links">
-              <li><a href="#">C</a></li>
-              <li><a href="#">UI Design</a></li>
-              <li><a href="#">PHP</a></li>
-              <li><a href="#">Java</a></li>
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Templates</a></li>
-            </ul>
           </div>
 
           <div class="col-xs-6 col-md-3">
@@ -39,6 +27,11 @@ export default {
               <li><a href="#">Sitemap</a></li>
             </ul>
           </div>
+
+          <div class="col-xs-6 col-md-2">
+          <img src="/logo-doc-mobile.png" alt="logo">
+          </div>
+
         </div>
         <hr>
       </div>

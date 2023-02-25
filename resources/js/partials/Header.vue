@@ -36,7 +36,7 @@ export default {
             <li><router-link :to="{ name: 'home'}">Home</router-link></li>
             <li><a href="#">Contatti</a></li>
             <li><a href="#">lavora con noi</a></li>
-            <li><a href="/login" class="login-button">Sign in</a></li>
+            <li><a href="/login" id="login-button">Sign in</a></li>
         </ul>
         </nav>
     </header>
@@ -119,7 +119,7 @@ nav{
 
 /*Buttons Styling*/
 
-.login-button{
+#login-button{
     padding: 0.6rem 0.8rem;
     margin-left: 2vw;
     font-size:1rem;
@@ -129,7 +129,7 @@ nav{
     border-radius: 2em;
 }
 
-.login-button:hover{
+#login-button:hover{
     color:#fff;
     background-color: #dd5f24;
     border:1.5px solid #dd5f24;
