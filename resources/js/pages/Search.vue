@@ -100,13 +100,12 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-    background-color: rgb(91, 121, 179);
+    background-color: rgb(218, 217, 217);
     padding: 2rem;
     min-height: 100vh;
     // color: white;
 }
 .container-fluid {
-    // outline: 1px solid red;
     padding: 0;
     // glass
     // background: rgba(255, 255, 255, 0.2);

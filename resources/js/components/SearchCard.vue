@@ -76,7 +76,7 @@ export default {
 
             <div v-for="rating in store.doc_ratings">
                 <p v-if="rating.doctor_id == doctor.id">
-                    Rating: {{ roundNumber(rating.average_rating) }}
+                    Rating: {{ roundNumber(rating.average_rating) }} / 5
                 </p>
             </div>
         </div>
@@ -97,14 +97,13 @@ ul {
 }
 
 #container {
-    // box-shadow: 0 5px 10px rgb(160, 160, 160);
+    box-shadow: 0 5px 10px rgb(160, 160, 160);
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
-    border-radius: 15px;
+    border-radius: 5px;
     overflow: hidden;
     margin: 5em auto;
     width: 500px;
-    // outline: 3px solid lime;
     margin: 1rem;
     height: 250px;
 }
@@ -116,7 +115,6 @@ ul {
     height: 100%;
     float: left;
     width: 70%;
-    // outline: 3px solid blue;
 }
 
 #container .doctor-details h1 {
@@ -170,48 +168,10 @@ ul {
     border-radius: 50%;
     width: 100px;
     display: inline-block;
-    // outline: 2px solid red;
     margin-top: 20px;
 }
 
 #container img {
     width: 100%;
 }
-
-// .info {
-//     background: rgba(27, 26, 26, 0.9);
-//     font-family: "Bree Serif", serif;
-//     transition: all 0.3s ease-out;
-//     transform: translateX(-100%);
-//     position: absolute;
-//     line-height: 1.8;
-//     text-align: left;
-//     font-size: 105%;
-//     color: #fff;
-//     height: 100%;
-//     width: 100%;
-//     left: 0;
-//     top: 0;
-// }
-
-// .info h2 {
-//     text-align: center;
-// }
-// .product-image:hover .info {
-//     transform: translateX(0);
-// }
-
-// .info ul li {
-//     transition: 0.3s ease;
-// }
-// .info ul li:hover {
-//     transform: translateX(50px) scale(1.3);
-// }
-
-// .product-image:hover img {
-//     transition: all 0.3s ease-out;
-// }
-// .product-image:hover img {
-//     transform: scale(1.2, 1.2);
-// }
 </style>

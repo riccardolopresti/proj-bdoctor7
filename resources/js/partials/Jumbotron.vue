@@ -64,6 +64,7 @@ export default {
                             name="specSearch"
                             list="spec-list"
                             placeholder="Cerca una specializzazione"
+                            autocomplete="off"
                             v-model="store.specType"
                         />
                         <datalist id="spec-list">
@@ -71,6 +72,7 @@ export default {
                                 v-for="spec in specs"
                                 :key="spec.id"
                                 :value="spec.type"
+                                style="{{backgroundColor:red}}"
                             ></option>
                         </datalist>
                     </div>
@@ -102,7 +104,7 @@ export default {
             // outline: 3px solid lime;
             .custom-select {
                 background-color: #f4f7fc;
-                border-radius: 30px;
+                border-radius: 10px 0 0 10px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
                 // outline: 3px solid lime;
                 // select {
@@ -117,7 +119,7 @@ export default {
 
                 input[type="text"] {
                     border: none;
-                    padding: 8px;
+                    padding: 10px;
                     font-size: 16px;
                     border-radius: 30px;
                     background-color: #f4f7fc;
@@ -130,6 +132,7 @@ export default {
                     list-style-type: none;
                     margin: 0;
                     padding: 0;
+                    border: none;
                 }
 
                 datalist option {
