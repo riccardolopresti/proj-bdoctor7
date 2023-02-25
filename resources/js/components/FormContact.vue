@@ -14,6 +14,9 @@ export default {
             formShow:true
         }
     },
+    props:{
+        doctorId : Number
+    },
     methods:{
         sendForm(){
             this.isLoading=true;
@@ -22,7 +25,7 @@ export default {
                 email : this.email,
                 object : this.object,
                 text : this.text,
-                doctor_id : 11, //da sistemare con id dinamico
+                doctor_id : this.doctorId
             }
 
             axios.post('http://127.0.0.1:8000/api/contacts', data)
@@ -48,8 +51,8 @@ export default {
 
 <section>
     <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-lg-11">
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-10">
                 <div class="wrapper img rounded-4">
                     <div class="row">
                         <div class="col-md-9 col-lg-7">
@@ -133,7 +136,7 @@ h3{
     font-weight: bold;
 }
 h4{
-    color: #3782e8;
+    color: #061761;
 }
 .debug{
     background-color: bisque;

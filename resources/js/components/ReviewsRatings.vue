@@ -18,6 +18,9 @@ export default {
     Swiper,
     SwiperSlide,
     },
+    props:{
+        doctor: Object
+    },
     setup() {
         return {
         modules: [Autoplay, Navigation],
@@ -35,12 +38,13 @@ export default {
     },
     methods:{
         sendForm(){
+            console.log(this.doctor);
             this.isLoading=true;
             const data = {
                 name : this.name,
                 text : this.text,
                 rating : this.rating,
-                doctor_id : 11, //da sistemare con id dinamico
+                doctor_id : this.doctor.id
             }
 
             axios.post('http://127.0.0.1:8000/api/feedback', data)
@@ -57,7 +61,16 @@ export default {
                     this.errors={};
                 }
             });
+        },
 
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${day}-${month}-${year} ${hours}:${minutes}`;
         }
     }
 }
@@ -67,7 +80,7 @@ export default {
 
 
 <section class="">
-    <div class="container">
+    <div class="container px-4">
         <div class="row custom-row justify-content-center">
             <div class="col-12 col-lg-5">
 
@@ -88,42 +101,15 @@ export default {
                     :rewind="true"
                     class="mySwiper"
                 >
-                    <swiper-slide>
+                    <swiper-slide v-for="review in doctor.reviews" :key="review">
                         <div class="slider-reviews d-flex justify-content-center">
                             <figure class="snip1533">
                                 <figcaption>
                                     <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
+                                        <p>{{review.text}}</p>
                                     </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide>
-                        <div class="slider-reviews d-flex justify-content-center">
-                            <figure class="snip1533">
-                                <figcaption>
-                                    <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
-                                    </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="slider-reviews d-flex justify-content-center">
-                            <figure class="snip1533">
-                                <figcaption>
-                                    <blockquote>
-                                    <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
-                                    </blockquote>
-                                    <h3>Wisteria Ravenclaw</h3>
-                                    <h4>Google Inc.</h4>
+                                    <h6>{{formatDate(review.created_at)}}</h6>
+                                    <h3>{{review.name}}</h3>
                                 </figcaption>
                             </figure>
                         </div>
@@ -213,6 +199,10 @@ h3{
     font-weight: bold;
 }
 
+h4{
+    color: #061761;
+}
+
 section{
     background: url('/cool-background.png') no-repeat;
     background-size: cover;
@@ -220,11 +210,9 @@ section{
 }
 
 
-
-
 .slider-reviews{
     height: 100%;
-    
+
 }
 
 .reviews-wrapper{
@@ -380,6 +368,6 @@ h1 { font-size: 1.5em; margin: 10px; }
     .container{
     padding: 0 25px;
 }
-    
+
 }
 </style>

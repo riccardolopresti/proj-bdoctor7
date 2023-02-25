@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\FeedbackController;
+use App\Http\Controllers\Api\MessageLeadController;
 use App\Http\Controllers\Api\SpecController;
-use App\Http\Controllers\MessageLeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
