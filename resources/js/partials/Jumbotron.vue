@@ -32,26 +32,50 @@ export default {
                     Prenota subito il tuo appuntamento daxx xxxx
                 </h2>
                 <form class="search-form ms-4">
-                    <button
-                        @click="
-                            $router.push({ name: 'search' });
-                            filterDoctors();
-                        "
-                        class="search-btn"
-                        type="submit"
-                    >
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <select v-model="store.specType">
-                        <option selected>Seleziona una specializzazione</option>
-                        <option
-                            v-for="spec in specs"
-                            :key="spec.id"
-                            :value="spec.type"
+                    <div class="custom-select">
+                        <button
+                            @click="
+                                $router.push({ name: 'search' });
+                                filterDoctors();
+                            "
+                            class="search-btn"
+                            type="submit"
                         >
-                            {{ spec.type }}
-                        </option>
-                    </select>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <!-- <select v-model="store.specType">
+                            <option selected>
+                                Seleziona una specializzazione
+                            </option>
+                            <option
+                                v-for="spec in specs"
+                                :key="spec.id"
+                                :value="spec.type"
+                            >
+                                {{ spec.type }}
+                            </option>
+                        </select> -->
+
+                        <!-- custom dropdown -->
+
+                        <input
+                            type="text"
+                            id="specSearch"
+                            name="specSearch"
+                            list="spec-list"
+                            placeholder="Cerca una specializzazione"
+                            autocomplete="off"
+                            v-model="store.specType"
+                        />
+                        <datalist id="spec-list">
+                            <option
+                                v-for="spec in specs"
+                                :key="spec.id"
+                                :value="spec.type"
+                                style="{{backgroundColor:red}}"
+                            ></option>
+                        </datalist>
+                    </div>
                 </form>
             </div>
         </div>
@@ -75,29 +99,60 @@ export default {
         .search-form {
             display: flex;
             align-items: center;
+            justify-content: center;
             width: 55vw;
-
-            input,
-            .search-btn {
+            // outline: 3px solid lime;
+            .custom-select {
                 background-color: #f4f7fc;
+                border-radius: 10px 0 0 10px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-                padding: 10px 20px;
-                font-size: 16px;
-                border: none;
-            }
+                // outline: 3px solid lime;
+                // select {
+                //     background-color: transparent;
+                //     outline: 0;
+                //     border: 0;
+                //     margin-right: 20px;
+                //     padding: 1rem 0;
+                // }
 
-            input {
-                width: 20vw;
-                border-radius: 0px 30px 30px 0px;
-                flex: 1;
-            }
+                // custom dropdown
 
-            .search-btn {
-                color: gray;
-                border-radius: 30px 0px 0px 30px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-                font-size: 16px;
-                cursor: pointer;
+                input[type="text"] {
+                    border: none;
+                    padding: 10px;
+                    font-size: 16px;
+                    border-radius: 30px;
+                    background-color: #f4f7fc;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                datalist {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                }
+
+                datalist option {
+                    padding: 8px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+
+                datalist option:checked {
+                    background-color: #ccc;
+                }
+                .search-btn {
+                    background-color: transparent;
+                    border: none;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    color: gray;
+                    border-radius: 30px 0px 0px 30px;
+                    cursor: pointer;
+                }
             }
         }
     }
