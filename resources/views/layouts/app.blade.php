@@ -71,7 +71,6 @@
 
         </main>
 
-        {{-- @include('admin.partials.footer') --}}
     </div>
 
     @stack('body-scripts')
