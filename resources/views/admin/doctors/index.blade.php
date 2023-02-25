@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="main-wrapper-doctors row">
+        <div class="main-wrapper-doctors row d-flex justify-content-center">
             <div class="col-12 d-flex justify-content-end buttons mb-3">
                 <a href="{{ route('admin.doctors.edit', $doctor) }}" class="bn632-hover bn26 me-2 edit-profile"><i
                         class="fa-solid fa-pen-to-square"></i>&nbsp;Modifica profilo</a>

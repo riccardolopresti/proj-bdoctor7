@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container me-5">
+    <div class="container mx-5">
 
         @if (session('message'))
             <div class="alert alert-success" role="alert">

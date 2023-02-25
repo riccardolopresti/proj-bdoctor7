@@ -5,7 +5,7 @@
     <div class="container-fluid mt-3">
         <div class="px-3 d-flex d-flex align-items-center justify-content-between">
             <h1 class="my-3"><span class="title">
-                Modifica profilo:
+
             </span><br>
             <span class="blue">
                 {{$user->name}} {{$doctor->surname}}
@@ -59,7 +59,7 @@
                         @enderror
                     </div>
                     <div class="col-6 my-2">
-                            <label for="phone" class="form-label">Numero di telefono</label>
+                            <label for="phone" class="form-label">Telefono</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone" name="phone" value="{{$doctor->phone, old('phone')}}">
                             @error('phone')
                             <p class="invalid-feedback">{{$message}}</p>
