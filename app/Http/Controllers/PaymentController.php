@@ -56,13 +56,13 @@ class PaymentController extends Controller
             'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
-
+        date_default_timezone_set('Europe/Rome');
         $nowDate=date("Y-m-d H:i:s");
         $start_str = strtotime($nowDate);
         $end_str = $start_str + (($offer->duration) * 3600);
         $end_at = date("Y-m-d h:i:s", $end_str);
 
-        $offer->doctors()->sync($doctor->id,
+        $offer->doctors()->attach($doctor->id,
         ['start_at' => $nowDate,
         'end_at'=> $end_at]);
 
