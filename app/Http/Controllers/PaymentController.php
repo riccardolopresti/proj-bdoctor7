@@ -63,8 +63,6 @@ class PaymentController extends Controller
         date_default_timezone_set('Europe/Rome');
         $end_at = date("Y-m-d H:i:s", $end_str);
 
-        dd(($end_at));
-
         $offer->doctors()->attach($doctor->id,
         ['start_at' => $nowDate,
         'end_at'=> $end_at]);
