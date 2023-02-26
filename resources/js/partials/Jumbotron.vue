@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { store } from "../data/store";
+import { toRaw } from "vue";
 
 export default {
     name: "Jumbotron",
@@ -10,6 +11,8 @@ export default {
     data() {
         return {
             store,
+            filteredSpecs: [],
+            isVisible: false,
         };
     },
     methods: {
@@ -19,6 +22,23 @@ export default {
                 store.doc_ratings = result.data.doc_ratings;
                 console.log(result.data.doc_ratings);
             });
+        },
+        getRawArray(proxy) {
+            return toRaw(proxy);
+        },
+        filterSpecs() {
+            const input = document.getElementById("input-box");
+            input.onkeyup = (e) => {
+                store.specType = e.target.value;
+                this.filteredSpecs = this.getRawArray(this.specs).filter(
+                    (spec) => spec.type.toLowerCase().startsWith(store.specType)
+                );
+                console.log(toRaw(this.filteredSpecs));
+            };
+        },
+        setSpec(string) {
+            store.specType = toRaw(string).type;
+            this.isVisible = false;
         },
     },
 };
@@ -32,7 +52,7 @@ export default {
                     Cerca ora il tuo specialista
                 </h2>
                 <form class="search-form ms-4">
-                    <div class="custom-select">
+                    <div class="custom-select d-flex">
                         <button
                             @click="
                                 $router.push({ name: 'search' });
@@ -43,38 +63,30 @@ export default {
                         >
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                        <!-- <select v-model="store.specType">
-                            <option selected>
-                                Seleziona una specializzazione
-                            </option>
-                            <option
-                                v-for="spec in specs"
-                                :key="spec.id"
-                                :value="spec.type"
-                            >
-                                {{ spec.type }}
-                            </option>
-                        </select> -->
-
-                        <!-- custom dropdown -->
 
                         <input
                             type="text"
-                            id="specSearch"
-                            name="specSearch"
-                            list="spec-list"
-                            placeholder="Cerca una specializzazione"
-                            autocomplete="off"
                             v-model="store.specType"
+                            autocomplete="off"
+                            @input="filterSpecs()"
+                            @focus="this.isVisible = true"
+                            id="input-box"
+                            class="z-10"
                         />
-                        <datalist id="spec-list">
-                            <option
-                                v-for="spec in specs"
-                                :key="spec.id"
-                                :value="spec.type"
-                                style="{{backgroundColor:red}}"
-                            ></option>
-                        </datalist>
+
+                        <div
+                            v-if="this.filteredSpecs && isVisible"
+                            class="suggestions z-10"
+                        >
+                            <ul>
+                                <li
+                                    v-for="filteredSpec in filteredSpecs"
+                                    @click="setSpec(filteredSpec)"
+                                >
+                                    {{ filteredSpec.type }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -91,6 +103,7 @@ h2{
     height: 70vh;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 0;
     background-position: center;
     font-family: "Montserrat", sans-serif;
 
@@ -115,56 +128,50 @@ h2{
             align-items: center;
             justify-content: center;
             width: 55vw;
-            // outline: 3px solid lime;
             .custom-select {
                 background-color: #f4f7fc;
-                border-radius: 10px 0 0 10px;
+                border-radius: 30px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-                // outline: 3px solid lime;
-                // select {
-                //     background-color: transparent;
-                //     outline: 0;
-                //     border: 0;
-                //     margin-right: 20px;
-                //     padding: 1rem 0;
-                // }
-
-                // custom dropdown
-
-                input[type="text"] {
+                width: 500px;
+                position: relative;
+                input {
+                    height: 50px;
+                    width: 100%;
+                    outline: none;
                     border: none;
-                    padding: 10px;
-                    font-size: 16px;
-                    border-radius: 30px;
+                    background-color: transparent;
+                    padding: 1em 0.5em;
+                    font-size: 1.2rem;
+                }
+                .suggestions {
+                    position: absolute;
+                    top: 55px;
+                    left: 45px;
+                    max-height: 150px;
+                    overflow-y: auto;
                     background-color: #f4f7fc;
-                    &:focus {
-                        outline: none;
+                    width: 85%;
+                    border-radius: 0 0 10px 10px;
+                    ul {
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+
+                        li {
+                            padding: 0.5rem 0;
+                            &:hover {
+                                background-color: #74a6df;
+                            }
+                        }
                     }
                 }
 
-                datalist {
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    border: none;
-                }
-
-                datalist option {
-                    padding: 8px;
-                    font-size: 16px;
-                    cursor: pointer;
-                }
-
-                datalist option:checked {
-                    background-color: #ccc;
-                }
                 .search-btn {
                     background-color: transparent;
                     border: none;
                     padding: 10px 20px;
                     font-size: 16px;
                     color: gray;
-                    border-radius: 30px 0px 0px 30px;
                     cursor: pointer;
                 }
             }

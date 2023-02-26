@@ -28,6 +28,9 @@ export default {
                 }
             }
         },
+        capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
     },
 };
 </script>
@@ -40,7 +43,9 @@ export default {
                 <div class="left ps-3">
                     <h2>
                         Risultati per:
-                        <span class="blue">{{ store.specType }}</span>
+                        <span class="blue">{{
+                            capitalizeFirstLetter(store.specType)
+                        }}</span>
                     </h2>
                 </div>
                 <div class="right pe-3">
