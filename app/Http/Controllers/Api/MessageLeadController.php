@@ -22,7 +22,7 @@ class MessageLeadController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'email' => 'required|email|max:255',
-                'object' => 'min:3|max:255',
+                'object' => 'max:255',
                 'text' => 'required|min:3'
 
             ],
