@@ -49,7 +49,7 @@ export default {
 <template>
     <div id="container">
         <div class="doctor-details">
-            <h1 id="test">
+            <h1>
                 <router-link
                     :to="{ name: 'detail', params: { slug: doctor.slug } }"
                     >{{ doctor.user.name }} {{ doctor.surname }}</router-link
@@ -84,6 +84,7 @@ export default {
                     Rating: {{ roundNumber(rating.average_rating) }} / 5
                 </p>
             </div>
+            <span>Recensioni: {{ doctor.reviews.length }}</span>
         </div>
 
         <div class="doctor-image">
