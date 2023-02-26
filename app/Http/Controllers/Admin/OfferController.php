@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferRequest;
+use App\Models\Doctor;
 use App\Models\Offer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
@@ -16,9 +18,14 @@ class OfferController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Europe/Rome');
+        $now=date("Y-m-d H:i:s");
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
+        $active_offers=$doctor->offers()->where('doctor_id', $doctor->id)->where('end_at','>',$now)->get();
         $offers = Offer::all();
 
-        return view('admin.offers.index', compact('offers'));
+
+        return view('admin.offers.index', compact('offers', 'now', 'doctor','active_offers'));
     }
 
     /**
@@ -44,7 +51,7 @@ class OfferController extends Controller
         $new_offer->fill($form_data);
         $new_offer->save();
 
-        return redirect()->route('admin.offers.index')->with('created', "L'offerta $new_offer->offer_type è stata creata correttamente");
+        return redirect()->route('admin.offers.index')->with('message', "Nuova promo $new_offer->offer_type creata correttamente");
     }
 
     /**
@@ -55,7 +62,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        //
+        return view('admin.payment.create', compact('offer'));
     }
 
     /**

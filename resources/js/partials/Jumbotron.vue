@@ -96,14 +96,15 @@ export default {
 
 <style lang="scss" scoped>
 #jumbotron {
-    background-image: url("https://media.discordapp.net/attachments/1073532304082862080/1077515321075843092/poliambulatorio-fiano-romano-1.jpg?width=840&height=473");
+    background-image: url('/jumbo.jpg');
     height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 0;
+    background-position: center;
+    font-family: "Montserrat", sans-serif;
 
     .mask {
-        background-color: rgba(0, 0, 0, 0.2);
         height: 100%;
         width: 100vw;
     }

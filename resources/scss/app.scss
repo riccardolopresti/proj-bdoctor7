@@ -1,6 +1,7 @@
+@use 'partials/variables.scss' as *;
 @use 'temporary-scss-doctors.scss' as *;
 @use 'messages-scss.scss' as *;
-@use 'partials/variables.scss' as *;
+@use 'offers.scss' as *;
 
 @import '~bootstrap/scss/bootstrap';
 @import '/node_modules/select2/dist/css/select2.css';

@@ -12,6 +12,6 @@ class Offer extends Model
     protected $fillable = ['offer_type','price','duration'];
 
     public function doctors(){
-        return $this->belongsToMany(Doctor::class);
+        return $this->belongsToMany(Doctor::class)->withPivot('start_at','end_at');
     }
 }
