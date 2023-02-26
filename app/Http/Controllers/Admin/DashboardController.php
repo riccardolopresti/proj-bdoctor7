@@ -13,6 +13,9 @@ class DashboardController extends Controller
 
         $user_logged =  Auth()->user()->doctors->ratings;
 
-        return view('admin.home', compact('user_logged'));
+        $labels = $user_logged->keys();
+        $data = $user_logged->values();
+
+        return view('admin.home', compact('labels','data'));
     }
 }
