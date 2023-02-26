@@ -111,7 +111,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-    background-color: rgb(218, 217, 217);
+    background-color: rgb(244, 244, 244);
     padding: 2rem;
     min-height: 100vh;
     // color: white;
@@ -131,7 +131,7 @@ export default {
         justify-content: space-between;
         // outline: 3px solid lime;
         padding: 30px 10px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid rgb(121, 121, 121);
         .left {
             padding: 0;
             // outline: 3px solid blue;
