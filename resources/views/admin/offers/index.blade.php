@@ -135,11 +135,14 @@
                      <h6 class="blue">Le tue promo attive:</h6>
                         <ul class="activePromos">
                             @foreach ($active_offers as $offer)
-                                <li><span class="offerName">
+                                <li>
+                                <span class="offerName">
                                  {{$offer->offer_type}}
                                  </span>
                                     - Scade il giorno
-                                <span class="time">{{$offer->pivot->end_at}}</span></li>
+                                <span class="time">{{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $offer->pivot->end_at),0,10))))}}</span><br>
+                                alle ore <span class="time">{{substr($offer->pivot->end_at,11,-3)}}</span></li>
+
                             @endforeach
                         </ul>
                 </div>
@@ -154,7 +157,7 @@
             <div class="price-card">
                 <h2 class="text-capitalize">{{$offer->offer_type}}</h2>
                 <p>Durata <strong style="color:#3782e8">{{$offer->duration}} Ore</strong>  </p>
-                <p class="price"><span>&euro; {{$offer->price}}</span></p>
+                <p class="price"><span style="color:#3782e8;font-size:26px;font-weight:600">&euro; {{$offer->price}}</span></p>
 
                 <a href="{{route('admin.payment.create', $offer)}}" class="bn632-hover bn26">Acquista ora</a>
             </div>

@@ -166,6 +166,11 @@
         position: relative;
         border-radius: 2px;
         overflow: hidden;
+        & .price>span{
+            color:#3782e8;
+            font-weight:600;
+            font-size:24px;
+        }
     }
     .price-card:before {
         position: absolute;

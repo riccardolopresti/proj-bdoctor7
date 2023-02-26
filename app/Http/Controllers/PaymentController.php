@@ -60,7 +60,10 @@ class PaymentController extends Controller
         $nowDate=date("Y-m-d H:i:s");
         $start_str = strtotime($nowDate);
         $end_str = $start_str + (($offer->duration) * 3600);
-        $end_at = date("Y-m-d h:i:s", $end_str);
+        date_default_timezone_set('Europe/Rome');
+        $end_at = date("Y-m-d H:i:s", $end_str);
+
+        dd(($end_at));
 
         $offer->doctors()->attach($doctor->id,
         ['start_at' => $nowDate,
