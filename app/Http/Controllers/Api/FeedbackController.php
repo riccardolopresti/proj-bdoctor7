@@ -68,7 +68,7 @@ class FeedbackController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('success', 'errors'));
         }
-        
+
         if($request->text){
             $review = Review::create([
                 'name' => $request->name,
@@ -76,15 +76,16 @@ class FeedbackController extends Controller
                 'doctor_id' => $request->doctor_id,
             ]);
         }
-        
+
         if($request->rating){
-            $review = Rating::create([
+            $rating = Rating::create([
                 'name' => $request->name,
                 'rating' => $request->rating,
-                'doctor_id' => $request->doctor_id,
             ]);
+
+            $rating->doctors()->attach($request->doctor_id);
+
         }
-        
 
         return response()->json(compact('success'));
     }

@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-@dump( $labels )
-@dump( $data )
+
 <div>
     <canvas id="doc_rating" width="240px" height="240px"></canvas>
  </div>
