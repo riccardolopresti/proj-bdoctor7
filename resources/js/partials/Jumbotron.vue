@@ -20,6 +20,26 @@ export default {
                 console.log(result.data.doc_ratings);
             });
         },
+        checkInput() {
+            const searchWrapper = document.querySelector(".search-input");
+            const input = document.querySelector("#input");
+            const suggList = document.querySelector(".autocomplete-box");
+
+            input.onkeyup = (e) => {
+                store.specType = e.target.value;
+                console.log(store.specType);
+            };
+        },
+        check() {
+            const listItem = document.getElementById("list-item");
+            console.log(listItem);
+            // listItem.classList.remove("d-none");
+        },
+        // assignValue() {
+        //     const listItem = document.getElementById("list-item");
+
+        //     listItem.addEventListener("click", function () {});
+        // },
     },
 };
 </script>
@@ -32,7 +52,7 @@ export default {
                     Prenota subito il tuo appuntamento daxx xxxx
                 </h2>
                 <form class="search-form ms-4">
-                    <div class="custom-select">
+                    <div class="custom-select d-flex">
                         <button
                             @click="
                                 $router.push({ name: 'search' });
@@ -43,6 +63,24 @@ export default {
                         >
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
+                        <input
+                            type="text"
+                            placeholder="cerca"
+                            id="input"
+                            @click="checkInput()"
+                            autocomplete="off"
+                            @beforeinput="check()"
+                        />
+                        <ul class="autocomplete-box">
+                            <li
+                                v-for="spec in specs"
+                                class="d-none"
+                                id="list-item"
+                            >
+                                {{ spec.type }}
+                            </li>
+                        </ul>
+
                         <!-- <select v-model="store.specType">
                             <option selected>
                                 Seleziona una specializzazione
@@ -57,8 +95,7 @@ export default {
                         </select> -->
 
                         <!-- custom dropdown -->
-
-                        <input
+                        <!-- <input
                             type="text"
                             id="specSearch"
                             name="specSearch"
@@ -73,7 +110,7 @@ export default {
                                 :key="spec.id"
                                 :value="spec.type"
                             ></option>
-                        </datalist>
+                        </datalist> -->
                     </div>
                 </form>
             </div>
@@ -102,8 +139,23 @@ export default {
             width: 55vw;
             .custom-select {
                 background-color: #f4f7fc;
-                border-radius: 10px 0 0 10px;
+                border-radius: 30px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                width: 500px;
+                //
+
+                input {
+                    height: 50px;
+                    width: 100%;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    padding: 1em 0.5em;
+                    font-size: 1.2rem;
+                    // outline: 3px solid lime;
+                    // border-radius: 0px 30px 30px 0px;
+                }
+
                 // outline: 3px solid lime;
                 // select {
                 //     background-color: transparent;
@@ -115,42 +167,66 @@ export default {
 
                 // custom dropdown
 
-                input[type="text"] {
-                    border: none;
-                    padding: 10px;
-                    font-size: 16px;
-                    border-radius: 30px;
-                    background-color: #f4f7fc;
-                    &:focus {
-                        outline: none;
-                    }
-                }
+                // input[type="text"] {
+                //     border: none;
+                //     padding: 10px;
+                //     font-size: 16px;
+                //     border-radius: 30px;
+                //     background-color: #f4f7fc;
+                //     &:focus {
+                //         outline: none;
+                //     }
+                // }
 
-                datalist {
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    border: none;
-                }
+                // datalist {
+                //     list-style-type: none;
+                //     margin: 0;
+                //     padding: 0;
+                //     border: none;
+                // }
 
-                datalist option {
-                    padding: 8px;
-                    font-size: 16px;
-                    cursor: pointer;
-                }
+                // datalist option {
+                //     padding: 8px;
+                //     font-size: 16px;
+                //     cursor: pointer;
+                // }
 
-                datalist option:checked {
-                    background-color: #ccc;
-                }
+                // datalist option:checked {
+                //     background-color: #ccc;
+                // }
                 .search-btn {
                     background-color: transparent;
                     border: none;
                     padding: 10px 20px;
                     font-size: 16px;
                     color: gray;
-                    border-radius: 30px 0px 0px 30px;
+                    // border-radius: 30px 0px 0px 30px;
                     cursor: pointer;
                 }
+            }
+        }
+    }
+}
+
+// custom dropdown
+ul {
+    list-style: none;
+}
+.search-input {
+    background-color: transparent;
+    border-radius: 5px;
+
+    .autocomplete-box {
+        max-height: 100px;
+        overflow-y: auto;
+        margin: 0;
+        padding: 0;
+        // opacity: 0;
+        pointer-events: none;
+        li {
+            padding: 5px 0;
+            &:hover {
+                background-color: #cacaca;
             }
         }
     }
