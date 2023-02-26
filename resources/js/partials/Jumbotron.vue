@@ -72,7 +72,6 @@ export default {
                                 v-for="spec in specs"
                                 :key="spec.id"
                                 :value="spec.type"
-                                style="{{backgroundColor:red}}"
                             ></option>
                         </datalist>
                     </div>
@@ -101,7 +100,6 @@ export default {
             align-items: center;
             justify-content: center;
             width: 55vw;
-            // outline: 3px solid lime;
             .custom-select {
                 background-color: #f4f7fc;
                 border-radius: 10px 0 0 10px;
