@@ -29,7 +29,7 @@ export default {
         <div class="mask d-flex align-items-center">
             <div class="jumbo-content">
                 <h2 class="fw-bold mb-3 ms-4">
-                    Prenota subito il tuo appuntamento daxx xxxx
+                    Cerca ora il tuo specialista
                 </h2>
                 <form class="search-form ms-4">
                     <div class="custom-select">
@@ -83,9 +83,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+h2{
+    color: #061761;
+}
 #jumbotron {
     background-image: url('/jumbo.jpg');
-    height: 500px;
+    height: 70vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -97,6 +100,16 @@ export default {
     }
 
     .jumbo-content {
+        background: rgba(255, 255, 255, 0.51);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.21);
+
+        padding: 70px 0;
+        margin-left: 60px;
+
         .search-form {
             display: flex;
             align-items: center;
