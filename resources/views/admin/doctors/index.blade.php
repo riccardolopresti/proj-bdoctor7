@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container-fluid">
+        @if (session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
         <div class="main-wrapper-doctors row">
             <div class="col-12 d-flex justify-content-end buttons mb-3">
                 <a href="{{ route('admin.doctors.edit', $doctor) }}" class="bn632-hover bn26 me-2 edit-profile"><i

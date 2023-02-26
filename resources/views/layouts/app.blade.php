@@ -31,8 +31,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
-    {{-- Braintree --}}
-    <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
+
+
 
     {{-- validatore --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -40,7 +40,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/localization/messages_it.min.js" integrity="sha512-UQ9TMYbQBi6Tg7TKdIF1uEiDjRtcD4F1oVdQz/Rb1e9nhImFrvL1VWNhh/+6Q2dCG8NxH4at0B5pNWu4xaQGoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js" integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://js.braintreegateway.com/web/dropin/1.34.0/js/dropin.min.js"></script>
+        {{-- Braintree --}}
+        <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.js"></script>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 
     <!-- Usando Vite -->
