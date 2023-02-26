@@ -45,6 +45,12 @@
         integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    {{-- CHARTJS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js" integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -71,7 +77,6 @@
 
         </main>
 
-        {{-- @include('admin.partials.footer') --}}
     </div>
 
     @stack('body-scripts')
