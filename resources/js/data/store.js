@@ -5,5 +5,4 @@ export const store =reactive({
     doc_ratings: [],
     apiUrl: 'http://127.0.0.1:8000/api/doctors/',
     specType:'',
-
 })
