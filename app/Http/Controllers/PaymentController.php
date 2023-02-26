@@ -81,7 +81,7 @@ class PaymentController extends Controller
             // pagamento completato
             $transaction = $result->transaction;
             $transaction->status;
-            return redirect()->route('admin.doctors.index')->with('message', 'Nuova sponsorizzazione attiva');;
+            return redirect()->route('admin.doctors.index')->with('message', 'Nuova sponsorizzazione creata correttamente');;
 
             //dd('completato');
         } else {
