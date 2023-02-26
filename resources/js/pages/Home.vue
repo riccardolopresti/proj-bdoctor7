@@ -2,7 +2,9 @@
 
 import Header from "../partials/Header.vue";
 import Jumbotron from "../partials/Jumbotron.vue";
-import SponsorSection from './SponsorSection.vue'
+import SponsorSection from './SponsorSection.vue';
+import Footer from "../partials/Footer.vue";
+
 
 import axios from "axios";
 
@@ -14,7 +16,8 @@ export default {
     components: {
         Header,
         Jumbotron,
-        SponsorSection
+        SponsorSection,
+        Footer
     },
     data() {
         return {
@@ -43,7 +46,8 @@ export default {
 
     <Header />
     <Jumbotron :specs="specs" />
-    <SponsorSection/>>
+    <SponsorSection/>
+    <Footer/>
 
 </template>
 

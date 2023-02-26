@@ -29,8 +29,7 @@ span.title{
 }
 
 #profile-img{
-    max-height:160px;
-    max-width:160px;
+    max-width: 200px;
     border-radius:50%;
     object-fit: cover;
 }
@@ -267,7 +266,7 @@ span.title{
 
 @media screen and (max-width:992px){
     .main-wrapper-doctors.row{
-        width:90%;
+        width:100%;
     }
   }
 
@@ -280,6 +279,9 @@ span.title{
 @media screen and (max-width:588px){
 
     .main-wrapper-doctors.row{
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 80px;
         .left.row{
             position: relative;
             .col-sm-5.col-12.profile-photo.p-0{
@@ -331,7 +333,7 @@ span.title{
         }
         .right.flex-column.row{
             .sections-blue{
-                min-width:270px;
+                min-width:100%;
                 padding:0;
                 .section-blue.ratings-section{
                     a{
@@ -345,5 +347,9 @@ span.title{
                 }
             }
         }
+    }
+
+    #profile-img{
+        max-width: 125px;
     }
   }

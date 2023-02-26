@@ -1,0 +1,60 @@
+.bn632-hover.bn26 {
+    text-decoration: none;
+    padding:5px 8px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 6.5rem;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    &.edit-profile{
+        width:10rem;
+    }
+    &.delete-profile{
+        background-image: linear-gradient(
+            to right,
+            #e12541,
+            #eb4444,
+            #fe042e,
+            #ed3f3f);
+
+            box-shadow: 0 4px 15px 0 rgba(#eb4444, 0.75);
+            width:9.5rem;
+            margin-left:0;
+    }
+    }
+
+.bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    }
+
+.bn632-hover:focus {
+    outline: none;
+    }
+
+.bn632-hover.bn26 {
+    background-image: linear-gradient(
+        to right,
+        #25aae1,
+        #4481eb,
+        #04befe,
+        #3f86ed
+    );
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    }

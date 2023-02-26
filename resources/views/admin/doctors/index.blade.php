@@ -9,6 +9,8 @@
         </div>
     @endif
         <div class="main-wrapper-doctors row">
+        <div class="main-wrapper-doctors row d-flex justify-content-center ">
+
             <div class="col-12 d-flex justify-content-end buttons mb-3">
                 <a href="{{ route('admin.doctors.edit', $doctor) }}" class="bn632-hover bn26 me-2 edit-profile"><i
                         class="fa-solid fa-pen-to-square"></i>&nbsp;Modifica profilo</a>
@@ -100,7 +102,7 @@
 
                             <div class="text-container">
                                 <span class="doc_reviews">
-                                    @if (is_null($doc_reviews))
+                                    @if (!is_null($doc_reviews))
                                         <section class="slider-wrapper">
                                             <button class="slide-arrow d-flex align-items-center" id="slide-arrow-prev">
                                                 <i class="fa-solid blue fa-chevron-left"></i>
