@@ -135,7 +135,7 @@ export default {
         .left {
             padding: 0;
             h2 {
-                font-size: 1rem;
+                font-size: 1.3rem;
             }
         }
         .right {
