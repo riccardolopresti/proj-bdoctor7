@@ -25,7 +25,10 @@ export default {
     <header>
         <nav>
         <div class="logo">
-            <img src="/logo-doc-transp.png" alt="Logo Doc">
+            <router-link :to="{ name: 'home'}">
+                <img src="/logo-doc-transp.png" alt="Logo Doc">
+            </router-link>
+
         </div>
         <div @click="toggleMenu" class="hamburger">
             <div class="bars1"></div>
