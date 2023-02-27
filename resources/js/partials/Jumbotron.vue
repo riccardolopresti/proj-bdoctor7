@@ -18,7 +18,8 @@ export default {
     methods: {
         filterDoctors() {
             axios.get(store.apiUrl + store.specType).then((result) => {
-                store.filteredDoctors = result.data.filteredDoctors;
+                store.sponsorFilteredDocs = result.data.sponsorFilteredDocs;
+                store.notSponsorFilteredDocs = result.data.notSponsorFilteredDocs;
                 store.doc_ratings = result.data.doc_ratings;
                 console.log(result.data.doc_ratings);
             });
@@ -82,7 +83,7 @@ export default {
                                 <li
                                     v-for="filteredSpec in filteredSpecs"
                                     @click="setSpec(filteredSpec)"
-                                >
+                                    :key="filteredSpec">
                                     {{ filteredSpec.type }}
                                 </li>
                             </ul>

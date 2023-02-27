@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::namespace('Api')
     ->prefix('doctors')
     ->group(function () {
-        Route::get('/', [DoctorController::class, 'index']);
+        //Route::get('/', [DoctorController::class, 'index']);
+        Route::get("/", [DoctorController::class, "sponsorDoc"]);
         Route::get("/{spec}", [DoctorController::class, "filterDoctors"]);
     });
 

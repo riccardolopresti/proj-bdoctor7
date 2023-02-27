@@ -10,14 +10,32 @@ use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
-    public function index()
+    /*public function index()
     {
         $doctors = Doctor::with(['user', 'specs'])->paginate(10);
         return response()->json(compact('doctors'));
-    }
+    }*/
 
     public function filterDoctors($spec)
     {
+        $sponsorFilteredDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers','specs'])->whereHas('offers', function($q){
+            date_default_timezone_set('Europe/Rome');
+            $now = date("Y-m-d H:i:s");
+
+            $q->where('end_at', '>=', $now);
+        })->whereHas('specs', function ($query) use ($spec) {
+            $query->where('specs.type', $spec);
+        })->paginate(12);
+
+        $notSponsorFilteredDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers', 'specs'])->whereDoesntHave('offers', function($q){
+            date_default_timezone_set('Europe/Rome');
+            $now = date("Y-m-d H:i:s");
+
+            $q->where('end_at', '>=', $now);
+        })->whereHas('specs', function ($query) use ($spec) {
+            $query->where('specs.type', $spec);
+        })->paginate(8);
+
         $doc_ratings = DB::table('ratings')
             ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
             ->select('doctor_id')
@@ -25,13 +43,25 @@ class DoctorController extends Controller
             ->groupBy('doctor_id')
             ->get();
 
+        return response()->json(compact('sponsorFilteredDocs', 'notSponsorFilteredDocs','doc_ratings'));
+    }
+    public function sponsorDoc()
+    {
+        $sponsorDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers'])->whereHas('offers', function($q){
+            date_default_timezone_set('Europe/Rome');
+            $now = date("Y-m-d H:i:s");
 
+            $q->where('end_at', '>=', $now);
+        })->paginate(12);
 
-        $filteredDoctors = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers'])->whereHas('specs', function ($query) use ($spec) {
-            $query->where('specs.type', $spec);
-        })->get();
+        $notSponsorDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers'])->whereDoesntHave('offers', function($q){
+            date_default_timezone_set('Europe/Rome');
+            $now = date("Y-m-d H:i:s");
 
-        return response()->json(compact('filteredDoctors', 'doc_ratings'));
+            $q->where('end_at', '>=', $now);
+        })->paginate(8);
+
+        return response()->json($sponsorDocs,$notSponsorDocs);
     }
 
     public function show($slug){
