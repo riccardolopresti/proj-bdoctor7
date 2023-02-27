@@ -49,7 +49,7 @@ export default {
 <template>
     <div id="container">
         <div class="doctor-details">
-            <h1 id="test">
+            <h1>
                 <router-link
                     :to="{ name: 'detail', params: { slug: doctor.slug } }"
                     >{{ doctor.user.name }} {{ doctor.surname }}</router-link
@@ -79,10 +79,15 @@ export default {
                 </li>
             </ul>
 
-            <div v-for="rating in store.doc_ratings">
-                <p v-if="rating.doctor_id == doctor.id">
-                    Rating: {{ roundNumber(rating.average_rating) }} / 5
-                </p>
+            <div class="d-flex">
+                <div v-for="rating in store.doc_ratings">
+                    <p v-if="rating.doctor_id == doctor.id">
+                        Rating: {{ roundNumber(rating.average_rating) }} / 5
+                    </p>
+                </div>
+                <span class="ms-3"
+                    >Recensioni: {{ doctor.reviews.length }}</span
+                >
             </div>
         </div>
 
@@ -116,7 +121,8 @@ ul {
     position: relative;
     text-align: left;
     overflow: hidden;
-    padding: 30px;
+    padding: 10px;
+    margin-left: 20px;
     height: 100%;
     float: left;
     width: 70%;
