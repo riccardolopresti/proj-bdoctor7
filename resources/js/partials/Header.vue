@@ -34,7 +34,7 @@ export default {
         </div>
         <ul class="nav-links m-0">
             <li><router-link :to="{ name: 'home'}">Home</router-link></li>
-            <li><a href="#">Contatti</a></li>
+            <li><a href="#about-us">chi siamo</a></li>
             <li><a href="#">lavora con noi</a></li>
             <li><a href="/login" id="login-button">Sign in</a></li>
         </ul>

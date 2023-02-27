@@ -7,7 +7,7 @@ export default {
 <template>
     <section>
        <div class="container">
-            <h2 class="text-center text-primary fw-bold mt-5 mb-5">Chi siamo</h2>
+            <h2 class="text-center text-primary fw-bold mt-5 mb-5"> <a name="about-us">Chi siamo</a></h2>
             <div class="row mt-5 mb-3">
                 <div class="col-md-12 col-lg-5">
                     <div class="container-fluid">
