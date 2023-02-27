@@ -126,7 +126,7 @@ export default {
                             <div class="col-6 w-100">
                                 <div class="form h-100 contact-wrap p-4 pt-5">
 
-                                    <h3 class=" pb-4">Lascia una recesione!</h3>
+                                    <h3 class=" pb-4">Lascia una recensione o una valutazione!</h3>
 
                                     <h4 v-if="!formShow">
                                     Il feedback è stato inviato correttamente. <br>
