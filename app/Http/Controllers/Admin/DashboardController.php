@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $stat_rating = $doctor->ratings()->get();
 
     
-        $record = Rating::select(DB::raw("COUNT(ratings.rating) as rating"), DB::raw("MONTH(created_at) as Month_name"))
+        $record = Rating::select(DB::raw('ratings.rating as voto'), DB::raw("COUNT(ratings.rating) as rating"), DB::raw("MONTH(created_at) as Month_name"))
             ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
             ->where('doctor_id', $doctor->id)
             ->groupBy('Month_name','rating')
