@@ -7,7 +7,7 @@ export default {
 <template>
     <section>
        <div class="container">
-            <h2 class="text-center text-primary fw-bold mt-5 mb-5"> <a name="about-us">Chi siamo</a></h2>
+            <h2 class="text-center text-primary fw-bold mt-5 mb-5"> <a name="about-us">BDoctors7: chi siamo</a></h2>
             <div class="row mt-5 mb-3">
                 <div class="col-md-12 col-lg-5">
                     <div class="container-fluid">
@@ -24,7 +24,7 @@ export default {
 
             <div class="row mt-4 mb-5">
                 <div class="col-md-12 col-lg-7">
-                    <img src="/img/doc-about3.jpg" alt="doc-about">
+                    <img id="img-2" src="/img/doc-about3.jpg" alt="doc-about">
                 </div>
                 <div class="col-md-12 col-lg-5">
                     <div class="text">
@@ -57,6 +57,12 @@ section{
         img{
             max-width: 100%;
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #img-2{
+        display: none;
     }
 }
 
