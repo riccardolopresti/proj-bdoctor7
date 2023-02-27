@@ -34,12 +34,6 @@
 
     </form>
 
-
-
-
-
-
-
 </div>
 <style>
     .price-card{
@@ -61,22 +55,6 @@
         let client_token = "{{ $clientToken }}";
         const submitButton = document.querySelector('#submit-button');
 
-        // braintree.dropin.create({
-        //         authorization: client_token,
-        //         selector: '#dropin-container'
-        //     }, function (createErr, instance) {
-        //         submitButton.addEventListener('click', function () {
-        //             instance.requestPaymentMethod(function (err, payload) {
-        //                 if (err) {
-        //                     console.log('Request Payment Method Error', err);
-        //                     return;
-        //                 }
-        //                 document.querySelector('#amount').value = payload.nonce;
-        //                 form.submit();
-        //             });
-        //             });
-                    // });
-
         braintree.dropin.create({
             authorization: client_token,
             selector: '#dropin-container',
@@ -84,46 +62,8 @@
             }, function (err, instance) {
             button.addEventListener('click', function () {
                 instance.requestPaymentMethod(function (err, payload) {
-                // Submit payload.nonce to your server
                 });
             })
             });
-
-        // $(document).ready(function() {
-        //     braintree.dropin
-        //         .create({
-        //         // Step three: get client token from your server, such as via
-        //         //    templates or async http request
-        //         authorization: client_token,
-        //         container: container,
-        //         venmo: {}, paypal: {flow: 'vault'}, paypalCredit: {flow: 'vault'},
-
-        //         })
-        //         .then((dropinInstance) => {
-        //             console.log("entrati in dropinstance");
-        //         form.addEventListener("submit", (event) => {
-        //             event.preventDefault();
-        //             console.log("cliccato dentro drop instance");
-
-        //             dropinInstance
-        //             .requestPaymentMethod()
-        //             .then((payload) => {
-        //                 console.log("DENTRO METODO PAYMENT");
-
-        //                 document.querySelector('#amount').value = payload.nonce;
-        //                 form.submit();
-        //             })
-        //             .catch((error) => {
-        //                 console.log(error);;
-        //             });
-        //         });
-        //         // Use dropinInstance here
-        //         // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-        //         })
-        //         .catch((error) => {
-        //         console.log(error);
-        //         });
-        // });
-
     </script>
 @endsection
