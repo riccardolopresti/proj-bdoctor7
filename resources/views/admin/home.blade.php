@@ -8,6 +8,15 @@
 
 @section('content')
 
+@dump($record)
+
+{{-- @foreach($stat_rating as $rating)
+
+    {{$rating->created_at->format('M')}}
+
+@endforeach --}}
+
+
 <div>
     <canvas id="doc_rating" width="240px" height="240px"></canvas>
  </div>
