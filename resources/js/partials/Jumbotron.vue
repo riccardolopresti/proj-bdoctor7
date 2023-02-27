@@ -18,10 +18,12 @@ export default {
     methods: {
         filterDoctors() {
             axios.get(store.apiUrl + store.specType).then((result) => {
-                store.sponsorFilteredDocs = result.data.sponsorFilteredDocs;
-                store.notSponsorFilteredDocs = result.data.notSponsorFilteredDocs;
+                store.sponsorFilteredDocs =
+                    result.data.sponsorFilteredDocs.data;
+                store.notSponsorFilteredDocs =
+                    result.data.notSponsorFilteredDocs.data;
                 store.doc_ratings = result.data.doc_ratings;
-                console.log(result.data.doc_ratings);
+                console.log(store.sponsorFilteredDocs);
             });
         },
         getRawArray(proxy) {
@@ -41,14 +43,14 @@ export default {
             store.specType = toRaw(string).type;
             this.isVisible = false;
         },
-        toggleDropdown (e) {
-            this.isVisible = !this.isVisible
-            },
-            close (e) {
+        toggleDropdown(e) {
+            this.isVisible = !this.isVisible;
+        },
+        close(e) {
             if (!this.$el.contains(e.target)) {
-                this.isVisible = false
+                this.isVisible = false;
             }
-        }
+        },
     },
 };
 </script>
@@ -57,9 +59,7 @@ export default {
     <div id="jumbotron" class="text-center bg-image">
         <div class="mask d-flex align-items-center">
             <div class="jumbo-content" @click.prevent="toggleDropdown">
-                <h2 class="fw-bold mb-3 mx-4">
-                    Cerca ora il tuo specialista
-                </h2>
+                <h2 class="fw-bold mb-3 mx-4">Cerca ora il tuo specialista</h2>
                 <form class="search-form mx-4">
                     <div class="custom-select d-flex">
                         <button
@@ -88,9 +88,11 @@ export default {
                         >
                             <ul v-if="store.specType == ''">
                                 <li
-                                    v-for="spec in this.specs" :key="spec"
-                                    @click="setSpec(spec)">
-                                    {{spec.type }}
+                                    v-for="spec in this.specs"
+                                    :key="spec"
+                                    @click="setSpec(spec)"
+                                >
+                                    {{ spec.type }}
                                 </li>
                             </ul>
 
@@ -98,11 +100,11 @@ export default {
                                 <li
                                     v-for="filteredSpec in filteredSpecs"
                                     @click="setSpec(filteredSpec)"
-                                    :key="filteredSpec">
+                                    :key="filteredSpec"
+                                >
                                     {{ filteredSpec.type }}
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                 </form>
@@ -207,7 +209,11 @@ h2 {
         width: 100%;
     }
 
-    #jumbotron .jumbo-content .search-form .custom-select input[data-v-01608f10]{
+    #jumbotron
+        .jumbo-content
+        .search-form
+        .custom-select
+        input[data-v-01608f10] {
         min-width: 250px;
     }
 }
