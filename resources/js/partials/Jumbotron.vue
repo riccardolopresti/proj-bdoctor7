@@ -18,7 +18,8 @@ export default {
     methods: {
         filterDoctors() {
             axios.get(store.apiUrl + store.specType).then((result) => {
-                store.filteredDoctors = result.data.filteredDoctors;
+                store.sponsorFilteredDocs = result.data.sponsorFilteredDocs;
+                store.notSponsorFilteredDocs = result.data.notSponsorFilteredDocs;
                 store.doc_ratings = result.data.doc_ratings;
                 console.log(result.data.doc_ratings);
             });
@@ -40,6 +41,14 @@ export default {
             store.specType = toRaw(string).type;
             this.isVisible = false;
         },
+        toggleDropdown (e) {
+            this.isVisible = !this.isVisible
+            },
+            close (e) {
+            if (!this.$el.contains(e.target)) {
+                this.isVisible = false
+            }
+        }
     },
 };
 </script>
@@ -47,11 +56,11 @@ export default {
 <template>
     <div id="jumbotron" class="text-center bg-image">
         <div class="mask d-flex align-items-center">
-            <div class="jumbo-content">
-                <h2 class="fw-bold mb-3 ms-4">
+            <div class="jumbo-content" @click.prevent="toggleDropdown">
+                <h2 class="fw-bold mb-3 mx-4">
                     Cerca ora il tuo specialista
                 </h2>
-                <form class="search-form ms-4">
+                <form class="search-form mx-4">
                     <div class="custom-select d-flex">
                         <button
                             @click="
@@ -69,7 +78,6 @@ export default {
                             v-model="store.specType"
                             autocomplete="off"
                             @input="filterSpecs()"
-                            @focus="this.isVisible = true"
                             id="input-box"
                             class="z-10"
                         />
@@ -78,14 +86,23 @@ export default {
                             v-if="this.filteredSpecs && isVisible"
                             class="suggestions z-10"
                         >
+                            <ul v-if="store.specType == ''">
+                                <li
+                                    v-for="spec in this.specs" :key="spec"
+                                    @click="setSpec(spec)">
+                                    {{spec.type }}
+                                </li>
+                            </ul>
+
                             <ul>
                                 <li
                                     v-for="filteredSpec in filteredSpecs"
                                     @click="setSpec(filteredSpec)"
-                                >
+                                    :key="filteredSpec">
                                     {{ filteredSpec.type }}
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </form>
@@ -176,6 +193,21 @@ h2{
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 454px) {
+    #jumbotron .jumbo-content[data-v-01608f10] {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #jumbotron .jumbo-content .search-form .custom-select input[data-v-01608f10]{
+        min-width: 250px;
     }
 }
 </style>
