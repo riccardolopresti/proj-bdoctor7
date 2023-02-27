@@ -51,14 +51,27 @@ export default {
                 <div class="right pe-3">
                     <!-- <label for="ratingRange" class="form-label">Filtro</label> -->
                     <span>Filtro per Rating:</span>
-                    <input
+                    <!-- <input
                         v-model="rangeValue"
                         type="range"
                         class="form-range ms-3"
                         min="0"
                         max="5"
                         id="ratingRange"
-                    />
+                    /> -->
+                    <fieldset class="rating-wrapper" >
+                                                    <input v-model.trim="rangeValue" type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="4.5 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="3.5 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="3 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="2.5 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="2 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="1.5 stelle"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1 stella"></label>
+                                                    <input v-model.trim="rangeValue" type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="0.5 stelle"></label>
+                                                </fieldset>
+
                     <select
                         v-model="reviewsNumber"
                         class="form-select"
@@ -173,4 +186,49 @@ export default {
     //     }
     // }
 }
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating-wrapper {
+    background-color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1.5px 20px;
+  float: left;
+}
+
+.rating-wrapper > input { display: none; }
+.rating-wrapper > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating-wrapper > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating-wrapper > label {
+  color: #ddd;
+ float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-wrapper > input:checked ~ label, /* show gold star when clicked */
+.rating-wrapper:not(:checked) > label:hover, /* hover current star */
+.rating-wrapper:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rarating-wrapperting > input:checked + label:hover, /* hover current star when changing rating */
+.rating-wrapper > input:checked ~ label:hover,
+.rating-wrapper > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-wrapper > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
 </style>
