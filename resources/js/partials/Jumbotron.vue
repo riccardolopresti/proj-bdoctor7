@@ -41,6 +41,14 @@ export default {
             store.specType = toRaw(string).type;
             this.isVisible = false;
         },
+        toggleDropdown (e) {
+            this.isVisible = !this.isVisible
+            },
+            close (e) {
+            if (!this.$el.contains(e.target)) {
+                this.isVisible = false
+            }
+        }
     },
 };
 </script>
@@ -48,7 +56,7 @@ export default {
 <template>
     <div id="jumbotron" class="text-center bg-image">
         <div class="mask d-flex align-items-center">
-            <div class="jumbo-content">
+            <div class="jumbo-content" @click.prevent="toggleDropdown">
                 <h2 class="fw-bold mb-3 mx-4">
                     Cerca ora il tuo specialista
                 </h2>
@@ -70,8 +78,6 @@ export default {
                             v-model="store.specType"
                             autocomplete="off"
                             @input="filterSpecs()"
-                            @focus="this.isVisible = true"
-                            @focusout="this.isVisible = false"
                             id="input-box"
                             class="z-10"
                         />
@@ -82,7 +88,8 @@ export default {
                         >
                             <ul v-if="store.specType == ''">
                                 <li
-                                    v-for="spec in this.specs" :key="spec">
+                                    v-for="spec in this.specs" :key="spec"
+                                    @click="setSpec(spec)">
                                     {{spec.type }}
                                 </li>
                             </ul>
