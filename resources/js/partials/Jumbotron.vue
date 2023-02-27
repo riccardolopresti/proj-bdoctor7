@@ -49,10 +49,10 @@ export default {
     <div id="jumbotron" class="text-center bg-image">
         <div class="mask d-flex align-items-center">
             <div class="jumbo-content">
-                <h2 class="fw-bold mb-3 ms-4">
+                <h2 class="fw-bold mb-3 mx-4">
                     Cerca ora il tuo specialista
                 </h2>
-                <form class="search-form ms-4">
+                <form class="search-form mx-4">
                     <div class="custom-select d-flex">
                         <button
                             @click="
@@ -186,6 +186,21 @@ h2{
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 454px) {
+    #jumbotron .jumbo-content[data-v-01608f10] {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #jumbotron .jumbo-content .search-form .custom-select input[data-v-01608f10]{
+        min-width: 250px;
     }
 }
 </style>
