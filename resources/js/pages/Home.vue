@@ -1,6 +1,7 @@
 <script>
 import Header from "../partials/Header.vue";
 import Jumbotron from "../partials/Jumbotron.vue";
+import AboutUs from "./AboutUs.vue";
 import SponsorSection from "./SponsorSection.vue";
 import Footer from "../partials/Footer.vue";
 
@@ -12,6 +13,7 @@ export default {
     components: {
         Header,
         Jumbotron,
+        AboutUs,
         SponsorSection,
         Footer,
     },
@@ -41,6 +43,7 @@ export default {
 <template>
     <Header />
     <Jumbotron :specs="specs" />
+    <AboutUs/>
     <SponsorSection />
     <Footer />
 </template>
