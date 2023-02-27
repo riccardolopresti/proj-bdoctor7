@@ -8,6 +8,9 @@
 
 @section('content')
 
+@dump($data)
+@dump($labels)
+@dump($month)
 @dump($record)
 
 {{-- @foreach($stat_rating as $rating)
@@ -27,20 +30,37 @@
 <script>
     $(function () {
             var ctx = document.getElementById("doc_rating").getContext('2d');
+            
+            const dataJs = <?php echo json_encode($data); ?>;
+            const labelsJs = <?php echo json_encode($labels); ?>;
+            const montJs = <?php echo json_encode($month); ?>;
+
+            console.log(dataJs);
             var data = {
-                datasets: [{
-                    data: [10, 20, 30],
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
-                    ],
-                }],
-                labels: [
-                    'Request',
-                    'Layanan',
-                    'Problem'
-                ]
+                labels: labelsJs,
+                datasets: [
+                    {
+                        label: 'data 1',
+                        data: dataJs,
+                        backgroundColor: [
+                            '#3c8dbc',
+                            '#f56954',
+                            '#f39c12',
+                        ],
+                        xAxisID: 'x',
+
+                    },
+                    {
+                        label: 'data 2',
+                        data: montJs,
+                        backgroundColor: [
+                            '#3c3dbc',
+                            '#f86954',
+                            '#f30c12',
+                        ],
+                        xAxisID: 'x1',
+                    }
+                ],
             };
             var myDoughnutChart = new Chart(ctx, {
                 type: 'bar',
@@ -54,6 +74,7 @@
                             boxWidth: 12
                         }
                     }
+                    
                 }
             });
             var ctx_2 = document.getElementById("layanan_subbagian").getContext('2d');

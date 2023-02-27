@@ -19,13 +19,25 @@ class DashboardController extends Controller
         $stat_rating = $doctor->ratings()->get();
 
     
-        $record = Rating::select(DB::raw('ratings.rating as voto'), DB::raw("COUNT(ratings.rating) as rating"), DB::raw("MONTH(created_at) as Month_name"))
+        $record = Rating::select(DB::raw('ratings.rating as rating'), DB::raw("COUNT(ratings.rating) as count_ratings"), DB::raw("MONTH(created_at) as month_name"))
             ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
             ->where('doctor_id', $doctor->id)
-            ->groupBy('Month_name','rating')
-            ->orderBy('Month_name')
+            ->groupBy('month_name','rating')
+            ->orderBy('month_name')
             ->get();
 
-        return view('admin.home', compact('record'));
+            $collections = [];
+
+            foreach($record as $row) {
+                $collections['data'][] = (int) $row->count_ratings;
+                $collections['label'][] = $row->rating;
+                $collections['month'][] = (int) $row->month_name;
+            }
+
+            $labels =  $collections['label'];
+            $data = $collections['data'];
+            $month = $collections['month'];
+
+        return view('admin.home', compact('labels','data','month','record'));
     }
 }
