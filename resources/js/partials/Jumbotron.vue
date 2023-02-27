@@ -48,9 +48,7 @@ export default {
     <div id="jumbotron" class="text-center bg-image">
         <div class="mask d-flex align-items-center">
             <div class="jumbo-content">
-                <h2 class="fw-bold mb-3 ms-4">
-                    Cerca ora il tuo specialista
-                </h2>
+                <h2 class="fw-bold mb-3 ms-4">Cerca ora il tuo specialista</h2>
                 <form class="search-form ms-4">
                     <div class="custom-select d-flex">
                         <button
@@ -95,11 +93,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-h2{
+h2 {
     color: #061761;
 }
 #jumbotron {
-    background-image: url('/jumbo.jpg');
+    background-image: url("/jumbo.jpg");
     height: 70vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -161,6 +159,7 @@ h2{
                             padding: 0.5rem 0;
                             &:hover {
                                 background-color: #74a6df;
+                                cursor: pointer;
                             }
                         }
                     }

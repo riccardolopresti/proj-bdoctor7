@@ -43,13 +43,14 @@ export default {
                 <div class="left ps-3">
                     <h2>
                         Risultati per:
-                        <span class="blue">{{
-                            capitalizeFirstLetter(store.specType)
-                        }}</span>
+                        <span class="blue"
+                            ><strong>{{
+                                capitalizeFirstLetter(store.specType)
+                            }}</strong></span
+                        >
                     </h2>
                 </div>
                 <div class="right pe-3">
-                    <!-- <label for="ratingRange" class="form-label">Filtro</label> -->
                     <span>Filtro per Rating:</span>
                     <input
                         v-model="rangeValue"
@@ -129,12 +130,10 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        // outline: 3px solid lime;
         padding: 30px 10px;
         border-bottom: 1px solid black;
         .left {
             padding: 0;
-            // outline: 3px solid blue;
             h2 {
                 font-size: 1rem;
             }
@@ -142,7 +141,6 @@ export default {
         .right {
             display: flex;
             align-items: center;
-            // outline: 1px solid brown;
             select {
                 width: 300px;
                 margin-left: 1rem;
@@ -159,18 +157,5 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 50px;
-
-    // .doctor-card {
-    //     // outline: 3px solid lime;
-    //     width: 400px;
-    //     height: 300px;
-    //     margin: 1rem;
-    //     padding: 0.5rem;
-    //     ul {
-    //         list-style: none;
-    //         padding: 0;
-    //         margin: 0;
-    //     }
-    // }
 }
 </style>
