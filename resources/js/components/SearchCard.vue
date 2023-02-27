@@ -97,7 +97,7 @@ export default {
     </div> -->
 
     <!-- <div class="wrap"> -->
-    <div class="box debug">
+    <div class="box">
         <div class="box-top">
             <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
             <div class="title-flex">
@@ -105,10 +105,10 @@ export default {
                     {{ doctor.user.name }}
                     {{ doctor.surname }}
                 </h3>
-                <p class="user-follow-info">
-                    {{ doctor.address }} <br />
-                    {{ doctor.phone }}
-                </p>
+                <div class="user-follow-info">
+                    <p>{{ doctor.address }}</p>
+                    <p>{{ doctor.phone }}</p>
+                </div>
             </div>
             <div class="information">
                 <div v-for="rating in store.doc_ratings">
