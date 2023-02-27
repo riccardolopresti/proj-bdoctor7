@@ -71,6 +71,7 @@ export default {
                             autocomplete="off"
                             @input="filterSpecs()"
                             @focus="this.isVisible = true"
+                            @focusout="this.isVisible = false"
                             id="input-box"
                             class="z-10"
                         />
@@ -79,6 +80,13 @@ export default {
                             v-if="this.filteredSpecs && isVisible"
                             class="suggestions z-10"
                         >
+                            <ul v-if="store.specType == ''">
+                                <li
+                                    v-for="spec in this.specs" :key="spec">
+                                    {{spec.type }}
+                                </li>
+                            </ul>
+
                             <ul>
                                 <li
                                     v-for="filteredSpec in filteredSpecs"
@@ -87,6 +95,7 @@ export default {
                                     {{ filteredSpec.type }}
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </form>
