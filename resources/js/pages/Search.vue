@@ -20,14 +20,24 @@ export default {
         };
     },
     methods: {
-        getAverage(id) {
-            for (let i = 0; i <= this.store.doc_ratings.length; i++) {
-                if (i == id) {
-                    let myAvg = this.store.doc_ratings[i - 1].average_rating;
-                    return myAvg;
-                }
+        getAverage(ratingArray) {
+            let average;
+
+            if(ratingArray.length == 0){
+                return average = 0;
             }
+
+            let array = [];
+
+            ratingArray.forEach(element => {
+                array.push(parseFloat(element.rating))
+            });
+            
+            average = array.reduce((a, b) => a + b, 0) / array.length;
+
+            return Math.round(average * 2) / 2;
         },
+        
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
@@ -199,8 +209,8 @@ export default {
                         v-for="doctor in store.sponsorFilteredDocs"
                         :key="doctor.id"
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber &&
-                            getAverage(doctor.id) >= this.rangeValue
+                            doctor.reviews.length >= this.reviewsNumber  && 
+                            getAverage(doctor.ratings) >= this.rangeValue 
                         "
                         :doctor="doctor"
                     />
@@ -209,9 +219,10 @@ export default {
                     <SearchCard
                         v-for="doctor in store.notSponsorFilteredDocs"
                         :key="doctor.id"
+                        
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber &&
-                            getAverage(doctor.id) >= this.rangeValue
+                            doctor.reviews.length >= this.reviewsNumber && 
+                            getAverage(doctor.ratings) >= this.rangeValue 
                         "
                         :doctor="doctor"
                     />
