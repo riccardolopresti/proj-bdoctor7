@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container mx-5">
+    <div class="container">
 
         @if (session('message'))
             <div class="alert alert-success" role="alert">
@@ -158,10 +158,10 @@
 
                             <ul class="list-group me-2">
                                 <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
-                                @forelse  ( $user_logged->reviews as $review)
+                                @forelse  ( $reviews as $review)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$review->name}}</li>
-                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> <span class="data-it-2"></span></li>
+                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> {{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $review->created_at),0,10))))}}</li>
                                     <li class="list-group-item mb-2"><strong>Recensione: <br> </strong>{{ $review->text}}</li>
                                 @empty
                                     <li class="list-group-item custom-last">

@@ -160,9 +160,10 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
-                                @forelse  ( $user_logged->ratings as $rating)
+                                @forelse  ( $ratings as $rating)
                                     <li class="list-group-item"><strong>Valutazione n°: </strong> {{$loop->iteration}}</li>
                                     <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$rating->name}}</li>
+                                    <li class="list-group-item text-capitalize"><strong>Data: </strong> {{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $rating->created_at),0,10))))}}</li>
                                     <li class="list-group-item mb-2">
                                         <strong>Voto: </strong>
                                         <span class="ratings-star-2"></span>
