@@ -12,14 +12,6 @@ export default {
         doctor: Object,
     },
     methods: {
-        roundNumber(number) {
-            return Math.round(number * 2) / 2;
-        },
-        // printStars() {
-        //     for (let i = 0; i <= 2; i++) {
-        //         return `<i class="fa fa-star-o" aria-hidden="true"></i>`;
-        //     }
-        // },
         starsRating(number) {
             let newRating = Math.ceil(number * 2) / 2;
             let stars = [];
@@ -47,74 +39,27 @@ export default {
 </script>
 
 <template>
-    <!-- <div id="container">
-        <div class="doctor-details">
-            <h1>
-                <router-link
-                    :to="{ name: 'detail', params: { slug: doctor.slug } }"
-                    >{{ doctor.user.name }} {{ doctor.surname }}</router-link
-                >
-            </h1>
-            <br />
-            <div class="hint-star star mt-2 mb-2">
-                 <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                {{}}
-            </div>
-
-            <ul class="information">
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span class="ms-2">{{ doctor.user.email }}</span>
-                </li>
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-phone"></i>
-                    <span class="ms-2">{{ doctor.phone }}</span>
-                </li>
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span class="ms-2">{{ doctor.address }}</span>
-                </li>
-            </ul>
-
-            <div class="d-flex">
-                <div v-for="rating in store.doc_ratings">
-                    <p v-if="rating.doctor_id == doctor.id">
-                        Rating: {{ roundNumber(rating.average_rating) }} / 5
-                    </p>
-                </div>
-                <span class="ms-3"
-                    >Recensioni: {{ doctor.reviews.length }}</span
-                >
-            </div>
-        </div>
-
-        <div class="doctor-image">
-            <img :src="doctor.image" :alt="doctor.slug" />
-        </div>
-    </div> -->
-
-    <!-- <div class="wrap"> -->
     <div class="box">
         <div class="box-top">
-            <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
-            <div class="title-flex">
+            <div class="img-container">
+                <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
+            </div>
+            <div class="title-flex d-flex flex-column">
                 <h3 class="box-title">
                     {{ doctor.user.name }}
                     {{ doctor.surname }}
                 </h3>
-                <div class="user-follow-info">
+                <div class="user-follow-info d-flex flex-column">
                     <p>{{ doctor.address }}</p>
                     <p>{{ doctor.phone }}</p>
                 </div>
             </div>
             <div class="information">
                 <div v-for="rating in store.doc_ratings">
-                    <div v-if="rating.doctor_id == doctor.id">
-                        Voto: {{ roundNumber(rating.average_rating) }}
-                    </div>
+                    <div
+                        v-if="rating.doctor_id == doctor.id"
+                        v-html="starsRating(rating.average_rating)"
+                    ></div>
                 </div>
                 <span>Recensioni: {{ doctor.reviews.length }}</span>
             </div>
@@ -129,7 +74,6 @@ export default {
             ></a
         >
     </div>
-    <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>
@@ -205,6 +149,11 @@ a {
     position: relative;
     gap: 12px;
     margin-bottom: 36px;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
 }
 
 .box-image {
