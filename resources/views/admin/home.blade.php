@@ -8,241 +8,502 @@
 
 @section('content')
 
-<div class="container" style="padding-bottom: 200px">
-    <div>
-        <canvas id="doc_rating_m" width="240px" height="240px"></canvas>
+<div class="main-wrapper-doctors row d-flex justify-content-center" style="height:80vh">
+    <div class="d-flex justify-content-between">
+        <h1 class="blue">Le tue statistiche</h1>
+        <div class="">
+            <label class="switch-wrap position-relative">
+                <div class="legenda position-absolute w-100 d-flex justify-content-between">
+                    <span>MESE</span>
+                    <span>ANNO</span>
+                </div>
+                <input type="checkbox" id="toggle"/>
+                <div class="switch"></div>
+            </label>
+        </div>
     </div>
-    <div>
-        <canvas id="doc_rating_y" width="240px" height="240px"></canvas>
-    </div>
-    <div>
-        <canvas id="doc_message_m" width="240px" height="240px"></canvas>
-    </div>
-    <div>
-        <canvas id="doc_message_y" width="240px" height="240px"></canvas>
-    </div>
-    <div>
-        <canvas id="doc_review_m" width="240px" height="240px"></canvas>
-    </div>
-    <div>
-        <canvas id="doc_review_y" width="240px" height="240px"></canvas>
+
+    <div class="container-fluid" style="padding-bottom: 200px">
+        <div class="row">
+            <div class="mt-3 my-ratings col-6">
+                @if(!empty($rating))
+                <p class="grey">{{$rating}}</p>
+                @else
+
+                <div class="d-flex justify-content-evenly">
+                    <h3 class="w-100 dark-blue">Valutazioni</h3>
+
+                </div>
+
+                <div class="d-flex">
+                    <div class="me-4 monthly">
+                        <canvas id="doc_rating_m" width="400px" height="400px"></canvas>
+                    </div>
+                    <div class="yearly d-none">
+                        <canvas id="doc_rating_y" width="400px" height="400px"></canvas>
+                    </div>
+                </div>
+
+                @endif
+            </div>
+
+
+            <div class="col-6">
+                <div class="mt-3 my-msgs">
+                    @if(!empty($message))
+                        <p class="grey">{{$message}}</p>
+                    @else
+                    <h3 class="w-100 dark-blue">Messaggi</h3>
+                    <div class="d-flex">
+
+                        <div class="me-4 monthly">
+                            <canvas id="doc_message_m" width="400px" height="200px"></canvas>
+                        </div>
+                        <div class="yearly d-none">
+                            <canvas id="doc_message_y" width="400px" height="200px"></canvas>
+                        </div>
+                    </div>
+
+                    @endif
+                </div>
+
+                <div class="mt-2 my-reviews">
+
+                    @if(!empty($review))
+                        <p class="grey">{{$review}}</p>
+                    @else
+                    <h3 class="w-100 dark-blue">Recensioni</h3>
+                    <div class="d-flex">
+
+                        <div class="me-4 monthly">
+                            <canvas id="doc_review_m" width="400px" height="200px"></canvas>
+                        </div>
+                        <div class="yearly d-none">
+                            <canvas id="doc_review_y" width="400px" height="200px"></canvas>
+                        </div>
+                    </div>
+
+                    @endif
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </div>
+<style>
+    .dark-blue{
+        color:#061761;
+    }
+            .switch-wrap {
+            cursor: pointer;
+            background: #061761;
+            padding: 5px;
+            width: 100px;
+            height: calc(100px /2 + 5px);
+            border-radius: calc((100px /2 + 5px) / 2);
+            }
+
+            input {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .switch {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 0fr 1fr 1fr;
+            transition: .2s;
+            }
+            .switch::after {
+                content: '';
+                border-radius: 50%;
+                background: #ccc;
+                grid-column: 2;
+            }
+
+            input:checked + .switch {
+                grid-template-columns: 1fr 1fr 0fr;}
+             input:checked + .switch::after {
+                background-color: rgba(54, 162, 235, 0.9);
+
+            }
+
+            .legenda{
+                color:#061761;
+                padding:0 8px;
+                font-size:0.7rem;
+                bottom:-25px;
+            }
+
+
+
+</style>
 
 
 <script>
-    $(function () {
+        const checkbox = document.getElementById('toggle');
+        const monthlyData=document.querySelectorAll('.monthly');
+        const yearlyData=document.querySelectorAll('.yearly');
+        let monthStat=false;
 
-            const MONTHS = [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December'
-            ];
+        checkbox.addEventListener('change', ()=>{
+            monthStat = !monthStat
 
-            //VOTI PER MESE
-            var ctx = document.getElementById("doc_rating_m").getContext('2d');
+            if(monthStat){
+                monthlyData.forEach(element => {
+                    element.classList.add('d-none');
+                });
+                yearlyData.forEach(element => {
+                    element.classList.remove('d-none');
+                    element.classList.add('d-block');
+                });
 
-            const dataRmJs = <?php echo json_encode($dataRm); ?>;
-            const labelsRmJs = <?php echo json_encode($labelsRm); ?>;
+            }else{
+                yearlyData.forEach(element => {
+                    element.classList.add('d-none');
+                });
+                monthlyData.forEach(element => {
+                    element.classList.remove('d-none');
+                    element.classList.add('d-block');
+                });
+            }
+        })
 
-            var data = {
-                labels: labelsRmJs,
-                datasets: [
-                    {
-                        label: 'data 1',
-                        data: dataRmJs,
-                        backgroundColor: [
-                            '#3c8dbc',
-                            '#f56954',
-                            '#f39c12',
-                        ],
-                    }
-                ],
-            };
-            var ratingMonth = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
+        $(function () {
+
+                const MONTHS = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December'
+                ];
+
+
+
+                function checkMonthData(labels, data){
+                    for(let i=1;i<=12;i++){
+                        if(!labels.includes(i)){
+                            labels.splice(i-1,0, i);
+                            data.splice(i-1,0, 0);
+
                         }
                     }
-
+                    return data
                 }
-            });
 
-            //VOTI PER ANNO
-            var ctx_2 = document.getElementById("doc_rating_y").getContext('2d');
+                //VOTI PER MESE
 
-            const dataRyJs = <?php echo json_encode($dataRy); ?>;
-            const labelsRyJs = <?php echo json_encode($labelsRy); ?>;
+                const dataRmJs = <?php echo json_encode($dataRm); ?>;
+                const labelsRmJs = <?php echo json_encode($labelsRm); ?>;
 
-            var data_2 = {
-                datasets: [{
-                    data: dataRyJs,
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
+                if(labelsRmJs.length>0 || dataRmJs.length>0){
+                    var ctx = document.getElementById("doc_rating_m").getContext('2d');
+                    var data = {
+                    labels: MONTHS,
+                    datasets: [
+                        {
+                            label: 'Valutazioni / Mese',
+                            data: checkMonthData(labelsRmJs,dataRmJs),
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }
                     ],
-                }],
-                labels: labelsRyJs,
-            };
-            var ratingYear = new Chart(ctx_2, {
-                type: 'bar',
-                data: data_2,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
-                        }
                     }
-                }
-            });
-
-            //MESSAGGI PER MESE
-            var ctx_3 = document.getElementById("doc_message_m").getContext('2d');
-
-            const dataMmJs = <?php echo json_encode($dataMm); ?>;
-            const labelsMmJs = <?php echo json_encode($labelsMm); ?>;
-
-            var data_3 = {
-                datasets: [{
-                    data: dataMmJs,
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
-                    ],
-                }],
-                labels: labelsMmJs,
-            };
-            var messageMonth = new Chart(ctx_3, {
-                type: 'line',
-                data: data_3,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
+                    var ratingMonth = new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12
+                            }
                         }
+
                     }
+                    });
+
                 }
-            });
 
-            //MESSAGGI PER ANNO
-            var ctx_4 = document.getElementById("doc_message_y").getContext('2d');
+                //VOTI PER ANNO
 
-            const dataMyJs = <?php echo json_encode($dataMy); ?>;
-            const labelsMyJs = <?php echo json_encode($labelsMy); ?>;
+                const dataRyJs = <?php echo json_encode($dataRy); ?>;
+                const labelsRyJs = <?php echo json_encode($labelsRy); ?>;
 
-            var data_4 = {
-                datasets: [{
-                    data: dataMyJs,
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
-                    ],
-                }],
-                labels: labelsMyJs,
-            };
-            var messageYear = new Chart(ctx_4, {
-                type: 'line',
-                data: data_4,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
+                if(dataRyJs.length>0 ||  labelsRyJs.length>0){
+                    var ctx_2 = document.getElementById("doc_rating_y").getContext('2d');
+                    var data_2 = {
+                        datasets: [{
+                            label: 'Valutazioni / Anno',
+                            data: dataRyJs,
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }],
+                        labels: labelsRyJs,
+                    };
+                    var ratingYear = new Chart(ctx_2, {
+                        type: 'bar',
+                        data: data_2,
+                        options: {
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12
+                                }
+                            }
                         }
-                    }
+                    });
                 }
-            });
 
-            //RECENSIONI PER MESE
-            var ctx_5 = document.getElementById("doc_review_m").getContext('2d');
+                //MESSAGGI PER MESE
 
-            const dataRwMJs = <?php echo json_encode($dataRwM); ?>;
-            const labelsRwMJs = <?php echo json_encode($labelsRwM); ?>;
+                const dataMmJs = <?php echo json_encode($dataMm); ?>;
+                const labelsMmJs = <?php echo json_encode($labelsMm); ?>;
 
-            var data_5 = {
-                datasets: [{
-                    data: dataRwMJs,
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
-                    ],
-                }],
-                labels: labelsRwMJs,
-            };
-            var messageMonth = new Chart(ctx_5, {
-                type: 'line',
-                data: data_5,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
+
+                if(dataMmJs.length>0 ||  labelsMmJs.length>0){
+                    var ctx_3 = document.getElementById("doc_message_m").getContext('2d');
+                    var data_3 = {
+                        datasets: [{
+                            label: 'Messaggi / Mese',
+                            data: checkMonthData(labelsMmJs,dataMmJs),
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }],
+                        labels: MONTHS,
+                    };
+                    var messageMonth = new Chart(ctx_3, {
+                        type: 'line',
+                        data: data_3,
+                        options: {
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12
+                                }
+                            }
                         }
-                    }
+                    });
                 }
-            });
 
-            //RECENSIONI PER ANNO
-            var ctx_6 = document.getElementById("doc_review_y").getContext('2d');
 
-            const dataRwYJs = <?php echo json_encode($dataRwY); ?>;
-            const labelsRwYJs = <?php echo json_encode($labelsRwY); ?>;
+                //MESSAGGI PER ANNO
 
-            var data_6 = {
-                datasets: [{
-                    data: dataRwYJs,
-                    backgroundColor: [
-                        '#3c8dbc',
-                        '#f56954',
-                        '#f39c12',
-                    ],
-                }],
-                labels: labelsRwYJs,
-            };
-            var messageYear = new Chart(ctx_6, {
-                type: 'line',
-                data: data_6,
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 12
+                const dataMyJs = <?php echo json_encode($dataMy); ?>;
+                const labelsMyJs = <?php echo json_encode($labelsMy); ?>;
+
+                if(dataMyJs.length>0 ||  labelsMyJs.length>0){
+                    var ctx_4 = document.getElementById("doc_message_y").getContext('2d');
+                    var data_4 = {
+                        datasets: [{
+                            label: 'Messaggi / Anno',
+                            data: dataMyJs,
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }],
+                        labels: labelsMyJs,
+                    };
+                    var messageYear = new Chart(ctx_4, {
+                        type: 'line',
+                        data: data_4,
+                        options: {
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12
+                                }
+                            }
                         }
-                    }
+                    });
                 }
-            });
+
+                //RECENSIONI PER MESE
+
+                const dataRwMJs = <?php echo json_encode($dataRwM); ?>;
+                const labelsRwMJs = <?php echo json_encode($labelsRwM); ?>;
+
+                if(dataRwMJs.length>0 ||  labelsRwMJs.length>0){
+
+                    var ctx_5 = document.getElementById("doc_review_m").getContext('2d');
+                    var data_5 = {
+                        datasets: [{
+                            label: 'Recensioni / Mese',
+                            data: checkMonthData(labelsRwMJs,dataRwMJs),
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }],
+                        labels: MONTHS,
+                    };
+                    var reviewMonth = new Chart(ctx_5, {
+                        type: 'line',
+                        data: data_5,
+                        options: {
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12
+                                }
+                            }
+                        }
+                    });
+                }
+
+                //RECENSIONI PER ANNO
+
+                const dataRwYJs = <?php echo json_encode($dataRwY); ?>;
+                const labelsRwYJs = <?php echo json_encode($labelsRwY); ?>;
+
+                if(dataRwMJs.length>0 ||  labelsRwMJs.length>0){
+                    var ctx_6 = document.getElementById("doc_review_y").getContext('2d');
+                    var data_6 = {
+                        datasets: [{
+                            label: 'Recensioni / Anno',
+                            data: dataRwYJs,
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }],
+                        labels: labelsRwYJs,
+                    };
+                    var reviewYear = new Chart(ctx_6, {
+                        type: 'line',
+                        data: data_6,
+                        options: {
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12
+                                }
+                            }
+                        }
+                    });
+                }
         });
+
   </script>
 @endsection
