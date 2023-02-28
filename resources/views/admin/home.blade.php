@@ -2,7 +2,7 @@
 
 @section('title')
 
-    | dashboard
+    | Dashboard
 
 @endsection
 

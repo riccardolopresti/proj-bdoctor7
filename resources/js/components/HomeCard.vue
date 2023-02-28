@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-    <div class="box">
+    <div class="box my-4">
         <div class="box-top">
             <div class="img-container">
                 <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
@@ -55,7 +55,7 @@ export default {
                 </div>
             </div>
             <div class="information">
-                <div v-for="rating in store.doc_ratings">
+                <div v-for="rating in store.doc_ratings" :key="rating">
                     <div
                         v-if="rating.doctor_id == doctor.id"
                         v-html="starsRating(rating.average_rating)"

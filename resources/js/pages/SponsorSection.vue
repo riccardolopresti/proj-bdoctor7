@@ -34,7 +34,7 @@ export default {
 
 <template>
     <section class="pb-5">
-        <h1 class="fw-bold text-center pt-4 mb-4 text-primary">
+        <h1 class="fw-bold text-center pt-4 mb-4 text-primary" id="spons-doc">
             Medici in evidenza
         </h1>
         <div
@@ -51,9 +51,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-/* .debug {
-    border: 3px solid blue;
-} */
+
+#spons-doc{
+    scroll-margin-top: 96px;
+}
 
 * {
     background-color: #daf0ee;

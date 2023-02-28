@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+ | Promozioni
+@endsection
+
 @section('content')
 
 <div class="container offers">
