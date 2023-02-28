@@ -332,4 +332,10 @@ h1 {
 .rating-wrapper > input:checked ~ label:hover ~ label {
     color: #ffed85;
 }
+
+@media screen and (max-width: 768px) {
+    .rating-wrapper{
+        padding: 0px;
+    }
+}
 </style>

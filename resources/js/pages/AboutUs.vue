@@ -6,8 +6,8 @@ export default {
 
 <template>
     <section>
-       <div class="container">
-            <h2 class="text-center text-primary fw-bold mt-5 mb-5"> <a name="about-us">BDoctors7: chi siamo</a></h2>
+       <div class="container pb-5" id="about-us">
+            <h2 class="text-center text-primary fw-bold mt-5 mb-5" style="font-size: 2.5rem;"> Su BDoctors7 la tua salute viene prima di tutto!</h2>
             <div class="row mt-5 mb-3">
                 <div class="col-md-12 col-lg-5">
                     <div class="container-fluid">
@@ -39,6 +39,10 @@ export default {
 
 
 <style lang="scss" scoped>
+
+#about-us{
+    scroll-margin-top: 140px;
+}
 section{
     .text{
         background-color: #DAF0EE;

@@ -38,7 +38,7 @@ export default {
         <ul class="nav-links m-0">
             <li><router-link :to="{ name: 'home'}">Home</router-link></li>
             <li><a href="#about-us">chi siamo</a></li>
-            <li><a href="#">lavora con noi</a></li>
+            <li><a href="#spons-doc">Medici in evidenza</a></li>
             <li><a href="/login" id="login-button">Sign in</a></li>
         </ul>
         </nav>
@@ -73,6 +73,7 @@ nav{
     background: rgb(55,130,232);
     box-shadow: 0 3px 20px rgba(0,0,0,0.3);
 }
+
 
 /* Styling Logo*/
 
