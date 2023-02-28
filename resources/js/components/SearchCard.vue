@@ -42,7 +42,8 @@ export default {
     <div class="box">
         <div class="box-top">
             <div class="img-container">
-                <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
+                <img v-if="doctor.image.includes('http')" class="box-image" :src="doctor.image" :alt="doctor.slug" />
+                <img v-if="!doctor.image.includes('http')" class="box-image" :src="'http://127.0.0.1:8000/storage/' + doctor.image" :alt="doctor.slug" />
             </div>
             <div class="title-flex d-flex flex-column">
                 <h3 class="box-title">
@@ -50,8 +51,11 @@ export default {
                     {{ doctor.surname }}
                 </h3>
                 <div class="user-follow-info d-flex flex-column">
-                    <p>{{ doctor.address }}</p>
-                    <p>{{ doctor.phone }}</p>
+                    <ul class="ps-3">
+                        <li  v-for="el in doctor.specs" :key="el.id">
+                            <p>{{ el.type }}</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="information">

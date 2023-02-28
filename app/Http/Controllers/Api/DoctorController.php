@@ -47,7 +47,7 @@ class DoctorController extends Controller
     }
     public function sponsorDoc()
     {
-        $sponsorDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers'])->whereHas('offers', function ($q) {
+        $sponsorDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers','specs'])->whereHas('offers', function ($q) {
             date_default_timezone_set('Europe/Rome');
             $now = date("Y-m-d H:i:s");
 
