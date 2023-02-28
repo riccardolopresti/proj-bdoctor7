@@ -8,27 +8,27 @@
 
 @section('content')
 
-@dump($dataMm)
-@dump($labelsMm)
-
-{{-- @dump($record) --}}
-
-{{-- @foreach($stat_rating as $rating)
-
-    {{$rating->created_at->format('M')}}
-
-@endforeach --}}
-
-
-<div>
-    <canvas id="doc_rating_m" width="240px" height="240px"></canvas>
+<div class="container" style="padding-bottom: 200px">
+    <div>
+        <canvas id="doc_rating_m" width="240px" height="240px"></canvas>
+    </div>
+    <div>
+        <canvas id="doc_rating_y" width="240px" height="240px"></canvas>
+    </div>
+    <div>
+        <canvas id="doc_message_m" width="240px" height="240px"></canvas>
+    </div>
+    <div>
+        <canvas id="doc_message_y" width="240px" height="240px"></canvas>
+    </div>
+    <div>
+        <canvas id="doc_review_m" width="240px" height="240px"></canvas>
+    </div>
+    <div>
+        <canvas id="doc_review_y" width="240px" height="240px"></canvas>
+    </div>
 </div>
-<div>
-    <canvas id="doc_rating_y" width="240px" height="240px"></canvas>
-</div>
-<div>
-    <canvas id="doc_message_m" width="240px" height="240px"></canvas>
-</div>
+
 
 <script>
     $(function () {
@@ -121,6 +121,102 @@
             var messageMonth = new Chart(ctx_3, {
                 type: 'line',
                 data: data_3,
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12
+                        }
+                    }
+                }
+            });
+
+            //MESSAGGI PER ANNO
+            var ctx_4 = document.getElementById("doc_message_y").getContext('2d');
+
+            const dataMyJs = <?php echo json_encode($dataMy); ?>;
+            const labelsMyJs = <?php echo json_encode($labelsMy); ?>;
+
+            var data_4 = {
+                datasets: [{
+                    data: dataMyJs,
+                    backgroundColor: [
+                        '#3c8dbc',
+                        '#f56954',
+                        '#f39c12',
+                    ],
+                }],
+                labels: labelsMyJs,
+            };
+            var messageYear = new Chart(ctx_4, {
+                type: 'line',
+                data: data_4,
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12
+                        }
+                    }
+                }
+            });
+
+            //RECENSIONI PER MESE
+            var ctx_5 = document.getElementById("doc_review_m").getContext('2d');
+
+            const dataRwMJs = <?php echo json_encode($dataRwM); ?>;
+            const labelsRwMJs = <?php echo json_encode($labelsRwM); ?>;
+
+            var data_5 = {
+                datasets: [{
+                    data: dataRwMJs,
+                    backgroundColor: [
+                        '#3c8dbc',
+                        '#f56954',
+                        '#f39c12',
+                    ],
+                }],
+                labels: labelsRwMJs,
+            };
+            var messageMonth = new Chart(ctx_5, {
+                type: 'line',
+                data: data_5,
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12
+                        }
+                    }
+                }
+            });
+
+            //RECENSIONI PER ANNO
+            var ctx_6 = document.getElementById("doc_review_y").getContext('2d');
+
+            const dataRwYJs = <?php echo json_encode($dataRwY); ?>;
+            const labelsRwYJs = <?php echo json_encode($labelsRwY); ?>;
+
+            var data_6 = {
+                datasets: [{
+                    data: dataRwYJs,
+                    backgroundColor: [
+                        '#3c8dbc',
+                        '#f56954',
+                        '#f39c12',
+                    ],
+                }],
+                labels: labelsRwYJs,
+            };
+            var messageYear = new Chart(ctx_6, {
+                type: 'line',
+                data: data_6,
                 options: {
                     responsive: false,
                     maintainAspectRatio: false,
