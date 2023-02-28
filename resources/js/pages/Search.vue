@@ -54,7 +54,7 @@ export default {
                     class="right col-xl-8 d-flex flex-wrap justify-content-xl-end p-0"
                 >
                     <div
-                        class="rating-filter d-flex align-items-center mt-2 me-sm-3"
+                        class="rating-filter d-flex align-items-center mt-3 me-sm-3"
                     >
                         <span>Filtro per Rating:</span>
                         <fieldset class="rating-wrapper ms-2">
@@ -171,7 +171,7 @@ export default {
                         </fieldset>
                     </div>
 
-                    <div class="review-filter mt-2">
+                    <div class="review-filter mt-3">
                         <select
                             v-model="reviewsNumber"
                             class="form-select m-0"
