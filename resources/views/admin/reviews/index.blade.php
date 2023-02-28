@@ -124,7 +124,7 @@
         </div>
         @else
         <div class="left-side w-100">
-            <h3 class="mt-5 fw-bold">Recensioni</h3>
+            <h3 class="mt-5 fw-bold">Recensioni del Dott. {{ $user_logged->surname }}</h3>
         </div>
         <div class="special-table">
             <div class="limiter m-0">
@@ -135,16 +135,16 @@
                                 <thead>
                                     <tr class="table100-head">
                                         <th scope="col" class="text-capitalize">
-                                            Dott. {{ $user_logged->surname }}
+                                            Data
                                         </th>
                                         <th scope="col">Nome Utente</th>
                                         <th scope="col">Recensione</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ( $user_logged->reviews as $review )
+                                    @forelse ( $reviews as $review )
                                         <tr>
-                                            <td><span class="data-it"></span></td>
+                                            <td>{{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $review->created_at),0,10))))}}</td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->text }}</td>
                                         </tr>

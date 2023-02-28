@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -19,7 +20,9 @@ class RatingController extends Controller
     public function index()
     {
         $doctors= Doctor::Orderby('id','desc')->paginate(3);
-        $ratings = Rating::all();
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
+        $ratings = Rating::join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')->Orderby('created_at', 'desc')
+            ->where('doctor_id', $doctor->id)->get();
 
         $user_logged =  Auth()->user()->doctors;
 

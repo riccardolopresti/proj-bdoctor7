@@ -125,7 +125,7 @@
         @else
 
         <div class="left-side w-100">
-            <h3 class="mt-5 fw-bold">Valutazioni</h3>
+            <h3 class="mt-5 fw-bold">Valutazioni del Dott. {{ $user_logged->surname }}</h3>
         </div>
 
         <div class="special-table">
@@ -137,16 +137,16 @@
                                 <thead>
                                     <tr class="table100-head">
                                         <th scope="col" class="text-capitalize">
-                                            Dott. {{ $user_logged->surname }}
+                                            Data
                                         </th>
                                         <th scope="col">Nome Utente</th>
                                         <th scope="col">Voto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ( $user_logged->ratings as $rating)
+                                    @forelse ( $ratings as $rating)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $rating->created_at),0,10))))}}</td>
                                             <td>{{ $rating->name }}</td>
                                             <td><span class="ratings-star"></span></td>
                                         </tr>

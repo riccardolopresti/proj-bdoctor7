@@ -156,7 +156,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ( $user_logged->messages as $message)
+                                                @forelse ( $messages as $message)
                                                     <tr class="havemsg">
                                                         <td>
                                                             <a href="{{route('admin.messages.show', $message->id)}}">
@@ -169,7 +169,10 @@
                                                             </span>
                                                         </td>
                                                         <td class="ellipsis data-msg">
-                                                            <span class="data-it-2"></span>
+                                                            <span>
+                                                                {{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $message->created_at),0,10))))}}
+                                                            </span>
+
                                                         </td>
                                                         <td class="ellipsis">
                                                             <span>
