@@ -33,6 +33,21 @@
 <script>
     $(function () {
 
+            const MONTHS = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ];
+
             //VOTI PER MESE
             var ctx = document.getElementById("doc_rating_m").getContext('2d');
 
