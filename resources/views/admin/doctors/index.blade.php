@@ -18,8 +18,7 @@
                         class="fa-solid fa-envelope"></i>&nbsp;Messages</a>
                 <a href="{{ route('admin.offers.index') }}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i
                         class="fa-solid fa-award"></i>&nbsp;Promo</a>
-                <button type="button" class="bn632-hover bn26 d-none d-md-inline-block" disabled><i
-                        class="fa-solid fa-file-invoice"></i>&nbsp;CV</button>
+
             </div>
             <h1 class="blue text-center mb-4">Il tuo profilo</h1>
             <div class="col-lg-7 col-12 left row">

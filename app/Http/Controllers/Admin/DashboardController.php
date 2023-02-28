@@ -39,6 +39,7 @@ class DashboardController extends Controller
                 $dataRm = $monthlyRatingsColl['data'];
                 $labelsRm =  $monthlyRatingsColl['label'];
                 $rating="";
+
             }else{
                 $rating="Non hai ancora ricevuto valutazioni";
                 $dataRm = 0;
