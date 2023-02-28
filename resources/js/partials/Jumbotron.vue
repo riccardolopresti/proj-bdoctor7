@@ -23,7 +23,11 @@ export default {
                 store.notSponsorFilteredDocs =
                     result.data.notSponsorFilteredDocs.data;
                 store.doc_ratings = result.data.doc_ratings;
-                console.log(store.sponsorFilteredDocs);
+
+                
+                console.log('SPONSORED_DOC--->',store.sponsorFilteredDocs);
+                console.log('NO_SPONSORED_DOC--->',store.notSponsorFilteredDocs);
+                console.log('AVG_STARS--->',store.doc_ratings);
             });
         },
         getRawArray(proxy) {

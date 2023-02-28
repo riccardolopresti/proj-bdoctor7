@@ -16,7 +16,7 @@ export default {
             let newRating = Math.ceil(number * 2) / 2;
             let stars = [];
             const diff = 5 - newRating;
-            console.log(newRating, diff);
+            //console.log(newRating, diff);
             for (let i = newRating; i >= 1; i--) {
                 stars.push(
                     `<i class="fa-solid fa-star" style="color:gold;"></i>`
