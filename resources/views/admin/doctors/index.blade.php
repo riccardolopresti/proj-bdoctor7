@@ -8,7 +8,7 @@
             {{ session('message') }}
         </div>
     @endif
-        <div class="main-wrapper-doctors row">
+
         <div class="main-wrapper-doctors row d-flex justify-content-center ">
 
             <div class="col-12 d-flex justify-content-end buttons mb-3">
@@ -140,7 +140,7 @@
 
 
         </div>
-    </div>
+
 
 @endsection
 @push('body-scripts')

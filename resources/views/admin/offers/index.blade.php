@@ -133,6 +133,7 @@
                  @if (count($active_offers)>0)
                 <div class="col-xl-5 col-lg-5 col-md-4 mb-5 offset-1 my-promos mx-0 align-self-end price-card">
                      <h6 class="blue">Le tue promo attive:</h6>
+                     <p class="grey">Finchè avrai delle promo in corso non potrai acquistarne altre</p>
                         <ul class="activePromos">
                             @foreach ($active_offers as $offer)
                                 <li>
@@ -159,7 +160,13 @@
                 <p>Durata <strong style="color:#3782e8">{{$offer->duration}} Ore</strong>  </p>
                 <p class="price"><span style="color:#3782e8;font-size:26px;font-weight:600">&euro; {{$offer->price}}</span></p>
 
-                <a href="{{route('admin.payment.create', $offer)}}" class="bn632-hover bn26">Acquista ora</a>
+                @if (count($active_offers)<= 0)
+                <a type="button" href="{{route('admin.payment.create', $offer)}}" class="bn632-hover bn26">Acquista ora</a>
+                @endif
+
+                @if (count($active_offers)>0)
+                    <button href="{{route('admin.payment.create', $offer)}}" class="bn632-hover bn26 close-btn px-1" disabled>Acquista ora</button>
+                @endif
             </div>
         </div>
      @endforeach
