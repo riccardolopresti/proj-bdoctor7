@@ -1,33 +1,62 @@
 <script>
-import DocCard from '../components/DocCard.vue';
-import docs from '../assets/data/sponsored-docs'
+// import DocCard from '../components/DocCard.vue';
+import { store } from "../data/store";
+import axios from "axios";
+import HomeCard from "../components/HomeCard.vue";
 
 export default {
-    name: 'SponsorSection',
+    name: "SponsorSection",
 
-    components:{
-        DocCard
+    components: {
+        HomeCard,
     },
 
-    data(){
-    return{
-      docs
-    }
-  }
-}
+    data() {
+        return {
+            store,
+        };
+    },
+    methods: {
+        getSponsoredDoctors() {
+            axios.get(store.apiUrl).then((result) => {
+                store.sponsorFilteredDocs = result.data.sponsorDocs.data;
+                console.log(store.sponsorFilteredDocs);
+            });
+        },
+    },
+    mounted() {
+        this.getSponsoredDoctors();
+    },
+};
 </script>
 
 <template>
-<section class="pb-5">
-       <h1 class="fw-bold text-center pt-4 text-primary">Medici in evidenza</h1>
-    <div class="container-fluid">
-        <DocCard v-for="(doc, index) in docs" :key="index" :docName="doc.name" :docImg="doc.image" :docSpec="doc.specialization" :docMail="doc.email" :docCare="doc.description" />
-    </div>
-</section>
-
+    <section class="pb-5">
+        <h1 class="fw-bold text-center pt-4 mb-4 text-primary">
+            Medici in evidenza
+        </h1>
+        <div
+            class="container-custom m-auto debug d-flex justify-content-center flex-wrap"
+        >
+            <HomeCard
+                v-for="doctor in store.sponsorFilteredDocs"
+                :key="doctor.id"
+                :doctor="doctor"
+                class="m-1"
+            />
+        </div>
+    </section>
 </template>
 
+<style lang="scss" scoped>
+/* .debug {
+    border: 3px solid blue;
+} */
 
-<style scoped>
-
+* {
+    background-color: #daf0ee;
+    .container-custom {
+        width: 90%;
+    }
+}
 </style>
