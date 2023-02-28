@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -19,7 +20,8 @@ class MessageController extends Controller
     public function index()
     {
         $doctors= Doctor::Orderby('id','desc')->paginate(3);
-        $messages = Message::all();
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
+        $messages = Message::where('doctor_id', $doctor->id)->orderBy('created_at', 'desc')->get();
 
         $user_logged =  Auth()->user()->doctors;
 
