@@ -56,8 +56,8 @@ export default {
                     <div
                         class="rating-filter d-flex align-items-center mt-3 me-sm-3"
                     >
-                        <span>Filtro per Rating:</span>
-                        <fieldset class="rating-wrapper ms-2">
+                        <span>filtro per rating:</span>
+                        <fieldset class="rating-wrapper">
                             <input
                                 v-model.trim="rangeValue"
                                 type="radio"
@@ -188,7 +188,10 @@ export default {
                 </div>
             </div>
             <div class="doctor-container">
-                <div v-if="store.sponsorFilteredDocs.length > 0" class="sponsored mb-5">
+                <div
+                    v-if="store.sponsorFilteredDocs.length > 0"
+                    class="sponsored mb-5"
+                >
                     <div class="title w-100 text-center p-3">
                         <h3>Medici in evidenza</h3>
                     </div>
@@ -213,7 +216,6 @@ export default {
                         :doctor="doctor"
                     />
                 </div>
-
             </div>
         </div>
     </div>
@@ -266,7 +268,7 @@ export default {
         padding-bottom: 50px;
     }
 
-    .sponsored{
+    .sponsored {
         border-bottom: 1px solid rgb(121, 121, 121);
     }
 }
@@ -290,8 +292,9 @@ h1 {
     background-color: white;
     border: none;
     border-radius: 50px;
-    padding: 1.5px 20px;
-    float: left;
+    padding: 1.5px;
+    // float: left;
+    margin-left: 5px;
 }
 
 .rating-wrapper > input {

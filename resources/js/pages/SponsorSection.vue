@@ -1,10 +1,9 @@
 <script>
-
 import { store } from "../data/store";
 import axios from "axios";
 import HomeCard from "../components/HomeCard.vue";
 
-import docs from '../assets/data/sponsored-docs'
+import docs from "../assets/data/sponsored-docs";
 
 export default {
     name: "SponsorSection",
@@ -51,10 +50,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-/* .debug {
-    border: 3px solid blue;
-} */
-
 * {
     background-color: #daf0ee;
     .container-custom {
