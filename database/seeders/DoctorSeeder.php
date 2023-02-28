@@ -26,7 +26,7 @@ class DoctorSeeder extends Seeder
             $new_doctor->surname = $faker->lastName();
             $new_doctor->slug = Str::slug($user->name . '-' . $new_doctor->surname);
             $new_doctor->address = $faker->streetAddress();
-            $new_doctor->image = 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png';
+            $new_doctor->image = 'https://www.indrenetwork.com/sites/default/files/2019-11/silueta_6_0.png';
             $new_doctor->phone = $faker->phoneNumber();
             $new_doctor->health_care = $faker->realText($maxNbChars = 200, $indexSize = 2);
             $new_doctor->save();
