@@ -188,9 +188,9 @@ export default {
                 </div>
             </div>
             <div class="doctor-container">
-                <div class="sponsored mb-5">
+                <div v-if="store.sponsorFilteredDocs.length > 0" class="sponsored mb-5">
                     <div class="title w-100 text-center p-3">
-                        <h3>Medici sponsorizzati</h3>
+                        <h3>Medici in evidenza</h3>
                     </div>
                     <SearchCard
                         v-for="doctor in store.sponsorFilteredDocs"
@@ -203,9 +203,6 @@ export default {
                     />
                 </div>
                 <div class="not-sponsored">
-                    <div class="title w-100 text-center p-3">
-                        <h3>Medici non sponsorizzati</h3>
-                    </div>
                     <SearchCard
                         v-for="doctor in store.notSponsorFilteredDocs"
                         :key="doctor.id"
@@ -217,26 +214,6 @@ export default {
                     />
                 </div>
 
-                <!-- <div
-            v-for="doctor in store.filteredDoctors"
-            :key="doctor.id"
-            v-show="
-                doctor.reviews.length >= this.reviewsNumber &&
-                getAverage(doctor.id) >= this.rangeValue
-            "
-            class="doctor-card"
-        >
-            <p><router-link :to="{name:'detail', params:{slug: doctor.slug}}">{{ doctor.user.name }} {{ doctor.surname }}</router-link></p>
-            <p>{{ doctor.phone }}</p>
-            <p>{{ doctor.address }}</p>
-            <p>numero di recensioni: {{ doctor.reviews.length }}</p>
-            <div v-for="rating in store.doc_ratings">
-                <p v-if="rating.doctor_id == doctor.id">
-                    {{ rating.average_rating }}
-                </p>
-            </div>
-            <span>Il mio voto {{ getAverage(doctor.id) }}</span>
-        </div> -->
             </div>
         </div>
     </div>
@@ -252,13 +229,7 @@ export default {
 }
 .container-fluid {
     padding: 0;
-    // glass
-    // background: rgba(255, 255, 255, 0.2);
-    // border-radius: 16px;
-    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    // backdrop-filter: blur(5px);
-    // -webkit-backdrop-filter: blur(5px);
-    // border: 1px solid rgba(255, 255, 255, 0.3);
+
     .top-section {
         display: flex;
         align-items: center;
@@ -293,6 +264,10 @@ export default {
         justify-content: center;
         padding-top: 50px;
         padding-bottom: 50px;
+    }
+
+    .sponsored{
+        border-bottom: 1px solid rgb(121, 121, 121);
     }
 }
 

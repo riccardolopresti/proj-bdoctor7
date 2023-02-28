@@ -47,56 +47,6 @@ export default {
 </script>
 
 <template>
-    <!-- <div id="container">
-        <div class="doctor-details">
-            <h1>
-                <router-link
-                    :to="{ name: 'detail', params: { slug: doctor.slug } }"
-                    >{{ doctor.user.name }} {{ doctor.surname }}</router-link
-                >
-            </h1>
-            <br />
-            <div class="hint-star star mt-2 mb-2">
-                 <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                {{}}
-            </div>
-
-            <ul class="information">
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span class="ms-2">{{ doctor.user.email }}</span>
-                </li>
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-phone"></i>
-                    <span class="ms-2">{{ doctor.phone }}</span>
-                </li>
-                <li class="d-flex align-items-center my-1">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span class="ms-2">{{ doctor.address }}</span>
-                </li>
-            </ul>
-
-            <div class="d-flex">
-                <div v-for="rating in store.doc_ratings">
-                    <p v-if="rating.doctor_id == doctor.id">
-                        Rating: {{ roundNumber(rating.average_rating) }} / 5
-                    </p>
-                </div>
-                <span class="ms-3"
-                    >Recensioni: {{ doctor.reviews.length }}</span
-                >
-            </div>
-        </div>
-
-        <div class="doctor-image">
-            <img :src="doctor.image" :alt="doctor.slug" />
-        </div>
-    </div> -->
-
-    <!-- <div class="wrap"> -->
     <div class="box">
         <div class="box-top">
             <img class="box-image" :src="doctor.image" :alt="doctor.slug" />
@@ -117,17 +67,15 @@ export default {
                 <span>Recensioni: {{ doctor.reviews.length }}</span>
             </div>
         </div>
-        <a href="#" class="button"
-            ><router-link
-                :to="{ name: 'detail', params: { slug: doctor.slug } }"
-                >Contatta
-                <strong
-                    >{{ doctor.user.name }} {{ doctor.surname }}</strong
-                ></router-link
-            ></a
-        >
+
+        <router-link
+            :to="{ name: 'detail', params: { slug: doctor.slug } }" class="button">
+                Contatta
+                <strong>
+                    {{ doctor.user.name }} {{ doctor.surname }}
+                </strong>
+        </router-link>
     </div>
-    <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>
