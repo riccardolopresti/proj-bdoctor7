@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,8 @@ class ReviewController extends Controller
     public function index()
     {
         $doctors = Doctor::orderBy('id','desc')->paginate(3);
-        $reviews = Review::all();
+        $doctor=Doctor::where('user_id', Auth::user()->id)->first();
+        $reviews = Review::where('doctor_id', $doctor->id)->orderBy('created_at', 'desc')->get();
 
         $user_logged =  Auth()->user()->doctors;
 

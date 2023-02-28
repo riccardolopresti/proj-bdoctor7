@@ -144,10 +144,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
-                                        $array = json_decode(json_encode($ratings), true);
-                                        $array =array_reverse($array);
-                                    @endphp --}}
                                     @forelse ( $ratings as $rating)
                                         <tr>
                                             <td>{{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $rating->created_at),0,10))))}}</td>

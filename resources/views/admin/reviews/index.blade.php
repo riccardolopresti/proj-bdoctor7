@@ -142,9 +142,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ( $user_logged->reviews as $review )
+                                    @forelse ( $reviews as $review )
                                         <tr>
-                                            <td><span class="data-it"></span></td>
+                                            <td>{{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $review->created_at),0,10))))}}</td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->text }}</td>
                                         </tr>
