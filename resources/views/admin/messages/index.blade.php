@@ -196,11 +196,11 @@
 
                                         <ul class="list-group">
                                             <li class="list-group-item custom-head">Dott. {{ $user_logged->surname }}</li>
-                                            @forelse ( $user_logged->messages as $message)
+                                            @forelse ( $messages as $message)
                                                 <li class="list-group-item"><strong>Messagio n°: </strong> {{$loop->iteration}}</li>
                                                 <li class="list-group-item text-capitalize"><strong>Nome utente: </strong> {{$message->name}}</li>
                                                 <li class="list-group-item"><strong>Oggetto: </strong>{{ $message->object ? $message->object : 'Nessun oggetto'}}</li>
-                                                <li class="list-group-item "><strong>Data: </strong> <span class="data-it"></span></li>
+                                                <li class="list-group-item "><strong>Data: </strong> {{implode("/", array_reverse(explode("/", substr(str_replace("-", "/", $message->created_at),0,10))))}}</li>
                                                 <li class="list-group-item"><strong>Email: </strong>{{$message->email}}</li>
                                                 <li class="list-group-item custom-last">
                                                     <p class="text-truncate-custom">
