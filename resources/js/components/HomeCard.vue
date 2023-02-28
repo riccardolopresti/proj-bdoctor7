@@ -71,7 +71,7 @@ export default {
         <router-link
             :to="{ name: 'detail', params: { slug: doctor.slug } }"
             class="button"
-            >Contatta
+            >Vedi
             <strong
                 >{{ doctor.user.name }} {{ doctor.surname }}</strong
             ></router-link
