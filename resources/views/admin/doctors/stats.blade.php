@@ -2,13 +2,13 @@
 
 @section('title')
 
-    | Dashboard
+    | dashboard
 
 @endsection
 
 @section('content')
 
-<div class="main-wrapper-doctors row d-flex justify-content-center" style="margin-bottom:40px">
+<div class="main-wrapper-doctors row d-flex justify-content-center" style="height:80vh">
     <div class="d-flex justify-content-between">
         <h1 class="blue">Le tue statistiche</h1>
         <div class="">
@@ -24,8 +24,8 @@
     </div>
 
     <div class="container-fluid" style="padding-bottom: 200px">
-        <div class="row flex-wrap">
-            <div class="mt-3 my-ratings col-12 col-lg-6">
+        <div class="row">
+            <div class="mt-3 my-ratings col-6">
                 @if(!empty($rating))
                 <p class="grey">{{$rating}}</p>
                 @else
@@ -36,11 +36,11 @@
                 </div>
 
                 <div class="d-flex">
-                    <div class="monthly">
-                        <canvas id="doc_rating_m" class="w-100" style="min-height:300px"></canvas>
+                    <div class="me-4 monthly">
+                        <canvas id="doc_rating_m" width="400px" height="400px"></canvas>
                     </div>
                     <div class="yearly d-none">
-                        <canvas id="doc_rating_y" class="w-100" style="min-height:300px"></canvas>
+                        <canvas id="doc_rating_y" width="400px" height="400px"></canvas>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
             </div>
 
 
-            <div class="col-12 col-lg-6">
+            <div class="col-6">
                 <div class="mt-3 my-msgs">
                     @if(!empty($message))
                         <p class="grey">{{$message}}</p>
@@ -56,11 +56,11 @@
                     <h3 class="w-100 dark-blue">Messaggi</h3>
                     <div class="d-flex">
 
-                        <div class="monthly">
-                            <canvas id="doc_message_m" class="w-100" style="min-height:200px"></canvas>
+                        <div class="me-4 monthly">
+                            <canvas id="doc_message_m" width="400px" height="200px"></canvas>
                         </div>
                         <div class="yearly d-none">
-                            <canvas id="doc_message_y" class="w-100" style="min-height:200px"></canvas>
+                            <canvas id="doc_message_y" width="400px" height="200px"></canvas>
                         </div>
                     </div>
 
@@ -75,11 +75,11 @@
                     <h3 class="w-100 dark-blue">Recensioni</h3>
                     <div class="d-flex">
 
-                        <div class=" monthly">
-                            <canvas id="doc_review_m" class="w-100" style="min-height:200px"></canvas>
+                        <div class="me-4 monthly">
+                            <canvas id="doc_review_m" width="400px" height="200px"></canvas>
                         </div>
                         <div class="yearly d-none">
-                            <canvas id="doc_review_y" class="w-100" style="min-height:200px"></canvas>
+                            <canvas id="doc_review_y" width="400px" height="200px"></canvas>
                         </div>
                     </div>
 
@@ -293,7 +293,7 @@
                         type: 'bar',
                         data: data_2,
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
                             legend: {
                                 position: 'bottom',
@@ -343,7 +343,7 @@
                         type: 'line',
                         data: data_3,
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
                             legend: {
                                 position: 'bottom',
@@ -393,7 +393,7 @@
                         type: 'line',
                         data: data_4,
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
                             legend: {
                                 position: 'bottom',
@@ -443,7 +443,7 @@
                         type: 'line',
                         data: data_5,
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
                             legend: {
                                 position: 'bottom',
@@ -492,7 +492,7 @@
                         type: 'line',
                         data: data_6,
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
                             legend: {
                                 position: 'bottom',
