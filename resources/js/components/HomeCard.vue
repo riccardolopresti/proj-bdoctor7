@@ -55,21 +55,23 @@ export default {
                 </div>
             </div>
             <div class="information">
-
-                <div v-for="rating in store.doc_ratings" :key="rating">
-                    <div v-if="rating.doctor_id == doctor.id" v-html="starsRating(rating.average_rating)"></div>
+                <div v-for="rating in store.doc_ratings">
+                    <div
+                        v-if="rating.doctor_id == doctor.id"
+                        v-html="starsRating(rating.average_rating)"
+                    ></div>
                 </div>
                 <span>Recensioni: {{ doctor.reviews.length }}</span>
             </div>
         </div>
-
         <router-link
-            :to="{ name: 'detail', params: { slug: doctor.slug } }" class="button">
-                Contatta
-                <strong>
-                    {{ doctor.user.name }} {{ doctor.surname }}
-                </strong>
-        </router-link>
+            :to="{ name: 'detail', params: { slug: doctor.slug } }"
+            class="button"
+            >Contatta
+            <strong
+                >{{ doctor.user.name }} {{ doctor.surname }}</strong
+            ></router-link
+        >
     </div>
 </template>
 
@@ -118,16 +120,6 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
-// .wrap {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: stretch;
-//     width: 100%;
-//     gap: 24px;
-//     padding: 24px;
-//     flex-wrap: wrap;
-// }
 
 .box {
     display: flex;
@@ -193,14 +185,6 @@ a {
 .button:hover {
     background: rgba(105, 153, 207, 0.493);
 }
-
-// .fill-one {
-//     background: var(--light-bg);
-// }
-
-// .fill-two {
-//     background: var(--pink);
-// }
 
 /* RESPONSIVE QUERIES */
 

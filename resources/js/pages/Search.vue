@@ -39,8 +39,8 @@ export default {
     <Header />
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="top-section">
-                <div class="left ps-3">
+            <div class="top-section row d-flex flex-wrap">
+                <div class="left col-xl-4">
                     <h2>
                         Risultati per:
                         <span class="blue"
@@ -50,141 +50,141 @@ export default {
                         >
                     </h2>
                 </div>
-                <div class="right pe-3">
-                    <span>Filtro per Rating:</span>
-                    <!-- <input
-                        v-model="rangeValue"
-                        type="range"
-                        class="form-range ms-3"
-                        min="0"
-                        max="5"
-                        id="ratingRange"
-                    /> -->
-                    <fieldset class="rating-wrapper ms-2">
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star5"
-                            name="rating"
-                            value="5"
-                        /><label
-                            class="full"
-                            for="star5"
-                            title="5 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star4half"
-                            name="rating"
-                            value="4.5"
-                        /><label
-                            class="half"
-                            for="star4half"
-                            title="4.5 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star4"
-                            name="rating"
-                            value="4"
-                        /><label
-                            class="full"
-                            for="star4"
-                            title="4 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star3half"
-                            name="rating"
-                            value="3.5"
-                        /><label
-                            class="half"
-                            for="star3half"
-                            title="3.5 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star3"
-                            name="rating"
-                            value="3"
-                        /><label
-                            class="full"
-                            for="star3"
-                            title="3 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star2half"
-                            name="rating"
-                            value="2.5"
-                        /><label
-                            class="half"
-                            for="star2half"
-                            title="2.5 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star2"
-                            name="rating"
-                            value="2"
-                        /><label
-                            class="full"
-                            for="star2"
-                            title="2 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star1half"
-                            name="rating"
-                            value="1.5"
-                        /><label
-                            class="half"
-                            for="star1half"
-                            title="1.5 stelle"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="star1"
-                            name="rating"
-                            value="1"
-                        /><label
-                            class="full"
-                            for="star1"
-                            title="1 stella"
-                        ></label>
-                        <input
-                            v-model.trim="rangeValue"
-                            type="radio"
-                            id="starhalf"
-                            name="rating"
-                            value="0.5"
-                        /><label
-                            class="half"
-                            for="starhalf"
-                            title="0.5 stelle"
-                        ></label>
-                    </fieldset>
-
-                    <select
-                        v-model="reviewsNumber"
-                        class="form-select"
-                        aria-label="reviewRange"
+                <div
+                    class="right col-xl-8 d-flex flex-wrap justify-content-xl-end p-0"
+                >
+                    <div
+                        class="rating-filter d-flex align-items-center mt-3 me-sm-3"
                     >
-                        <option selected value="">
-                            filtra per numero di recensioni
-                        </option>
-                        <option value="1">almeno 1 recensione</option>
-                        <option value="2">almeno 2 recensioni</option>
-                        <option value="3">almeno 3 recensioni</option>
-                    </select>
+                        <span>Filtro per Rating:</span>
+                        <fieldset class="rating-wrapper ms-2">
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star5"
+                                name="rating"
+                                value="5"
+                            /><label
+                                class="full"
+                                for="star5"
+                                title="5 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star4half"
+                                name="rating"
+                                value="4.5"
+                            /><label
+                                class="half"
+                                for="star4half"
+                                title="4.5 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star4"
+                                name="rating"
+                                value="4"
+                            /><label
+                                class="full"
+                                for="star4"
+                                title="4 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star3half"
+                                name="rating"
+                                value="3.5"
+                            /><label
+                                class="half"
+                                for="star3half"
+                                title="3.5 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star3"
+                                name="rating"
+                                value="3"
+                            /><label
+                                class="full"
+                                for="star3"
+                                title="3 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star2half"
+                                name="rating"
+                                value="2.5"
+                            /><label
+                                class="half"
+                                for="star2half"
+                                title="2.5 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star2"
+                                name="rating"
+                                value="2"
+                            /><label
+                                class="full"
+                                for="star2"
+                                title="2 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star1half"
+                                name="rating"
+                                value="1.5"
+                            /><label
+                                class="half"
+                                for="star1half"
+                                title="1.5 stelle"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="star1"
+                                name="rating"
+                                value="1"
+                            /><label
+                                class="full"
+                                for="star1"
+                                title="1 stella"
+                            ></label>
+                            <input
+                                v-model.trim="rangeValue"
+                                type="radio"
+                                id="starhalf"
+                                name="rating"
+                                value="0.5"
+                            /><label
+                                class="half"
+                                for="starhalf"
+                                title="0.5 stelle"
+                            ></label>
+                        </fieldset>
+                    </div>
+
+                    <div class="review-filter mt-3">
+                        <select
+                            v-model="reviewsNumber"
+                            class="form-select m-0"
+                            aria-label="reviewRange"
+                        >
+                            <option selected value="">
+                                filtra per numero di recensioni
+                            </option>
+                            <option value="1">almeno 1 recensione</option>
+                            <option value="2">almeno 2 recensioni</option>
+                            <option value="3">almeno 3 recensioni</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="doctor-container">
