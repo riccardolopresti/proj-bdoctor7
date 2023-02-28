@@ -1,8 +1,10 @@
 <script>
-// import DocCard from '../components/DocCard.vue';
+
 import { store } from "../data/store";
 import axios from "axios";
 import HomeCard from "../components/HomeCard.vue";
+
+import docs from '../assets/data/sponsored-docs'
 
 export default {
     name: "SponsorSection",

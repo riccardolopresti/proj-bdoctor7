@@ -55,24 +55,21 @@ export default {
                 </div>
             </div>
             <div class="information">
-                <div v-for="rating in store.doc_ratings">
-                    <div
-                        v-if="rating.doctor_id == doctor.id"
-                        v-html="starsRating(rating.average_rating)"
-                    ></div>
+
+                <div v-for="rating in store.doc_ratings" :key="rating">
+                    <div v-if="rating.doctor_id == doctor.id" v-html="starsRating(rating.average_rating)"></div>
                 </div>
                 <span>Recensioni: {{ doctor.reviews.length }}</span>
             </div>
         </div>
-        <a href="#" class="button"
-            ><router-link
-                :to="{ name: 'detail', params: { slug: doctor.slug } }"
-                >Contatta
-                <strong
-                    >{{ doctor.user.name }} {{ doctor.surname }}</strong
-                ></router-link
-            ></a
-        >
+
+        <router-link
+            :to="{ name: 'detail', params: { slug: doctor.slug } }" class="button">
+                Contatta
+                <strong>
+                    {{ doctor.user.name }} {{ doctor.surname }}
+                </strong>
+        </router-link>
     </div>
 </template>
 

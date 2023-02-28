@@ -188,9 +188,9 @@ export default {
                 </div>
             </div>
             <div class="doctor-container">
-                <div class="sponsored mb-5">
+                <div v-if="store.sponsorFilteredDocs.length > 0" class="sponsored mb-5">
                     <div class="title w-100 text-center p-3">
-                        <h3>Medici sponsorizzati</h3>
+                        <h3>Medici in evidenza</h3>
                     </div>
                     <SearchCard
                         v-for="doctor in store.sponsorFilteredDocs"
@@ -203,9 +203,6 @@ export default {
                     />
                 </div>
                 <div class="not-sponsored">
-                    <div class="title w-100 text-center p-3">
-                        <h3>Medici non sponsorizzati</h3>
-                    </div>
                     <SearchCard
                         v-for="doctor in store.notSponsorFilteredDocs"
                         :key="doctor.id"
@@ -216,6 +213,7 @@ export default {
                         :doctor="doctor"
                     />
                 </div>
+
             </div>
         </div>
     </div>
@@ -231,6 +229,7 @@ export default {
 }
 .container-fluid {
     padding: 0;
+
     .top-section {
         display: flex;
         align-items: center;
@@ -265,6 +264,10 @@ export default {
         justify-content: center;
         padding-top: 50px;
         padding-bottom: 50px;
+    }
+
+    .sponsored{
+        border-bottom: 1px solid rgb(121, 121, 121);
     }
 }
 
