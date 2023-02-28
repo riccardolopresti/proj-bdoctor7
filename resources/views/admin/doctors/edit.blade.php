@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+ | Modifica Profilo
+@endsection
+
 @section('content')
 
     <div class="container-fluid mt-3">

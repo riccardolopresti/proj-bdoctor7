@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+ | Pagamento
+@endsection
+
 @section('content')
 
 <div class="container payment">

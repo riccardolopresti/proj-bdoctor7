@@ -145,7 +145,7 @@ export default {
 
                                         <div class="row">
                                             <div class="col-md-12 form-group mb-3">
-                                                <label for="text" class="col-form-label mb-3">Recensione*</label>
+                                                <label for="text" class="col-form-label mb-3">Recensione</label>
                                                 <textarea v-model.trim="text" class="form-control" :class="{'is-invalid' : errors.text}"  name="text" id="text" cols="30" rows="4" placeholder="Scrivi la Recensione"></textarea>
                                                 <p class="invalid-feedback" v-for="error in errors.text" :key="error">{{ error }}</p>
                                             </div>
@@ -153,7 +153,7 @@ export default {
 
                                         <div class="row">
                                             <div class="col-md-12 form-group mb-3">
-                                                <p>Valutazione*</p>
+                                                <p>Valutazione</p>
 
                                                 <fieldset class="rating-wrapper" :class="{'is-invalid' : errors.rating}">
                                                     <input v-model.trim="rating" type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="5 stelle"></label>
