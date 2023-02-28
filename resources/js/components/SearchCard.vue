@@ -111,10 +111,8 @@ export default {
                 </div>
             </div>
             <div class="information">
-                <div v-for="rating in store.doc_ratings">
-                    <div v-if="rating.doctor_id == doctor.id">
-                        Voto: {{ roundNumber(rating.average_rating) }}
-                    </div>
+                <div v-for="rating in store.doc_ratings" :key="rating">
+                    <div v-if="rating.doctor_id == doctor.id" v-html="starsRating(rating.average_rating)"></div>
                 </div>
                 <span>Recensioni: {{ doctor.reviews.length }}</span>
             </div>
