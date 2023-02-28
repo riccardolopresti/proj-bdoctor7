@@ -8,10 +8,10 @@
 
 @section('content')
 
-@dump($data)
-@dump($labels)
-@dump($month)
-@dump($record)
+@dump($dataRy)
+@dump($labelsRy)
+
+{{-- @dump($record) --}}
 
 {{-- @foreach($stat_rating as $rating)
 
@@ -30,35 +30,21 @@
 <script>
     $(function () {
             var ctx = document.getElementById("doc_rating").getContext('2d');
-            
-            const dataJs = <?php echo json_encode($data); ?>;
-            const labelsJs = <?php echo json_encode($labels); ?>;
-            const montJs = <?php echo json_encode($month); ?>;
 
-            console.log(dataJs);
+            const dataRmJs = <?php echo json_encode($dataRm); ?>;
+            const labelsRmJs = <?php echo json_encode($labelsRm); ?>;
+
             var data = {
-                labels: labelsJs,
+                labels: labelsRmJs,
                 datasets: [
                     {
                         label: 'data 1',
-                        data: dataJs,
+                        data: dataRmJs,
                         backgroundColor: [
                             '#3c8dbc',
                             '#f56954',
                             '#f39c12',
                         ],
-                        xAxisID: 'x',
-
-                    },
-                    {
-                        label: 'data 2',
-                        data: montJs,
-                        backgroundColor: [
-                            '#3c3dbc',
-                            '#f86954',
-                            '#f30c12',
-                        ],
-                        xAxisID: 'x1',
                     }
                 ],
             };
@@ -74,27 +60,28 @@
                             boxWidth: 12
                         }
                     }
-                    
+
                 }
             });
+
             var ctx_2 = document.getElementById("layanan_subbagian").getContext('2d');
+
+            const dataRyJs = <?php echo json_encode($dataRy); ?>;
+            const labelsRyJs = <?php echo json_encode($labelsRy); ?>;
+
             var data_2 = {
                 datasets: [{
-                    data: [10, 20, 30],
+                    data: dataRyJs,
                     backgroundColor: [
                         '#3c8dbc',
                         '#f56954',
                         '#f39c12',
                     ],
                 }],
-                labels: [
-                    'Request',
-                    'Layanan',
-                    'Problem'
-                ]
+                labels: labelsRyJs,
             };
             var myDoughnutChart_2 = new Chart(ctx_2, {
-                type: 'pie',
+                type: 'bar',
                 data: data_2,
                 options: {
                     responsive: false,

@@ -16,28 +16,45 @@ class DashboardController extends Controller
     public function index(){
 
         $doctor=Doctor::where('user_id', Auth::user()->id)->first();
-        $stat_rating = $doctor->ratings()->get();
 
-    
-        $record = Rating::select(DB::raw('ratings.rating as rating'), DB::raw("COUNT(ratings.rating) as count_ratings"), DB::raw("MONTH(created_at) as month_name"))
+        //VOTI PER MESE
+        $monthlyRatings = Rating::select( DB::raw("AVG(ratings.rating) as avg_ratings"), DB::raw("MONTH(created_at) as month_name"))
             ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
             ->where('doctor_id', $doctor->id)
-            ->groupBy('month_name','rating')
+            ->groupBy('month_name')
             ->orderBy('month_name')
             ->get();
 
-            $collections = [];
+            $monthlyRatingsColl = [];
 
-            foreach($record as $row) {
-                $collections['data'][] = (int) $row->count_ratings;
-                $collections['label'][] = $row->rating;
-                $collections['month'][] = (int) $row->month_name;
+            foreach($monthlyRatings as $row) {
+                $monthlyRatingsColl['data'][] = $row->avg_ratings;
+                $monthlyRatingsColl['label'][] = $row->month_name;
             }
 
-            $labels =  $collections['label'];
-            $data = $collections['data'];
-            $month = $collections['month'];
+            $dataRm = $monthlyRatingsColl['data'];
+            $labelsRm =  $monthlyRatingsColl['label'];
 
-        return view('admin.home', compact('labels','data','month','record'));
+        //VOTI PER ANNO
+        $yearlyRatings = Rating::select( DB::raw("AVG(ratings.rating) as avg_ratings"), DB::raw("YEAR(created_at) as year_name"))
+            ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
+            ->where('doctor_id', $doctor->id)
+            ->groupBy('year_name')
+            ->orderBy('year_name')
+            ->get();
+
+            $yearlyRatingsColl = [];
+
+            foreach($yearlyRatings as $row) {
+                $yearlyRatingsColl['data'][] = $row->avg_ratings;
+                $yearlyRatingsColl['label'][] = $row->year_name;
+            }
+
+            $dataRy = $yearlyRatingsColl['data'];
+            $labelsRy =  $yearlyRatingsColl['label'];
+
+
+
+        return view('admin.home', compact('dataRm','labelsRm','dataRy','labelsRy'));
     }
 }
