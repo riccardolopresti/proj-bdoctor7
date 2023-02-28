@@ -54,14 +54,14 @@ class DoctorController extends Controller
             $q->where('end_at', '>=', $now);
         })->paginate(12);
 
-        $notSponsorDocs = Doctor::with(['user', 'reviews', 'messages', 'ratings', 'offers'])->whereDoesntHave('offers', function ($q) {
-            date_default_timezone_set('Europe/Rome');
-            $now = date("Y-m-d H:i:s");
+        $doc_ratings = DB::table('ratings')
+            ->join('doctor_rating', 'ratings.id', '=', 'doctor_rating.rating_id')
+            ->select('doctor_id')
+            ->selectRaw('AVG(ratings.rating) AS average_rating')
+            ->groupBy('doctor_id')
+            ->get();
 
-            $q->where('end_at', '>=', $now);
-        })->paginate(8);
-
-        return response()->json(compact('sponsorDocs', 'notSponsorDocs'));
+        return response()->json(compact('sponsorDocs', 'doc_ratings'));
     }
 
     public function show($slug)

@@ -21,6 +21,7 @@ export default {
         getSponsoredDoctors() {
             axios.get(store.apiUrl).then((result) => {
                 store.sponsorFilteredDocs = result.data.sponsorDocs.data;
+                store.doc_ratings = result.data.doc_ratings;
                 console.log(store.sponsorFilteredDocs);
             });
         },
