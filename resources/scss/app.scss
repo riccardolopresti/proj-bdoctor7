@@ -22,6 +22,11 @@ main{
 
 // header
 
+// .debug{
+//     outline: 3px solid lime;
+//     background-color: rgba($color: #ff00004d, $alpha: 1);
+// }
+
 header{
     // background-color: #1583b4;
     background: rgb(55,130,232);
@@ -30,8 +35,9 @@ header{
     background: linear-gradient(90deg, rgba(55,130,232,1) 60%, rgba(156,225,253,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3782e8",endColorstr="#9ce1fd",GradientType=1);
     height:80px;
+    display: flex;
+    align-items: center;
     .navbar{
-
         .logo_doc{
             width: 16vw;
             min-width: 100px;
