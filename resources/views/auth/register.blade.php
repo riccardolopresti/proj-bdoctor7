@@ -330,14 +330,12 @@
                     name: {
                         required: true,
                         maxlength: 255,
-                        minlength: 3,
-                        lettersonly: true
+                        minlength: 2,
                     },
                     surname: {
                         required: true,
                         maxlength: 80,
-                        minlength: 4,
-                        lettersonly: true
+                        minlength: 2,
                     },
                     address: {
                         required: true,
