@@ -35,8 +35,8 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:3'],
-            'surname' => ['required', 'string', 'max:255','min:3'],
+            'name' => ['required', 'string', 'max:255', 'min:2'],
+            'surname' => ['required', 'string', 'max:255','min:2'],
             'address' => ['required', 'string', 'max:255','min:5'],
             'email' => ['required', 'string', 'email', 'max:255','min:5', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
             'surname' => $request->surname,
             'slug' => Str::slug($request->name . '-' . $request->surname),
             'address' => $request->address,
-            'image'=> 'https://ui-avatars.com/api/?name='.$request->name.'+'.$request->surname.'&background=random'
+            'image'=> 'https://www.indrenetwork.com/sites/default/files/2019-11/silueta_6_0.png'
         ]);
 
         $doctor->specs()->attach($request->type);
