@@ -90,7 +90,7 @@ nav {
     width: 80vw;
     display: flex;
     padding: 0 0.7vw;
-    justify-content: space-evenly;
+    justify-content: end;
     align-items: center;
     text-transform: uppercase;
     list-style: none;
