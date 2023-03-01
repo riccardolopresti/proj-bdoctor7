@@ -24,83 +24,87 @@
     </div>
 
     <div class="container-fluid" style="padding-bottom: 200px">
-        <div class="row flex-wrap">
-            <div class="mt-3 my-ratings col-12 col-lg-6">
-                @if(!empty($rating))
-                <p class="grey">{{$rating}}</p>
-                @else
 
-                <div class="d-flex justify-content-evenly">
-                    <h3 class="w-100 dark-blue">Valutazioni</h3>
+        <div class="mt-3 my-ratings">
+            @if(!empty($rating))
+            <p class="grey">{{$rating}}</p>
+            @else
 
-                </div>
-
-                <div class="d-flex">
-                    <div class="monthly">
-                        <canvas id="doc_rating_m" class="w-100" style="min-height:300px"></canvas>
-                    </div>
-                    <div class="yearly d-none">
-                        <canvas id="doc_rating_y" class="w-100" style="min-height:300px"></canvas>
-                    </div>
-                </div>
-
-                @endif
-            </div>
-
-
-            <div class="col-12 col-lg-6">
-                <div class="mt-3 my-msgs">
-                    @if(!empty($message))
-                        <p class="grey">{{$message}}</p>
-                    @else
-                    <h3 class="w-100 dark-blue">Messaggi</h3>
-                    <div class="d-flex">
-
-                        <div class="monthly">
-                            <canvas id="doc_message_m" class="w-100" style="min-height:200px"></canvas>
-                        </div>
-                        <div class="yearly d-none">
-                            <canvas id="doc_message_y" class="w-100" style="min-height:200px"></canvas>
-                        </div>
-                    </div>
-
-                    @endif
-                </div>
-
-                <div class="mt-2 my-reviews">
-
-                    @if(!empty($review))
-                        <p class="grey">{{$review}}</p>
-                    @else
-                    <h3 class="w-100 dark-blue">Recensioni</h3>
-                    <div class="d-flex">
-
-                        <div class=" monthly">
-                            <canvas id="doc_review_m" class="w-100" style="min-height:200px"></canvas>
-                        </div>
-                        <div class="yearly d-none">
-                            <canvas id="doc_review_y" class="w-100" style="min-height:200px"></canvas>
-                        </div>
-                    </div>
-
-                    @endif
-                </div>
+            <div class="d-flex justify-content-evenly">
+                <h3 class="w-100 dark-blue">Valutazioni</h3>
 
             </div>
 
+            <div class="d-flex">
+                <div class="monthly chart-container position-relative w-100 p-1 me-2" >
+                    <canvas id="doc_rating_m" class="ratings-canvas"></canvas>
+                </div>
+                <div class="yearly d-none chart-container position-relative w-100 p-1 me-2" >
+                    <canvas id="doc_rating_y" class="ratings-canvas"></canvas>
+                </div>
+            </div>
+
+            @endif
         </div>
+
+        <div class="mt-3 my-msgs">
+            @if(!empty($message))
+                <p class="grey">{{$message}}</p>
+            @else
+            <h3 class="w-100 dark-blue">Messaggi</h3>
+            <div class="d-flex">
+
+                <div class="monthly chart-container position-relative w-100 p-1">
+                    <canvas id="doc_message_m" class="msgs-canvas"></canvas>
+                </div>
+                <div class="yearly d-none chart-container position-relative w-100 p-1">
+                    <canvas id="doc_message_y" class="msgs-canvas"></canvas>
+                </div>
+            </div>
+
+            @endif
+        </div>
+
+        <div class="mt-2 my-reviews">
+
+            @if(!empty($review))
+                <p class="grey">{{$review}}</p>
+            @else
+            <h3 class="w-100 dark-blue">Recensioni</h3>
+            <div class="d-flex">
+
+                <div class="monthly chart-container position-relative w-100 p-1 ">
+                    <canvas id="doc_review_m" class="reviews-canvas"></canvas>
+                </div>
+                <div class="yearly d-none chart-container position-relative w-100 p-1">
+                    <canvas id="doc_review_y" class="reviews-canvas"></canvas>
+                </div>
+            </div>
+
+            @endif
+        </div>
+
+
+
+
 
     </div>
 </div>
 <style>
+
+    .main-wrapper-doctors{
+        overflow-x:auto;
+    }
+
     .dark-blue{
         color:#061761;
     }
-            .switch-wrap {
-            cursor: pointer;
-            background: #061761;
-            padding: 5px;
-            width: 100px;
+
+    .switch-wrap {
+    cursor: pointer;
+        background: #061761;
+        padding: 5px;
+        width: 100px;
             height: calc(100px /2 + 5px);
             border-radius: calc((100px /2 + 5px) / 2);
             }
@@ -138,6 +142,7 @@
                 font-size:0.7rem;
                 bottom:-25px;
             }
+
 
 
 
@@ -244,6 +249,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        resizeDelay: 0,
                         legend: {
                             position: 'bottom',
                             labels: {
@@ -295,6 +301,7 @@
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
+                            resizeDelay: 0,
                             legend: {
                                 position: 'bottom',
                                 labels: {
