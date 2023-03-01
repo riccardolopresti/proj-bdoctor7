@@ -55,9 +55,9 @@ export default {
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25">
-                                            <img :src="doctor.image" class="img-radius" :alt="doctor.surname">
-                                            <!-- <img v-if="this.doctor.image.includes('http')" class="box-image" :src="doctor.image" :alt="doctor.slug" /> -->
-                                            <img  class="box-image" :src="'http://127.0.0.1:8000/storage/' + doctor.image" :alt="doctor.slug" />
+                                            <img v-if="doctor.image_original_name == null" :src="doctor.image" class="img-radius" :alt="doctor.surname">
+
+                                            <img v-if="doctor.image_original_name != null" class="img-radius" :src="'http://127.0.0.1:8000/storage/' + doctor.image" :alt="doctor.slug" />
                                         </div>
                                         <span class="text-center fs-5">Dott.</span>
                                         <h3 class="fw-bold m-3 text-uppercase" v-if="doctor.user">{{ doctor.user.name }} {{ doctor.surname }}</h3>
