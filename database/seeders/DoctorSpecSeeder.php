@@ -24,10 +24,11 @@ class DoctorSpecSeeder extends Seeder
             for ($i=0; $i < $random_numb ; $i++) {
                 $spec_id = Spec::inRandomOrder()->first();
 
-                if(!$doctor->specs->contains($spec_id)){
-                    $doctor->specs()->attach($spec_id);
+                if(!($doctor->specs->contains($spec_id))){
+                    $doctor->specs()->syncWithoutDetaching($spec_id);
                 }
             }
+
         }
     }
 }

@@ -36,7 +36,7 @@
             </div>
 
             <div class="d-flex">
-                <div class="monthly chart-container position-relative w-100 p-1 me-2" >
+                <div class="monthly chart-container position-relative w-100 p-1 me-2">
                     <canvas id="doc_rating_m" class="ratings-canvas"></canvas>
                 </div>
                 <div class="yearly d-none chart-container position-relative w-100 p-1 me-2" >
