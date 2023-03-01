@@ -25,7 +25,10 @@ const router = createRouter({
             name: 'detail',
             component: DoctorDetail
         },
-    ]
+    ],
+    scrollBehavior() {
+        document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
+    }
 });
 
 export {router};
