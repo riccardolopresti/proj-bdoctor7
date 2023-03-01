@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-    <div class="box">
+    <div class="box mx-4">
         <div class="box-top">
             <div class="img-container">
                 <img v-if="doctor.image.includes('http')" class="box-image" :src="doctor.image" :alt="doctor.slug" />
@@ -105,6 +105,7 @@ export default {
 h3 {
     font-size: 1.5em;
     font-weight: 700;
+    color: #3782e8;
 }
 
 p {
@@ -141,7 +142,8 @@ a {
     padding: 24px;
     background: #fff;
     margin: 0.5rem;
-    border-radius: 5px;
+    border-radius: 15px;
+    max-width: 350px;
 }
 
 .box-top {
@@ -188,9 +190,9 @@ a {
     text-align: center;
     margin-top: auto;
     padding: 16px;
-    color: #000;
+    color: #3782e8;
     background: transparent;
-    box-shadow: 0px 0px 0px 1px black inset;
+    box-shadow: 0px 0px 0px 1px #3782e8 inset;
     transition: background 0.4s ease;
 }
 

@@ -203,7 +203,7 @@ export default {
                     class="sponsored mb-5"
                 >
                     <div class="title w-100 text-center p-3">
-                        <h3>Medici in evidenza</h3>
+                        <h3 style="color: #3782e8;font-size: 3rem;font-weight: bold;">Medici in evidenza</h3>
                     </div>
                     <SearchCard
                         v-for="doctor in store.sponsorFilteredDocs"
@@ -248,7 +248,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         padding: 30px 10px;
-        border-bottom: 1px solid rgb(121, 121, 121);
+        //border-bottom: 1px solid rgb(121, 121, 121);
         .left {
             padding: 0;
             h2 {
@@ -280,7 +280,9 @@ export default {
     }
 
     .sponsored {
-        border-bottom: 1px solid rgb(121, 121, 121);
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #daf0ee;
+        border-radius: 15px;
     }
 }
 

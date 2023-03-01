@@ -96,7 +96,7 @@ export default {
                                         <div class="row">
                                             <div class="col-sm-10">
                                                 <p class="m-b-10 f-w-600"><i class="fa-solid fa-user-doctor"></i> Prestazioni mediche</p>
-                                                <h6 v-html="doctor.health_care" class="text-muted f-w-400"> </h6>
+                                                <h6 v-html="'<ul>' + doctor.health_care + '</ul>'" class="text-muted f-w-400"> </h6>
                                             </div>
                                         </div>
 
