@@ -92,7 +92,7 @@
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>&nbsp;
+                                        <i class="fa-solid fa-star"></i>&nbsp; <br>
                                         Non hai ancora ricevuto valutazioni</span>
                                 @endif
                             </div>
@@ -105,7 +105,9 @@
 
                             <div class="text-container">
                                 <span class="doc_reviews">
-                                    @if (!is_null($doc_reviews))
+                                    @if (count($doc_reviews) == 0)
+                                        <span class="grey">Non hai ancora ricevuto recensioni</span>
+                                    @else
                                         <section class="slider-wrapper">
                                             <button class="slide-arrow d-flex align-items-center" id="slide-arrow-prev">
                                                 <i class="fa-solid blue fa-chevron-left"></i>
@@ -128,8 +130,6 @@
                                                 @endforeach
                                             </ul>
                                         </section>
-                                    @else
-                                        <span class="grey">Non hai ancora ricevuto recensioni</span>
                                     @endif
                                 </span>
                             </div>
