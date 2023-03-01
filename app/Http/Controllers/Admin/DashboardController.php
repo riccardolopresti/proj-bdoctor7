@@ -180,9 +180,6 @@ class DashboardController extends Controller
             }
 
 
-
-
-
         return view('admin.home', compact('dataRm','labelsRm','dataRy','labelsRy','dataMm','labelsMm','dataMy','labelsMy','dataRwM','labelsRwM','dataRwY','labelsRwY', 'message', 'rating', 'review'));
     }
 }
