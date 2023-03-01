@@ -32,12 +32,12 @@ export default {
             ratingArray.forEach(element => {
                 array.push(parseFloat(element.rating))
             });
-            
+
             average = array.reduce((a, b) => a + b, 0) / array.length;
 
             return Math.round(average * 2) / 2;
         },
-        
+
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
@@ -66,7 +66,7 @@ export default {
                     <div
                         class="rating-filter d-flex align-items-center mt-3 me-sm-3"
                     >
-                        <span>filtro per rating:</span>
+                        <span>Filtro per Voto:</span>
                         <fieldset class="rating-wrapper">
                             <input
                                 v-model.trim="rangeValue"
@@ -188,11 +188,11 @@ export default {
                             aria-label="reviewRange"
                         >
                             <option selected value="">
-                                filtra per numero di recensioni
+                                Filtra per numero di recensioni
                             </option>
-                            <option value="1">almeno 1 recensione</option>
-                            <option value="2">almeno 2 recensioni</option>
-                            <option value="3">almeno 3 recensioni</option>
+                            <option value="1">Almeno 1 recensione</option>
+                            <option value="5">Almeno 5 recensioni</option>
+                            <option value="10">Almeno 10 recensioni</option>
                         </select>
                     </div>
                 </div>
@@ -209,8 +209,8 @@ export default {
                         v-for="doctor in store.sponsorFilteredDocs"
                         :key="doctor.id"
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber  && 
-                            getAverage(doctor.ratings) >= this.rangeValue 
+                            doctor.reviews.length >= this.reviewsNumber  &&
+                            getAverage(doctor.ratings) >= this.rangeValue
                         "
                         :doctor="doctor"
                     />
@@ -219,10 +219,10 @@ export default {
                     <SearchCard
                         v-for="doctor in store.notSponsorFilteredDocs"
                         :key="doctor.id"
-                        
+
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber && 
-                            getAverage(doctor.ratings) >= this.rangeValue 
+                            doctor.reviews.length >= this.reviewsNumber &&
+                            getAverage(doctor.ratings) >= this.rangeValue
                         "
                         :doctor="doctor"
                     />
