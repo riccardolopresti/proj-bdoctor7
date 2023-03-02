@@ -53,7 +53,7 @@ export default {
                 <div class="left col-xl-4">
                     <h2>
                         Risultati per:
-                        <span class="blue"
+                        <span style="color:#dd5f24;"
                             ><strong>{{
                                 capitalizeFirstLetter(store.specType)
                             }}</strong></span

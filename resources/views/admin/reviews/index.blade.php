@@ -94,7 +94,7 @@
                                             @empty
                                                 <li class="list-group-item  custom-last">
                                                     <p>
-                                                        nessuna valutazione...
+                                                        Nessuna valutazione...
                                                     </p>
                                                 </li>
                                             @endforelse
@@ -123,8 +123,9 @@
 
         </div>
         @else
-        <div class="left-side w-100">
-            <h3 class="mt-5 fw-bold">Recensioni del Dott. {{ $user_logged->surname }}</h3>
+        <div class="left-side w-100 mt-5">
+
+            <h3 class="mt-5 fw-bold d-inline dark-blue">Recensioni del Dott. </h3><h1 class=" mt-5 blue d-inline">{{ $user_logged->surname }}</h1>
         </div>
         <div class="special-table">
             <div class="limiter m-0">

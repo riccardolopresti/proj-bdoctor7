@@ -128,7 +128,7 @@
             input:checked + .switch {
                 grid-template-columns: 1fr 1fr 0fr;}
              input:checked + .switch::after {
-                background-color: rgba(54, 162, 235, 0.9);
+                background-color: #dd5f24;
 
             }
 
@@ -145,10 +145,15 @@
 
 
 <script>
+    let monthStat=false;
+
+    $(document).ready(function() {
+        monthStat=false;
+        });
+
         const checkbox = document.getElementById('toggle');
         const monthlyData=document.querySelectorAll('.monthly');
         const yearlyData=document.querySelectorAll('.yearly');
-        let monthStat=false;
 
         checkbox.addEventListener('change', ()=>{
             monthStat = !monthStat

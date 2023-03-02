@@ -124,8 +124,8 @@
 
         @else
 
-        <div class="left-side w-100">
-            <h3 class="mt-5 fw-bold">Valutazioni del Dott. {{ $user_logged->surname }}</h3>
+        <div class="left-side w-100 mt-5">
+            <h3 class="mt-5 fw-bold d-inline dark-blue">Valutazioni del Dott. </h3><h1 class=" mt-5 blue d-inline">{{ $user_logged->surname }}</h1>
         </div>
 
         <div class="special-table">

@@ -15,16 +15,20 @@
 
         <div class="main-wrapper-doctors row d-flex justify-content-center ">
 
-            <div class="col-12 d-flex justify-content-end buttons mb-3">
-                <a href="{{ route('admin.doctors.edit', $doctor) }}" class="bn632-hover bn26 me-2 edit-profile"><i
-                        class="fa-solid fa-pen-to-square"></i>&nbsp;Modifica profilo</a>
-                <a href="{{ route('admin.messages.index') }}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i
-                        class="fa-solid fa-envelope"></i>&nbsp;Messages</a>
-                <a href="{{ route('admin.offers.index') }}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i
-                        class="fa-solid fa-award"></i>&nbsp;Promo</a>
+            <div class="col-12 d-flex justify-content-between buttons mb-3">
+                <h1 class="dark-blue">Il tuo profilo</h1>
+                <div class="d-flex">
+                    <a href="{{ route('admin.doctors.edit', $doctor) }}" class="bn632-hover bn26 me-2 edit-profile"><i
+                    class="fa-solid fa-pen-to-square"></i>&nbsp;Modifica profilo</a>
+            <a href="{{ route('admin.messages.index') }}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i
+                    class="fa-solid fa-envelope"></i>&nbsp;Messaggi</a>
+            <a href="{{ route('admin.offers.index') }}" class="bn632-hover bn26 me-2 d-none d-md-flex"><i
+                    class="fa-solid fa-award"></i>&nbsp;Promo</a>
+        </div>
+
 
             </div>
-            <h1 class="blue text-center mb-4">Il tuo profilo</h1>
+
             <div class="col-lg-7 col-12 left row">
 
                 <div class="col-sm-5 col-12 profile-photo p-0">
@@ -65,7 +69,7 @@
                 <div class="col-12 doctor-services d-flex align-items-end mt-3">
                     <div class="bordered-container w-100">
 
-                        <h6 class="light-blue"><i class="fa-solid fa-notes-medical"></i> I tuoi servizi</h6>
+                        <h6 class="light-blue"><i class="fa-solid fa-notes-medical"></i> Prestazioni Erogate:</h6>
 
                         @if ($doctor->health_care)
                             {!! $doctor->health_care !!}
@@ -81,7 +85,7 @@
                 <div class="sections-blue mt-4 col-12">
                     <div class="section-blue ratings-section">
                         <a href="{{ route('admin.ratings.index') }}" class="text-decoration-none text-white">
-                            <h6>Le tue valutazioni</h6>
+                            <h6>Valutazioni</h6>
 
                             <div class="bg-container">
                                 @if ($doc_ratings)
@@ -100,7 +104,7 @@
                     </div>
                     <div class="section-blue mt-3">
 
-                        <h6>Le tue recensioni</h6>
+                        <h6>Recensioni</h6>
                         <div class="bg-container mt-3 position-relative">
 
                             <div class="text-container">
