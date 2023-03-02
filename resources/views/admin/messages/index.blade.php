@@ -134,8 +134,8 @@
 
                 @else
                 {{-- PARTE NON ADMIN --}}
-                <div class="left-side w-100">
-                    <h3 class="mt-5 fw-bold">Messaggi</h3>
+                <div class="left-side w-100 mt-5">
+                    <h1 class=" mt-5 dark-blue d-inline">I tuoi messaggi</h1>
                 </div>
                     <div class="special-table auth-special">
                         <div class="limiter m-0">

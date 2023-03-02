@@ -32,12 +32,12 @@ export default {
             ratingArray.forEach(element => {
                 array.push(parseFloat(element.rating))
             });
-            
+
             average = array.reduce((a, b) => a + b, 0) / array.length;
 
             return Math.round(average * 2) / 2;
         },
-        
+
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
@@ -53,7 +53,7 @@ export default {
                 <div class="left col-xl-4">
                     <h2>
                         Risultati per:
-                        <span class="blue"
+                        <span style="color:#dd5f24;"
                             ><strong>{{
                                 capitalizeFirstLetter(store.specType)
                             }}</strong></span
@@ -209,8 +209,8 @@ export default {
                         v-for="doctor in store.sponsorFilteredDocs"
                         :key="doctor.id"
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber  && 
-                            getAverage(doctor.ratings) >= this.rangeValue 
+                            doctor.reviews.length >= this.reviewsNumber  &&
+                            getAverage(doctor.ratings) >= this.rangeValue
                         "
                         :doctor="doctor"
                     />
@@ -219,10 +219,10 @@ export default {
                     <SearchCard
                         v-for="doctor in store.notSponsorFilteredDocs"
                         :key="doctor.id"
-                        
+
                         v-show="
-                            doctor.reviews.length >= this.reviewsNumber && 
-                            getAverage(doctor.ratings) >= this.rangeValue 
+                            doctor.reviews.length >= this.reviewsNumber &&
+                            getAverage(doctor.ratings) >= this.rangeValue
                         "
                         :doctor="doctor"
                     />

@@ -118,7 +118,7 @@
     </div>
     @else
 
-    <section class="pricing-section mt-5">
+    <section class="pricing-section mt-5 me-3">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-xl-5 col-lg-6 col-md-8 mb-5">
@@ -156,7 +156,7 @@
          </div>
     </div>
                 <!-- Pricing Table starts -->
-    <div class="row">
+    <div class="row px-3">
      @foreach ($offers as $offer)
         <div class="col-md-4 my-3">
             <div class="price-card">

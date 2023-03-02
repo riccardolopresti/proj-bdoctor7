@@ -10,7 +10,7 @@
 
 <div class="main-wrapper-doctors row d-flex justify-content-center" style="margin-bottom:40px">
     <div class="d-flex justify-content-between">
-        <h1 class="blue">Le tue statistiche</h1>
+        <h1 class="dark-blue">Le tue statistiche</h1>
         <div class="">
             <label class="switch-wrap position-relative">
                 <div class="legenda position-absolute w-100 d-flex justify-content-between">
@@ -132,7 +132,7 @@
             input:checked + .switch {
                 grid-template-columns: 1fr 1fr 0fr;}
              input:checked + .switch::after {
-                background-color: rgba(54, 162, 235, 0.9);
+                background-color: #dd5f24;
 
             }
 
